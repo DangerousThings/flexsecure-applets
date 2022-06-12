@@ -1,0 +1,13 @@
+[submodule "applets/vk-ykhmac"]
+	path = applets/vk-ykhmac
+	url = https://github.com/StarGate01/vk-ykhmac
+[submodule "applets/Flex-OTP"]
+	path = applets/Flex-OTP
+	url = https://github.com/StarGate01/Flex-OTP
+[submodule "applets/SmartPGP"]
+	path = applets/SmartPGP
+	url = https://github.com/ANSSI-FR/SmartPGP
+[submodule "applets/openjavacard-ndef"]
+	path = applets/openjavacard-ndef
+	url = https://github.com/OpenJavaCard/openjavacard-ndef
+

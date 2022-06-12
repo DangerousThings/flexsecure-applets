@@ -17,11 +17,11 @@ steps:
 - name: build  
   image: stargate01/smartcard-ci
   commands:
-  - /app/src/scripts/compile.sh
+  - /app/src/scripts/compile-all.sh
 - name: test  
   image: stargate01/smartcard-ci
   commands:
-  - /app/src/scripts/test.sh
+  - /app/src/scripts/test-all.sh
 
 
 

@@ -18,6 +18,10 @@ steps:
   image: stargate01/smartcard-ci
   commands:
   - /app/src/scripts/compile.sh
+- name: test  
+  image: stargate01/smartcard-ci
+  commands:
+  - /app/src/scripts/test.sh
 
 
 

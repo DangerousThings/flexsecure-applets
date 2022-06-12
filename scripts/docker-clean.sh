@@ -2,4 +2,4 @@
 
 cd "${0%/*}"
 
-./docker-run.sh "/app/src/scripts/clean.sh"
+./docker-run-image.sh "/app/src/scripts/clean.sh"

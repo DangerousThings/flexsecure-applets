@@ -11,3 +11,6 @@
 	path = applets/openjavacard-ndef
 	url = https://github.com/OpenJavaCard/openjavacard-ndef
 
+[submodule "smartcard-ci"]
+	path = smartcard-ci
+	url = https://github.com/StarGate01/smartcard-ci

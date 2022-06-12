@@ -1,15 +1,13 @@
 #!/bin/bash
 
-cd "${0%/*}"
-
 echo "Compiling Flex-OTP"
-./docker-run.sh "cd /app/applets/Flex-OTP && ant dist && cp /app/applets/Flex-OTP/target/*.cap /app/bin/"
+cd /app/src/applets/Flex-OTP && ant dist && cp /app/src/applets/Flex-OTP/target/*.cap /app/src/bin/
 
 echo "Compiling openjavacard-ndef"
-./docker-run.sh "cd /app/applets/openjavacard-ndef && ant -DJAVACARD_HOME=/app/sdks/jc222_kit build && cp /app/applets/openjavacard-ndef/build/javacard/*.cap /app/bin/"
+cd /app/src/applets/openjavacard-ndef && ant -DJAVACARD_HOME=/app/sdks/jc222_kit build && cp /app/src/applets/openjavacard-ndef/build/javacard/*.cap /app/src/bin/
 
 echo "Compiling SmartPGP"
-./docker-run.sh "cd /app/applets/SmartPGP && JC_HOME=/app/sdks/jc304_kit ant convert && cp /app/applets/SmartPGP/*.cap /app/bin/"
+cd /app/src/applets/SmartPGP && JC_HOME=/app/sdks/jc304_kit ant convert && cp /app/src/applets/SmartPGP/*.cap /app/src/bin/
 
 echo "Compiling vk-ykhmac"
-./docker-run.sh "cd /app/applets/vk-ykhmac && ant dist && cp /app/applets/vk-ykhmac/target/*.cap /app/bin/"
+cd /app/src/applets/vk-ykhmac && ant dist && cp /app/src/applets/vk-ykhmac/target/*.cap /app/src/bin/

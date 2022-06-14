@@ -27,14 +27,15 @@ program_secret() {
     echo 'b6e3f555562c894b7af13b1db37f28deff3ea89b' | java -jar /usr/bin/yktool.jar program hmac 1 -x -X
 }
 
-
-@test "HMAC-SHA1 using ykhmac" {
+@test "ykhmac program and respond" {
     program_secret
     YKRES=`printf 'aaaa' | java -jar /usr/bin/yktool.jar hmac 1 -x`
     [ "$YKRES" == "72:7E:C8:E8:15:EE:C5:32:8F:9D:9C:BE:5E:F2:4E:A8:36:D7:CE:56" ]
 }
 
-@test "Decrypt KeePassXC" {
+@test "KeePassXC decrypt and read " {
     program_secret
-    [ 0 ]
+    SERIAL=`java -jar /usr/bin/yktool.jar list | sed -r 's/.*#([0-9]*)\s.*/\1/'`
+    SECRET=`echo '12345678' | keepassxc-cli show -s -a Password -y "1:$SERIAL" /app/src/scripts/test/res/vk-ykhmac.testdb.kdbx Test`
+    [ "$SECRET" == "RMGG4lkT4Kd3k8FYsQ3b" ]
 }

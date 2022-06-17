@@ -22,7 +22,3 @@ steps:
   image: stargate01/smartcard-ci
   commands:
   - /app/src/scripts/test-all.sh
-
-
-
-    

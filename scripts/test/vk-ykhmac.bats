@@ -2,8 +2,8 @@
 
 setup_file() {
     pcscd -f &
-    PCSCD_PID=$!
-    sleep 1
+    PCSCD_PID="$!"
+    sleep 2
 }
 
 teardown_file() {
@@ -13,13 +13,14 @@ teardown_file() {
 setup() {
     cd /app/src/applets/vk-ykhmac
     java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard test/jcardsim.cfg > /dev/null &
-    JCSIM_PID=$!
-    sleep 1
+    JCSIM_PID="$!"
+    sleep 2
     opensc-tool -r 'Virtual PCD 00 00' -s '80 b8 00 00 0e  07  a0 00 00 05 27 20 01  05 00 00 02 F F  7f'
 }
 
 teardown() {
     kill $JCSIM_PID
+    sleep 2
 }
 
 

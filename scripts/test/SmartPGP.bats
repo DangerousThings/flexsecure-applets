@@ -16,7 +16,7 @@ setup() {
     java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/SmartPGP.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
     sleep 2
-    opensc-tool -r 'Virtual PCD 00 00' -s '80 b8 00 00 17  10  d2 76 00 01 24 01 03 04 C0 FE 00 00 00 01 00 00  05 00 00 02 F F  7f'
+    opensc-tool -r 'Virtual PCD 00 00' -s '80 b8 00 00 17  10  d2 76 00 01 24 01 03 04 C0 FE 00 00 00 01 00 00  05 00 00 02 FF  7f'
 }
 
 teardown() {

@@ -6,6 +6,7 @@ FAIL=0
 
 for i in test/*.bats; do
     [ -f "$i" ] || break
+    echo "Testing $i"
     $i
     if [ "$?" != 0 ]; then
         FAIL=1

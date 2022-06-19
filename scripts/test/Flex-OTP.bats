@@ -15,7 +15,7 @@ setup() {
     java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/Flex-OTP.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
     sleep 2
-    opensc-tool -r 'Virtual PCD 00 00' -s '80 b8 00 00 0E  07  A0 00 00 05 27 21 01  05 00 00 02 FF  7f'
+    opensc-tool -r 'Virtual PCD 00 00' -s '80 b8 00 00 0F  08  A0 00 00 05 27 21 01 01  05 00 00 02 FF  7f'
 }
 
 teardown() {
@@ -24,12 +24,12 @@ teardown() {
 }
 
 
-# @test "ykman program and validate" {
-#     cd /app/tools/yubikey-manager
-#     # poetry run ykman -r 'Virtual PCD 00 00' --log-level DEBUG info 
-#     SECRET='EDCFht7CImGT6OQQxSPN'
-#     poetry run ykman -r 'Virtual PCD 00 00' --log-level DEBUG oath accounts uri "otpauth://totp/Test?secret=$SECRET" >&3
-#     # 
-#     # ykman oath accounts uri "otpauth://totp/Test?secret=$SECRET" >&3
-#     [ 0 ]
-# }
+@test "ykman program and oathtool validate" {
+    cd /app/tools/yubikey-manager
+    SECRETB32='IVCEGRTIOQ3UGSLNI5KDMT2RKF4FGUCO'
+    poetry run ykman -r 'Virtual PCD 00 00' oath accounts uri "otpauth://totp/Test?secret=$SECRETB32"
+    YKRES=`poetry run ykman -r 'Virtual PCD 00 00' oath accounts code Test`
+    YKRES=${YKRES#"Test  "}
+    REF=`oathtool -b --totp "$SECRETB32"`
+    [ "$YKRES" == "$REF" ]
+}

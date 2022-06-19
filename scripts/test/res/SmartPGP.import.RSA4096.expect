@@ -1,0 +1,73 @@
+#!/usr/bin/expect
+
+spawn gpg --command-fd=0 --status-fd=1 --expert --pinentry-mode loopback --edit-key test@example.com
+
+expect "*GET_LINE keyedit.prompt*\n"
+send -- "toggle\r"
+
+expect "*GET_LINE keyedit.prompt*\n"
+send -- "keytocard\r"
+
+expect "*GET_BOOL keyedit.keytocard.use_primary*\n"
+send -- "y\r"
+
+# Signature key.
+expect "*GET_LINE cardedit.genkeys.storekeytype*\n"
+send -- "1\r"
+
+# Send Key PIN
+expect "*GET_HIDDEN passphrase.enter*\n"
+send -- "123456\r"
+
+# Send Admin PIN
+expect "*GET_HIDDEN passphrase.enter*\n"
+send -- "12345678\r"
+
+# Send Admin PIN
+expect "*GET_HIDDEN passphrase.enter*\n"
+send -- "12345678\r"
+
+expect "*GET_LINE keyedit.prompt*\n"
+send -- "keytocard\r"
+
+expect "*GET_BOOL keyedit.keytocard.use_primary*\n"
+send -- "y\r"
+
+# Encryption key.
+expect "*GET_LINE cardedit.genkeys.storekeytype*\n"
+send -- "2\r"
+
+# Send Key PIN
+expect "*GET_HIDDEN passphrase.enter*\n"
+send -- "123456\r"
+
+# Send Admin PIN
+expect "*GET_HIDDEN passphrase.enter*\n"
+send -- "12345678\r"
+
+expect "*GET_LINE keyedit.prompt*\n"
+send -- "keytocard\r"
+
+expect "*GET_BOOL keyedit.keytocard.use_primary*\n"
+send -- "y\r"
+
+# Authentication key.
+expect "*GET_LINE cardedit.genkeys.storekeytype*\n"
+send -- "3\r"
+
+# Send Key PIN
+expect "*GET_HIDDEN passphrase.enter*\n"
+send -- "123456\r"
+
+# Send Admin PIN
+expect "*GET_HIDDEN passphrase.enter*\n"
+send -- "12345678\r"
+
+# Quit
+expect "*GET_LINE keyedit.prompt*\n"
+send -- "quit\r"
+
+expect "*GET_BOOL keyedit.save.okay*\n"
+send -- "y\r"
+
+expect eof

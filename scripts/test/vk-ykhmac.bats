@@ -1,13 +1,13 @@
 #!/usr/bin/env bats
 
+load res/common.sh
+
 setup_file() {
-    pcscd -f &
-    PCSCD_PID="$!"
-    sleep 2
+    _setup_file
 }
 
 teardown_file() {
-    kill $PCSCD_PID
+    _teardown_file
 }
 
 setup() {
@@ -22,8 +22,7 @@ setup() {
 }
 
 teardown() {
-    kill $JCSIM_PID
-    sleep 2
+    _teardown
 }
 
 

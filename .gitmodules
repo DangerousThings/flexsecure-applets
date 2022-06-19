@@ -13,3 +13,6 @@
 [submodule "smartcard-ci"]
 	path = smartcard-ci
 	url = https://github.com/StarGate01/smartcard-ci
+[submodule "applets/u2f-javacard"]
+	path = applets/u2f-javacard
+	url = https://github.com/darconeous/u2f-javacard.git

@@ -20,9 +20,13 @@ send -- "2\r"
 expect "*GET_LINE keygen.curve*\n"
 send -- "$curve\r"
 
-# Send Admin PIN
-expect "*GET_HIDDEN passphrase.enter*\n"
-send -- "12345678\r"
+expect {
+    "*GET_HIDDEN passphrase.enter*\n" {
+        # Admin PIN
+        send "12345678\r"
+    }
+    eof
+}
 
 # Encryption key.
 expect "*GET_LINE cardedit.genkeys.algo*\n"
@@ -32,9 +36,13 @@ send -- "2\r"
 expect "*GET_LINE keygen.curve*\n"
 send -- "$curve\r"
 
-# Send Admin PIN
-expect "*GET_HIDDEN passphrase.enter*\n"
-send -- "12345678\r"
+expect {
+    "*GET_HIDDEN passphrase.enter*\n" {
+        # Admin PIN
+        send "12345678\r"
+    }
+    eof
+}
 
 # Authentication key.
 expect "*GET_LINE cardedit.genkeys.algo*\n"
@@ -44,9 +52,13 @@ send -- "2\r"
 expect "*GET_LINE keygen.curve*\n"
 send -- "$curve\r"
 
-# Send Admin PIN
-expect "*GET_HIDDEN passphrase.enter*\n"
-send -- "12345678\r"
+expect {
+    "*GET_HIDDEN passphrase.enter*\n" {
+        # Admin PIN
+        send "12345678\r"
+    }
+    eof
+}
 
 # Generate
 expect "*GET_LINE cardedit.prompt*\n"

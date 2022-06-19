@@ -24,7 +24,7 @@ teardown() {
 }
 
 
-@test "ykman program and oathtool validate" {
+@test "yubikey-manager program and oathtool validate" {
     cd /app/tools/yubikey-manager
     SECRETB32='IVCEGRTIOQ3UGSLNI5KDMT2RKF4FGUCO'
     poetry run ykman -r 'Virtual PCD 00 00' oath accounts uri "otpauth://totp/Test?secret=$SECRETB32"

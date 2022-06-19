@@ -22,3 +22,14 @@ steps:
   image: stargate01/smartcard-ci
   commands:
   - /app/src/scripts/test-all.sh
+- name: publish
+  image: plugins/github-release
+  settings:
+    api_key:
+      from_secret: github_api_key
+    files: /app/src/bin/*
+  when:
+    branch:
+    - master
+    event:
+    - tag

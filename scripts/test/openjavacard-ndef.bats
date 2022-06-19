@@ -33,7 +33,7 @@ teardown() {
 @test "NDEF read write" {
     cd /app/tools/pcsc-ndef
     PAYLOAD='fHwG61CGBRM3L6ZrpGpq'
-    echo $PAYLOAD | python3 pcsc_ndef.py -r "Virtual PCD 00 00" -t 4 write >&3
+    echo $PAYLOAD | python3 pcsc_ndef.py -r "Virtual PCD 00 00" -t 4 write
     RESP=`python3 pcsc_ndef.py -r "Virtual PCD 00 00" -t 4 read`
     [ "$RESP" == "$PAYLOAD" ]
 }

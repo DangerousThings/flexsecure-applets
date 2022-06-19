@@ -6,8 +6,10 @@ Collection of JavaCard applets for the FlexSecure, as well as build and testing 
 
 For documentation, see https://github.com/StarGate01/flexsecure-docs .
 
-## Usage
+## Download
 
-Install Docker. Use the `docker-*.sh` scripts in `scripts/` to compile and test the applets. Binaries will be placed in `bin/`.
+Compiled binaries are available from the GitHub releases page: https://github.com/StarGate01/flexsecure-applets/releases .
 
-Or run it on Drone CI.
+## Development Usage
+
+Install Docker. Use the `docker-*.sh` scripts in `scripts/` to compile and test the applets. Binaries will be placed in `bin/`. This repository also runs on a Drone CI server.

@@ -15,3 +15,50 @@ sign_verify() {
     gpg --verify /app/tmp/secret.txt.sig /app/tmp/secret.txt
     return "$?"
 }
+
+generate_sign() {
+    /app/src/scripts/test/res/SmartPGP.generate.$1.expect $2
+    KUID=`gpg --list-keys --with-colons | awk -F: '$1=="uid" {print $10; exit}'`
+    sign_verify
+    VERRET=$?
+    if [ "$KUID" == "CI Test (CI Testing Key) <test@example.com>" ] && [ "$VERRET" == 0 ]; then return 0; else return 1; fi
+}
+
+write_rsa_keygen() {
+    cat >/app/tmp/gen-key <<EOF
+Key-Type: RSA
+Key-Length: $1
+Subkey-Type: RSA
+Subkey-Length: $1
+Name-Real: CI Test
+Name-Comment: CI Testing Key
+Name-Email: test@example.com
+Expire-Date: 10y
+Passphrase: 123456
+%commit
+EOF
+}
+
+write_ecc_keygen() {
+    cat >/app/tmp/gen-key <<EOF
+Key-Type: ECDSA
+Key-Curve: $1
+Subkey-Type: ECDH
+Subkey-Curve: $1
+Name-Real: CI Test
+Name-Comment: CI Testing Key
+Name-Email: test@example.com
+Expire-Date: 10y
+Passphrase: 123456
+%commit
+EOF
+}
+
+import_sign() {
+    gpg --batch --generate-key /app/tmp/gen-key
+    /app/src/scripts/test/res/SmartPGP.import.$1.expect
+    KUID=`gpg --list-keys --with-colons | awk -F: '$1=="uid" {print $10; exit}'`
+    sign_verify
+    VERRET=$?
+    if [ "$KUID" == "CI Test (CI Testing Key) <test@example.com>" ] && [ "$VERRET" == 0 ]; then return 0; else return 1; fi
+}

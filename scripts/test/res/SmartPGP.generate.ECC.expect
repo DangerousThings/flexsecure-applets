@@ -1,4 +1,6 @@
-#!/usr/bin/expect
+#!/usr/bin/expect -f
+
+set curve [lindex $argv 0];
 
 spawn gpg --card-edit --command-fd=0 --status-fd=1 --expert --pinentry-mode loopback
 
@@ -12,27 +14,39 @@ send -- "key-attr\r"
 
 # Signature key.
 expect "*GET_LINE cardedit.genkeys.algo*\n"
-# RSA
-send -- "1\r"
+# ECC
+send -- "2\r"
 
-expect "*GET_LINE cardedit.genkeys.size*\n"
-send -- "2048\r"
+expect "*GET_LINE keygen.curve*\n"
+send -- "$curve\r"
+
+# Send Admin PIN
+expect "*GET_HIDDEN passphrase.enter*\n"
+send -- "12345678\r"
 
 # Encryption key.
 expect "*GET_LINE cardedit.genkeys.algo*\n"
-# RSA
-send -- "1\r"
+# ECC
+send -- "2\r"
 
-expect "*GET_LINE cardedit.genkeys.size*\n"
-send -- "2048\r"
+expect "*GET_LINE keygen.curve*\n"
+send -- "$curve\r"
+
+# Send Admin PIN
+expect "*GET_HIDDEN passphrase.enter*\n"
+send -- "12345678\r"
 
 # Authentication key.
 expect "*GET_LINE cardedit.genkeys.algo*\n"
-# RSA
-send -- "1\r"
+# ECC
+send -- "2\r"
 
-expect "*GET_LINE cardedit.genkeys.size*\n"
-send -- "2048\r"
+expect "*GET_LINE keygen.curve*\n"
+send -- "$curve\r"
+
+# Send Admin PIN
+expect "*GET_HIDDEN passphrase.enter*\n"
+send -- "12345678\r"
 
 # Generate
 expect "*GET_LINE cardedit.prompt*\n"

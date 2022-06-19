@@ -1,4 +1,6 @@
-#!/usr/bin/expect
+#!/usr/bin/expect -f
+
+set size [lindex $argv 0];
 
 spawn gpg --card-edit --command-fd=0 --status-fd=1 --expert --pinentry-mode loopback
 
@@ -16,11 +18,7 @@ expect "*GET_LINE cardedit.genkeys.algo*\n"
 send -- "1\r"
 
 expect "*GET_LINE cardedit.genkeys.size*\n"
-send -- "4096\r"
-
-# Send Admin PIN
-expect "*GET_HIDDEN passphrase.enter*\n"
-send -- "12345678\r"
+send -- "$size\r"
 
 # Encryption key.
 expect "*GET_LINE cardedit.genkeys.algo*\n"
@@ -28,11 +26,7 @@ expect "*GET_LINE cardedit.genkeys.algo*\n"
 send -- "1\r"
 
 expect "*GET_LINE cardedit.genkeys.size*\n"
-send -- "4096\r"
-
-# Send Admin PIN
-expect "*GET_HIDDEN passphrase.enter*\n"
-send -- "12345678\r"
+send -- "$size\r"
 
 # Authentication key.
 expect "*GET_LINE cardedit.genkeys.algo*\n"
@@ -40,11 +34,7 @@ expect "*GET_LINE cardedit.genkeys.algo*\n"
 send -- "1\r"
 
 expect "*GET_LINE cardedit.genkeys.size*\n"
-send -- "4096\r"
-
-# Send Admin PIN
-expect "*GET_HIDDEN passphrase.enter*\n"
-send -- "12345678\r"
+send -- "$size\r"
 
 # Generate
 expect "*GET_LINE cardedit.prompt*\n"

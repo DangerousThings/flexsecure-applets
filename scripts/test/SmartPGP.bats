@@ -34,17 +34,25 @@ sign_verify() {
     return "$?"
 }
 
-@test "GPG generate key and sign" {
-    /app/src/scripts/test/res/SmartPGP.generate.expect
+@test "GPG generate RSA 2048 key and sign" {
+    /app/src/scripts/test/res/SmartPGP.generate.RSA2048.expect
     KUID=`gpg --list-keys --with-colons | awk -F: '$1=="uid" {print $10; exit}'`
     sign_verify
     VERRET=$?
     [ "$KUID" == "CI Test (CI Testing Key) <test@example.com>" ] && [ "$VERRET" == 0 ]
 }
 
-@test "GPG import key and sign" {
-    gpg --verbose --batch --generate-key /app/src/scripts/test/res/SmartPGP.gen-key
-    /app/src/scripts/test/res/SmartPGP.import.expect
+@test "GPG generate ECC NIST256 key and sign" {
+    /app/src/scripts/test/res/SmartPGP.generate.ECCNIST256.expect
+    KUID=`gpg --list-keys --with-colons | awk -F: '$1=="uid" {print $10; exit}'`
+    sign_verify
+    VERRET=$?
+    [ "$KUID" == "CI Test (CI Testing Key) <test@example.com>" ] && [ "$VERRET" == 0 ]
+}
+
+@test "GPG import RSA 2048 key and sign" {
+    gpg --verbose --batch --generate-key /app/src/scripts/test/res/SmartPGP.RSA2048.gen-key
+    /app/src/scripts/test/res/SmartPGP.import.RSA2048.expect
     KUID=`gpg --list-keys --with-colons | awk -F: '$1=="uid" {print $10; exit}'`
     sign_verify
     VERRET=$?

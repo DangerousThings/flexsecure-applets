@@ -26,7 +26,7 @@ teardown() {
 }
 
 
-@test "yubikey-manager program and respond" {
+@test "ykman program and respond" {
     cd /app/tools/yubikey-manager
     poetry run ykman -r 'Virtual PCD 00 00' otp chalresp -f 1 $SECRET
     YKMANRES=`poetry run ykman -r 'Virtual PCD 00 00' otp calculate 1 $CHALLENGE`

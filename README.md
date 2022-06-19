@@ -10,13 +10,4 @@ For documentation, see https://github.com/StarGate01/flexsecure-docs .
 
 Install Docker. Use the `docker-*.sh` scripts in `scripts/` to compile and test the applets. Binaries will be placed in `bin/`.
 
-Or run it on your Drone CI.
-
-## Project Status
-
-- [x] Compilation in CI
-- [ ] Tests in CI
-  - [x] PGP
-  - [ ] TOTP
-  - [x] HMAC-SHA1
-  - [ ] NDEF
+Or run it on Drone CI.

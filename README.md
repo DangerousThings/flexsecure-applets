@@ -4,7 +4,7 @@
 
 Collection of JavaCard applets for the FlexSecure, as well as build and testing scripts.
 
-For documentation, see https://github.com/StarGate01/flexsecure-docs .
+For documentation, see `docs/` .
 
 ## Download
 

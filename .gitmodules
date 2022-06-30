@@ -16,3 +16,6 @@
 [submodule "applets/u2f-javacard"]
 	path = applets/u2f-javacard
 	url = https://github.com/darconeous/u2f-javacard.git
+[submodule "applets/vk-u2f"]
+	path = applets/vk-u2f
+	url = https://github.com/VivoKey/vk-u2f.git

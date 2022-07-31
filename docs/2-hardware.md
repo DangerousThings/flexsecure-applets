@@ -25,6 +25,14 @@ You can buy development cards here: https://www.javacardos.com/store/products/11
 
 For building development PCBs, see https://chrz.de/2022/01/27/nfc-hacking-part-2-building-custom-hardware-tokens/ and https://github.com/StarGate01/rfid-breakout .
 
+For the software setup, please read *JavaCard Development Setup* . 
+
+## Important Note concerning Lockout
+
+The P71 includes a hardware functionality which physically bricks the chip after too many authentication failures, when using the wrong GlobalPlatform key. There is no way to recover the chip after that, it permanently turns into dead silicon. 
+
+Make sure to backup your GlobalPlatform key if you decide to change it, and make extra sure to always specify the correct key when using GlobalPlatformPro. By default (if no key is specified), the default test key (see above) is used.
+
 ## Fidesmo AB
 
 The Apex Flex uses a chip personalized by Fidesmo.
@@ -33,7 +41,7 @@ Fidesmo AB is a swedish company providing a set of services and APIs for managin
 
 ### Ecosystem Constraints
 
-Loading a third-party applet onto a Fidsmo-deployed smartcard requires the applet to be signed by Fidesmo, as they keep the administrative keys to the cards private. This signing process requires a developer account and an internet connection to the Fidesmo signing servers. The signature ensures that third-party applets are only allowed to be deployed into the "low-security" domain, i.e. no the one where the payment code runs.
+Loading a third-party applet onto a Fidesmo-deployed smartcard requires the applet to be signed by Fidesmo, as they keep the administrative keys to the cards private. This signing process requires a developer account and an internet connection to the Fidesmo signing servers. The signature ensures that third-party applets are only allowed to be deployed into the "low-security" domain, i.e. no the one where the payment code runs.
 
 Fidesmo retains the right to refuse to sign any applet they do not want running on their card. In addition, they only allows AIDs starting with their registered AID, joined with your developer ID. This ensures that your AIDs don't collide with any others. In special cases, you might be able to reach an agreement with them to use a different AID.
 
@@ -49,7 +57,7 @@ The FlexSecure uses an empty chip with administrative keys available, which has 
 
 The P71 has a few hundreds kilobytes of ROM (read-only) memory. The contents of the ROM, as well as its layout is specified by the **ROM mask**. This ROM mask is applied by the card factory, according to the customers order. This process requires **fabrication keys** by NXP (or even a custom silicon die), which are highly protected and usually only provided to contracted partners and factories.
 
-The P71 J3R200 has about `200 KB` of EEPROM (rewriteable) nonvolatile flash memory. According to our manufacturer, the FlexSecure has at least `164 KB` of EEPROM available. The Mifare classic emulation applet was removed from the ROM mask, otherwise only about `99 KB` flash would have been available.
+The P71 J3R200 has about `200 KB` of EEPROM (re-writeable) nonvolatile flash memory. According to our manufacturer, the FlexSecure has at least `164 KB` of EEPROM available. The Mifare classic emulation applet was removed from the ROM mask, otherwise only about `99 KB` flash would have been available.
 
 The ROM is typically used for storing pre-deployed packages which will never change. The EEPROM then stores only the applet instances, as well as configuration data like e.g. secret keys. In our case, all packages are loaded during runtime into the EEPROM, and the ROM is pretty much unused expect for some cryptographic algorithms and the operating system. 
 

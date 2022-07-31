@@ -4,19 +4,18 @@ PGP, and its popular implementation GnuPG (GNU Privacy Guard) are used to secure
 
 Explaining the theory of public-key cryptography is out of scope, please refer to the sources below for more info.
 
-The applet used is https://github.com/ANSSI-FR/SmartPGP . Pre-built binaries can be found at the GitHub release page.
+## Applet Information
+
+- Repository: https://github.com/ANSSI-FR/SmartPGP
+- Binary name: `SmartPGPApplet-default.cap` and `SmartPGPApplet-large.cap`
+- Download: https://github.com/StarGate01/flexsecure-applets/releases
+- AID: `d2:76:00:01:24:01:03:04:AF:AF:00:00:00:00:00:00` (has to be adjusted, see below), Package: `d2:76:00:01:24:01`
 
 ## Compiling the Applet
 
-If you want to compile the applet from source, you need to install a few requirements. These instructions are for Linux, but it should work on Windows as well.
+Setup your environment as described in *JavaCard Development Setup* .
 
-- JavaCard Development Kit 3.0.4 (or above) from [Oracle](https://www.oracle.com/java/technologies/javacard-downloads.html), or from the [GitHub mirror](https://github.com/martinpaljak/oracle_javacard_sdks)
-- Apache Ant from the [website](https://ant.apache.org/) or your package manager
-- Java Development Kit 8 from [Oracle](https://www.oracle.com/de/java/technologies/javase/javase8u211-later-archive-downloads.html), or even better from [OpenJDK](https://openjdk.org/), available via your package manager.
-
-For Ubuntu, the packages are called `ant` and `openjdk-8-jdk`. You might have to switch to the JDK using `update-alternatives --set java /usr/lib/jvm/java-8-openjdk-*/jre/bin/java`.
-
-Next, use git to clone the sources from https://github.com/ANSSI-FR/SmartPGP, and chenge into the directory. To compile, run `JC_HOME=/<sdks>/jc304_kit ant`, replacing `<sdks>` with the path to your JavaCard SDKs. The compiled binary should be `SmartPGPApplet.cap`.
+Use git to clone the sources, and change into the directory. To compile, run `JC_HOME=/<sdks>/jc304_kit ant`, replacing `<sdks>` with the path to your JavaCard SDKs.
 
 ## Using Large Keys
 
@@ -38,7 +37,7 @@ To install the applet to your card, you have to first construct a valid AID (ref
 
 The complete AID should look like this: `D2 76 00 01 24 01 03 04 C0 FE 00 00 00 01 00 00`.
 
-Next, install GlobalPlatformPro (GPP) from https://github.com/martinpaljak/GlobalPlatformPro/releases . Use GPP to install the applet:
+Use GlobalPlatformPro (GPP) from https://github.com/martinpaljak/GlobalPlatformPro/releases to install the applet:
 
 ```
 gp -install SmartPGPApplet.cap -create D276000124010304C0FE000000010000
@@ -70,6 +69,7 @@ Due to an implementation detail of the SmartPGP applet (https://github.com/ANSSI
 Generating keys on the card itself can be done for any algorithm without having to pre-configure the algorithm.
 
 ## Sources and Further Reading
+
 - https://en.wikipedia.org/wiki/Public-key_cryptography
 - https://en.wikipedia.org/wiki/Pretty_Good_Privacy
 - https://www.thunderbird.net/

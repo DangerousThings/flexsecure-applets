@@ -33,6 +33,8 @@ The P71 includes a hardware functionality which physically bricks the chip after
 
 Make sure to backup your GlobalPlatform key if you decide to change it, and make extra sure to always specify the correct key when using GlobalPlatformPro. By default (if no key is specified), the default test key (see above) is used.
 
+Also, do not remove the management applet package (`A0000001515350`), or security controller (`A000000151000000`). They are part of the operating system.
+
 ## Fidesmo AB
 
 The Apex Flex uses a chip personalized by Fidesmo.

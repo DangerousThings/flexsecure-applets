@@ -106,6 +106,8 @@ Use the GlobalPlatformPro tools (GPP) from https://github.com/martinpaljak/Globa
 
 For Fidesmo-deployed cards, use the `fdsm` tool from https://github.com/fidesmo/fdsm/releases to sign and sideload your applet. Refer to the Fidesmo developer documentation for details.
 
+Do not remove the management applet package (`A0000001515350`), or security controller (`A000000151000000`). They are part of the operating system.
+
 ## Sources and Further Readingfdsm
 
 - https://www.docker.com/

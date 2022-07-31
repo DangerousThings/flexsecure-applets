@@ -1,6 +1,6 @@
-# Using Pretty Good Privacy (PGP)
+# Encryption using PGP
 
-PGP, and its popular implementation GnuPG (GNU Privacy Guard) are used to securely sign, encrypt and decrypt data.
+PGP (Pretty Good Privacy), and its popular implementation GnuPG (GNU Privacy Guard) are used to securely sign, encrypt and decrypt data.
 
 Explaining the theory of public-key cryptography is out of scope, please refer to the sources below for more info.
 
@@ -77,3 +77,6 @@ Generating keys on the card itself can be done for any algorithm without having 
 - https://en.wikipedia.org/wiki/OpenPGP_card
 - https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.pdf
 - https://www.gpg4win.org/
+
+
+Improve this document: https://github.com/StarGate01/flexsecure-applets/tree/master/docs

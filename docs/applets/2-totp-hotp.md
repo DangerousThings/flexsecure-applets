@@ -11,7 +11,7 @@ These codes are preferred over e.g. SMS codes, because the process requires no c
 - Download: https://github.com/StarGate01/flexsecure-applets/releases
 - AID: `A0:00:00:05:27:21:01:01`, Package: `A0:00:00:05:27:21:01`
 
-## Compiling the Applet
+## Compiling the Applet Yourself
 
 Setup your environment as described in *JavaCard Development Setup* .
 

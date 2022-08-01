@@ -11,7 +11,7 @@ This applets is compatible to the Yubikey-style protocol, used in e.g. KeepassXC
 - Download: https://github.com/StarGate01/flexsecure-applets/releases
 - AID: `A0:00:00:05:27:20:01`, Package: `A0:00:00:05:27:20`
 
-## Compiling the Applet
+## Compiling the Applet Yourself
 
 Setup your environment as described in *JavaCard Development Setup* .
 

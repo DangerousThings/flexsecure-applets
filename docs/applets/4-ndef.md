@@ -9,7 +9,7 @@ NDEF (NFC Data Exchange Format) is a data format used to store structured data.
 - Download: https://github.com/StarGate01/flexsecure-applets/releases
 - AID: `D2:76:00:00:85:01:01`, Package: `D2:76:00:01:77:10:02:11:01:00:01` (differs between variants)
 
-## Compiling the Applet
+## Compiling the Applet Yourself
 
 Setup your environment as described in *JavaCard Development Setup* .
 

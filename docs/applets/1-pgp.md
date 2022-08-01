@@ -1,4 +1,4 @@
-# Encryption using PGP
+# Encryption and Signatures using PGP
 
 PGP (Pretty Good Privacy), and its popular implementation GnuPG (GNU Privacy Guard) are used to securely sign, encrypt and decrypt data.
 
@@ -11,7 +11,7 @@ Explaining the theory of public-key cryptography is out of scope, please refer t
 - Download: https://github.com/StarGate01/flexsecure-applets/releases
 - AID: `d2:76:00:01:24:01:03:04:AF:AF:00:00:00:00:00:00` (has to be adjusted, see below), Package: `d2:76:00:01:24:01`
 
-## Compiling the Applet
+## Compiling the Applet Yourself
 
 Setup your environment as described in *JavaCard Development Setup* .
 
@@ -77,6 +77,5 @@ Generating keys on the card itself can be done for any algorithm without having 
 - https://en.wikipedia.org/wiki/OpenPGP_card
 - https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.pdf
 - https://www.gpg4win.org/
-
 
 Improve this document: https://github.com/StarGate01/flexsecure-applets/tree/master/docs

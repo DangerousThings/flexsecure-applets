@@ -12,8 +12,8 @@
   <target name="build-large">
     <replaceregexp file="src/fr/anssi/smartpgp/Constants.java" match="(INTERNAL_BUFFER_MAX_LENGTH\s*=\n\s*\(short\)).*;" replace="\10x730;"/>
     <javacard>
-      <cap output="target/SmartPGPApplet-large.cap" classes="target/large" sources="src" aid="d27600012401" version="1.0">
-        <applet class="fr.anssi.smartpgp.SmartPGPApplet" aid="d276000124010304AFAF000000000000"/>
+      <cap output="target/SmartPGPApplet-large.cap" classes="target/large" sources="src" aid="D27600012401" version="1.0">
+        <applet class="fr.anssi.smartpgp.SmartPGPApplet" aid="D276000124010304000A000000000000"/>
       </cap>
     </javacard>
   </target>
@@ -21,8 +21,8 @@
   <target name="build-default">
     <replaceregexp file="src/fr/anssi/smartpgp/Constants.java" match="(INTERNAL_BUFFER_MAX_LENGTH\s*=\n\s*\(short\)).*;" replace="\10x500;"/>
     <javacard>
-      <cap output="target/SmartPGPApplet-default.cap" classes="target/default" sources="src" aid="d27600012401" version="1.0">
-        <applet class="fr.anssi.smartpgp.SmartPGPApplet" aid="d276000124010304AFAF000000000000"/>
+      <cap output="target/SmartPGPApplet-default.cap" classes="target/default" sources="src" aid="D27600012401" version="1.0">
+        <applet class="fr.anssi.smartpgp.SmartPGPApplet" aid="D276000124010304000A000000000000"/>
       </cap>
     </javacard>
   </target>

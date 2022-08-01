@@ -6,7 +6,7 @@ Explaining the theory of public-key cryptography is out of scope, please refer t
 
 ## Applet Information
 
-- Repository: https://github.com/ANSSI-FR/SmartPGP
+- Repository: https://github.com/ANSSI-FR/SmartPGP (javacard-3.0.4-without-secure-messaging branch)
 - Binary name: `SmartPGPApplet-default.cap` and `SmartPGPApplet-large.cap`
 - Download: https://github.com/StarGate01/flexsecure-applets/releases
 - AID: `d2:76:00:01:24:01:03:04:AF:AF:00:00:00:00:00:00` (has to be adjusted, see below), Package: `d2:76:00:01:24:01`

@@ -1,4 +1,4 @@
-#!/usr/bin/env expect -f
+#!/usr/bin/env -S expect -f
 
 set curve [lindex $argv 0];
 

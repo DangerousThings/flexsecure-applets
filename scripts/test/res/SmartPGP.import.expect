@@ -1,4 +1,4 @@
-#!/usr/bin/env expect
+#!/usr/bin/env -S expect -f
 
 spawn gpg --command-fd=0 --status-fd=1 --expert --pinentry-mode loopback --edit-key test@example.com
 

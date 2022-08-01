@@ -1,4 +1,4 @@
-#!/usr/bin/env expect -f
+#!/usr/bin/env -S expect -f
 
 set size [lindex $argv 0];
 

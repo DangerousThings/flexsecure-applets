@@ -1,6 +1,6 @@
 # JavaCard Development Setup
 
-If you want to compile applets from source, you need to install a few requirements. These instructions are for Linux, but it should work on Windows as well (using Docker, see below).
+If you want to compile applets from source, you need to install a few requirements. These instructions are for Linux, but it should work on Windows as well (using Docker or maybe WSL, see below).
 
 ## Local Development
 
@@ -74,7 +74,7 @@ opensc-tool -r 'Virtual PCD 00 00' -s '80 b8 00 00 KK  PP  QQ QQ QQ ... 00 [RR S
 
 Replace `KK` with the amount of bytes after `KK`. Replace `PP` with the amount of `QQ` bytes. Replace `QQ QQ QQ ...` with the AID of the applet. If you want to pass initialization parameters, replace `RR` with the amount of `SS` bytes, and `SS SS SS ...` with the initialization data. Do not actually write the `[ ]` brackets, these just mean that the initialization section is optional. Example: `80 b8 00 00 0A  07  a0 00 00 05 27 20 01  00  FF`.
 
-make sure the command was successful by watching for `Received (SW1=0x90, SW2=0x00)`.
+Make sure the command was successful by watching for `Received (SW1=0x90, SW2=0x00)`.
 
 ### Using the Emulated Applet
 

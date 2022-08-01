@@ -33,7 +33,7 @@ For more options, see the SmartPGP README file.
 
 ## Installing the Applet
 
-To install the applet to your card, you have to first construct a valid AID (refer to section 4.2.1 of the OpenPGP card specification, linked below). Every AID starts with `D2 76 00 01 24 01`, which is the unique identifier of the FSFE joined with the application identifier `01`. Next comes the OpenPGP version, which is `03 04` (3.4) for this applet. The next two bytes are a manufacturer id, which should be registered with the FSF Europe e.V. , however you can just put whatever you like - I use `C0 FE`. The next four bytes specify the card serial number (e.g. `00 00 00 01`), and the last two bytes are reserved for future use and alway zero.
+To install the applet to your card, you have to first construct a valid AID (refer to section 4.2.1 of the OpenPGP card specification, linked below). Every AID starts with `D2 76 00 01 24 01`, which is the unique identifier of the FSFE, joined with the application identifier `01`. Next comes the OpenPGP version, which is `03 04` (3.4) for this applet. The next two bytes are a manufacturer id, which should be registered with the FSF Europe e.V. , however you can just put whatever you like - I use `C0 FE`. The next four bytes specify the card serial number (e.g. `00 00 00 01`), and the last two bytes are reserved for future use and are always zero.
 
 The complete AID should look like this: `D2 76 00 01 24 01 03 04 C0 FE 00 00 00 01 00 00`.
 

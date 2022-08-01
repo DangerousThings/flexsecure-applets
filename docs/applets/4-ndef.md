@@ -17,7 +17,6 @@ Use git to clone the sources, and change into the directory. To compile, run `an
 
 The build definition produces various versions of the applet, the most interesting ones are `full`, which is a read-write enabled version, and `tiny`, which is a read-only version with static data.
 
-
 ## Installing the Applet
 
 To install the applet to your card, you have to pass along some configuration data.
@@ -30,7 +29,7 @@ To install the `full` variant with 2KB re-writeable storage:
 gp -install openjavacard-ndef-full.cap -create D2760000850101 -params 8102000082020800
 ```
 
-The TLV configuration format is not trivial, for the specification see the openjavacard-ndef documentation at https://github.com/OpenJavaCard/openjavacard-ndef/blob/master/doc/install.md .
+The TLV configuration format has a few options, for the specification see the openjavacard-ndef documentation at https://github.com/OpenJavaCard/openjavacard-ndef/blob/master/doc/install.md .
 
 To install the `tiny` variant with the static URL "https://chrz.de":
 

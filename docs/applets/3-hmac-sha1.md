@@ -2,7 +2,7 @@
 
 HMAC-SHA1 challenge-response provides a mechanism for two systems to ensure bilateral knowledge of a secret, without disclosing or transmitting the secret.
 
-This applets is compatible to the Yubikey-style protocol, used in e.g. KeepassXC.
+This applet is compatible to the Yubikey-style protocol, supported by e.g. KeePassXC.
 
 ## Applet Information
 
@@ -42,7 +42,7 @@ PKG: A00000052720 (LOADED)
 
 This applet behaves the same way as the challenge-response functionality on a Yubikey. However, it cannot be initialized using the Yubikey Personalization GUI tools, because these require a USB connection. Instead, various other tools can be used.
 
-First of all, make sure no YubiKey is connected to your PC, or it might be overwritten if you are not careful.
+First of all, make sure no YubiKeys are connected to your PC, or it might be overwritten if you are not careful.
 
 Second, make sure to keep a backup of your secret key somewhere.
 
@@ -80,7 +80,7 @@ If everything is encoded correctly, the commands should give the same response.
 
 ### Usage with KeePassXC
 
-Thanks to a patch by me (https://github.com/keepassxreboot/keepassxc/pull/6895, https://github.com/keepassxreboot/keepassxc/pull/6766) KeePassXC is able to interface with this applet and Yubikeys via NFC using any compatible reader. This work on Windows, Linux and Mac.
+Thanks to a PR by me (https://github.com/keepassxreboot/keepassxc/pull/6895, https://github.com/keepassxreboot/keepassxc/pull/6766) KeePassXC is able to interface with this applet and Yubikeys via NFC using any compatible reader. This work on Windows, Linux and Mac.
 
 To add a Yubikey as protection to your Database, refer to the KeePassXC documentation (or just look at the UI).
 

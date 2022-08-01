@@ -122,3 +122,5 @@ Do not remove the management applet package (`A0000001515350`), or security cont
 - https://github.com/martinpaljak/GlobalPlatformPro
 - https://github.com/fidesmo/fdsm
 - https://fidesmo.com/technology/java-card/
+
+Improve this document: https://github.com/StarGate01/flexsecure-applets/tree/master/docs

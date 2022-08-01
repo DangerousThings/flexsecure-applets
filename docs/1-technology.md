@@ -103,3 +103,5 @@ Instances are retained across card resets and power cycles, and so is their non-
 - https://www.eftlab.com/knowledge-base/171-atr-list-full/
 - https://smartcard-atr.apdu.fr/
 - https://www.eftlab.com/knowledge-base/211-emv-aid-rid-pix/
+
+Improve this document: https://github.com/StarGate01/flexsecure-applets/tree/master/docs

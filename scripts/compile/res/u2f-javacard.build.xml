@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project basedir="." default="applet" name="ledger-u2f-javacard">
-  <target name="applet">
+<project basedir="." default="build" name="ledger-u2f-javacard">
+
+  <target name="build" description="Build everything">
+    <antcall target="build-applet-ci"/>
+    <antcall target="build-applet"/>
+  </target>
+
+  <target name="build-applet">
     <get src="https://github.com/martinpaljak/ant-javacard/releases/download/v1.4/ant-javacard.jar" skipexisting="true" dest="."/>
     <taskdef name="javacard" classname="pro.javacard.ant.JavaCard" classpath="ant-javacard.jar"/>
+    <replaceregexp file="src/main/java/com/ledger/u2f/OneShotPresence.java" match="(if \(did_verify_flag\[0\] != 0\)\s*\{\n\s*return\s)\s*[A-z0-9]*;" replace="\10;"/>
     <javacard>
-      <cap output="target/U2FApplet.cap" classes="target" sources="src" aid="a000000617004f97a2e95001" version="1.1">
+      <cap output="target/U2FApplet.cap" classes="target/applet" sources="src" aid="a000000617004f97a2e95001" version="1.1">
+        <applet class="com.ledger.u2f.U2FApplet" aid="a000000617004f97a2e94901"/>
+      </cap>
+    </javacard>
+  </target>
+
+  <target name="build-applet-ci">
+    <get src="https://github.com/martinpaljak/ant-javacard/releases/download/v1.4/ant-javacard.jar" skipexisting="true" dest="."/>
+    <taskdef name="javacard" classname="pro.javacard.ant.JavaCard" classpath="ant-javacard.jar"/>
+    <replaceregexp file="src/main/java/com/ledger/u2f/OneShotPresence.java" match="(if \(did_verify_flag\[0\] != 0\)\s*\{\n\s*return\s)\s*[A-z0-9]*;" replace="\1FLAG_USER_PRESENT;"/>
+    <javacard>
+      <cap output="target/U2FApplet-ci.cap" classes="target/applet-ci" sources="src" aid="a000000617004f97a2e95001" version="1.1">
         <applet class="com.ledger.u2f.U2FApplet" aid="a000000617004f97a2e94901"/>
       </cap>
     </javacard>

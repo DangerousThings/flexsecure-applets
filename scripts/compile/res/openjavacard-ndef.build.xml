@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="javacard-ndef"
+         default="build"
+         basedir=".">
+
+    <description>JavaCard implementation of an NDEF Type 4 tag</description>
+
+    <property name="ext.ant-javacard" value="ext/ant-javacard"/>
+
+    <property name="sdk.globalplatform" value="ext/globalplatform-exports"/>
+    <property name="sdk.jc222" value="ext/javacard-sdks/jc222_kit"/>
+
+    <!-- Cleanup target -->
+    <target name="clean" description="Delete build output">
+        <delete dir="build"/>
+    </target>
+
+    <!-- Prepare build tools and directories -->
+    <target name="prepare" description="Prepare build">
+        <ant dir="ext/ant-javacard"/>
+        <taskdef name="javacard"
+                 classpath="${ext.ant-javacard}/ant-javacard.jar"
+                 classname="pro.javacard.ant.JavaCard"/>
+
+        <mkdir dir="build/javacard"/>
+        <mkdir dir="build/classes/advanced"/>
+        <mkdir dir="build/classes/full"/>
+        <mkdir dir="build/classes/stub"/>
+        <mkdir dir="build/classes/tiny"/>
+    </target>
+
+    <!-- Build-all target -->
+    <target name="build" description="Build everything" depends="prepare">
+        <antcall target="build-advanced"/>
+        <antcall target="build-full"/>
+        <antcall target="build-tiny"/>
+        <antcall target="build-stub"/>
+    </target>
+
+	<!-- Dummy test target -->
+	<target name="test" description="Run tests" depends="build"/>
+
+    <!-- Target for updating in-repository prebuilt files -->
+    <target name="prebuilt"
+            description="Update prebuilt files"
+            depends="build">
+        <delete dir="prebuilt"/>
+        <copy todir="prebuilt">
+            <fileset dir="build/javacard"/>
+        </copy>
+    </target>
+
+    <target name="build-advanced">
+        <javacard jckit="${sdk.jc222}">
+            <cap output="build/javacard/openjavacard-ndef-advanced.cap"
+                 jar="build/javacard/openjavacard-ndef-advanced.jar"
+                 classes="build/classes/advanced"
+                 sources="applet-advanced/src/main/java"
+                 aid="D276000085"
+                 version="0.0">
+                <applet aid="D2760000850101"
+                        class="org.openjavacard.ndef.advanced.NdefApplet"/>
+                <import jar="${sdk.globalplatform}/org.globalplatform-1.1/gpapi-globalplatform.jar"
+                        exps="${sdk.globalplatform}/org.globalplatform-1.1/exports"/>
+            </cap>
+        </javacard>
+    </target>
+
+    <target name="build-full">
+        <javacard jckit="${sdk.jc222}">
+            <cap output="build/javacard/openjavacard-ndef-full.cap"
+                 jar="build/javacard/openjavacard-ndef-full.jar"
+                 classes="build/classes/full"
+                 sources="applet-full/src/main/java"
+                 aid="D276000085"
+                 version="0.0">
+                <applet aid="D2760000850101"
+                        class="org.openjavacard.ndef.full.NdefApplet"/>
+            </cap>
+        </javacard>
+    </target>
+
+    <target name="build-tiny">
+        <javacard jckit="${sdk.jc222}">
+            <cap output="build/javacard/openjavacard-ndef-tiny.cap"
+                 jar="build/javacard/openjavacard-ndef-tiny.jar"
+                 classes="build/classes/tiny"
+                 sources="applet-tiny/src/main/java"
+                 aid="D276000085"
+                 version="0.0">
+                <applet aid="D2760000850101"
+                        class="org.openjavacard.ndef.tiny.NdefApplet"/>
+            </cap>
+        </javacard>
+    </target>
+
+    <target name="build-stub">
+        <javacard jckit="${sdk.jc222}">
+            <cap output="build/javacard/openjavacard-ndef-stub.cap"
+                 jar="build/javacard/openjavacard-ndef-stub.jar"
+                 classes="build/classes/stub"
+                 sources="applet-stub/src/main/java"
+                 aid="D276000085"
+                 version="0.0">
+                <applet aid="D2760000850101"
+                        class="org.openjavacard.ndef.stub.NdefApplet"/>
+            </cap>
+        </javacard>
+    </target>
+
+</project>

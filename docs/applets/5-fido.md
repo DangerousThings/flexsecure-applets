@@ -40,95 +40,47 @@ Loading the attestation certificate requires manual steps as of now, but Vivokey
 
 ### Default Attestation Certificate
 
-You can use the default example U2F attestation certificate, which I have extracted from https://fidoalliance.org/specs/fido-u2f-v1.2-ps-20170411/fido-u2f-raw-message-formats-v1.2-ps-20170411.html#examples and converted to the OpenSSL x509 / ECC PEM format. Note that it is no longer valid according to its date, but it still works. Then again, it was never signed by any company, so it was never seen as valid in the first place.
+You can use the default example U2F attestation certificate, which you can extract from https://fidoalliance.org/specs/fido-u2f-v1.2-ps-20170411/fido-u2f-raw-message-formats-v1.2-ps-20170411.html#examples and convert to the OpenSSL x509 / ECC DER format. Note that it is no longer valid according to its date, but it still works. Then again, it was never signed by any company, so it was never seen as valid in the first place. It is also missing a few extensions. I recommend creating a custom one, or getting one signed by Vivokey (maybe in the future).
 
-`attestation.pem`:
-```
------BEGIN CERTIFICATE-----
-MIIBPDCB5KADAgECAgpHkBKAABFVlXNSMAoGCCqGSM49BAMCMBcxFTATBgNVBAMT
-DEdudWJieSBQaWxvdDAeFw0xMjA4MTQxODI5MzJaFw0xMzA4MTQxODI5MzJaMDEx
-LzAtBgNVBAMTJlBpbG90R251YmJ5LTAuNC4xLTQ3OTAxMjgwMDAxMTU1OTU3MzUy
-MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEjWF+ZclQjmS8xWc6yCpnmdo8FEZo
-LCWMRj//31jf0vo+bDeLU9eVxKTf+0GZ7deGLyOrrwIDtLiRG6BWmZThATAKBggq
-hkjOPQQDAgNHADBEAiBgzbYGHpwiJi0arB2W2McIKbI2ZTHdomiDLLg2vNMN+gIg
-YxsUWfCeYzAFVyLI2Jt/SIg7kIm4jWDR2XlZArMEEN8=
------END CERTIFICATE-----
-```
-
-`attestation_key.pem`:
-```
------BEGIN PRIVATE KEY-----
-MEECAQAwEwYHKoZIzj0CAQYIKoZIzj0DAQcEJzAlAgEBBCDz/MwNANgDGVT5CGTU
-PCR/S/XwZlxrUMwXdJon0c92ZA==
------END PRIVATE KEY-----
-```
-
-This is the one used in the installation instructions below.
+The instructions at https://gist.github.com/darconeous/adb1b2c4b15d3d8fbc72a5097270cdaf use this certificate.
 
 ### Generate Attestation Certificate
 
-You can also generate your own attestation certificate. Install `openssl` and `xxd` (or any binary hex viewer).
+You can also generate your own attestation certificate. This makes your token unique, which is maybe not something you want - but then again, I recon the number of tokens using the default key can be counted on maybe two hands maximum.
 
-Create a file `attestation.config`, you can add more information if you want to:
+In the future, Vivokey plans offer signed certificates using their own certificate authority in some way. It is unclear if or how these would be coming to the FlexSecure, as they require the more protected environment of the Apex Flex in order to not leak.
 
-```
-[req]
-distinguished_name = req_dn
-attributes = req_att
-x509_extensions = req_ext
-req_extensions = req_ext
-prompt = no
+Creating certificates used to be quite the involved task requiring advanced knowledge of `openssl` commands, but I have written a small tool to simplify the process. Install Python3, and the `cryptography`, `asn1`, and `pyscard` modules (e.g. using Pip). Then, clone or download https://github.com/StarGate01/fido-attestation-loader .
 
-[req_dn]
-CN=FlexSecure U2F Token
+If you specify no flags, the script will use the default file names `attestation.der`, `attestation_key.p8`, `ca.der`, and `ca_key.p8`.
 
-[req_att]
-
-[req_ext]
-basicConstraints = critical,CA:FALSE
-1.3.6.1.4.1.45724.2.1.1 = ASN1:FORMAT:BITLIST,BITSTRING:3
-```
-
-The x509 `1.3.6.1.4.1.45724.2.1.1` extension limits this token to the NFC transport type (`3`).
-
-Next, generate the private key (`attestation_key.pem`) and certificate signing request (`attestation.csr`):
+First, generate a certificate authority, the script will ask you for a passphrase to secure the private key.
 
 ```
-openssl ecparam -genkey -noout -name prime256v1 -out attestation_key.pem
-
-openssl req -config attestation.config -new -sha256 -key attestation_key.pem -out attestation.csr
+./attestation.py ca create
 ```
 
-Then, self-sign it (e.g. for 10 years) to generate the final certificate (`attestation.pem`):
+Next, generate an attestation certificate and sign it using the CA. You have to create another passphrase to protect the private key of the attestation certificate.
 
 ```
-openssl req -x509 -config attestation.config -extensions req_ext -sha256 -key attestation_key.pem -in attestation.csr -out attestation.pem -days 3650
+./attestation.py cert create 
 ```
 
-Creating and signing using a proper certificate authority is out of scope for this document.
-
-Next, extract the private key (32 bytes), look for `priv`:
+Then, you can derive the applet installation parameter by running:
 
 ```
-openssl ec -in attestation_key.pem -text -noout
+./attestation.py cert show
 ```
 
-The bytes for the certificate are just the verbatim DER encoding:
-
-```
-openssl x509 -outform der -in attestation.pem -out attestation.der
-
-xxd -c 128 -p attestation.der
-wc -c < attestation.der
-```
+The attestation script has a lot more flags to control which files to use, and to provide passphrases via the arguments instead of interactively typing them. It also provides functionality to validate a certificate gainst an certificate authority. See the `-h` help command for more details.
 
 Use GlobalPlatformPro (GPP) from https://github.com/martinpaljak/GlobalPlatformPro/releases to install the applet:
 
 ```
-gp -install U2FApplet.cap --create A0000006472F0001 --params 000140f3fccc0d00d8031954f90864d43c247f4bf5f0665c6b50cc17749a27d1cf7664
+gp -install U2FApplet.cap --create A0000006472F0001 --params INSTALLPARAM
 ```
 
-The parameter data is `00`, the length of the public attestation certificate (hex `0140`), and the private key (32 bytes). See https://github.com/darconeous/u2f-javacard/blob/master/README.md for more info.
+The parameter data (`INSTALLPARAM`) is `00`, joined to the length in bytes of the public attestation certificate (16 bit integer = 2 bytes), and joined to the private key (32 bytes). See https://github.com/darconeous/u2f-javacard/blob/master/README.md for more info. You can copy it from the last line of the output of `./attestation.py cert show`.
 
 Listing the applets using `gp --list` should print something like this:
 
@@ -143,11 +95,15 @@ PKG: A000000617004F97A2E95001 (LOADED)
      Applet:  A000000617004F97A2E94901
 ```
 
-Next, you have to load the public attestation certificate by sending a few chained APDUs. The DER encoded public certificate has to be chopped into `128` byte chunks, which are sent attached to a small header. The header is `80 01 HHLL KK`, with `HHLL` being a 16 bit integer offset of that chunk, and `KK` being the chunk length (hex `80`, usually smaller for the last chunk). Before sending the certificate, a small preamble command is required.
+Next, you have to load the public attestation certificate by sending a few chained APDUs. The DER encoded public certificate has to be chopped into `128` byte chunks, which are sent attached to a small header. The header is `80 01 HHLL KK`, with `HHLL` being a 16 bit integer offset of that chunk, and `KK` being the chunk length (hex `80`, usually smaller for the last chunk). Before sending the certificate, selecting the applet is required.
+
+This task is covered by the attestation script as well:
 
 ```
-gp -d -v -a "00 A4 04 00 08 A0 00 00 06 47 2F 00 01" -a "80 01 0000 80 3082013c3081e4a003020102020a47901280001155957352300a06082a8648ce3d0403023017311530130603550403130c476e756262792050696c6f74301e170d3132303831343138323933325a170d3133303831343138323933325a3031312f302d0603550403132650696c6f74476e756262792d302e342e312d34373930" -a "80 01 0080 80 313238303030313135353935373335323059301306072a8648ce3d020106082a8648ce3d030107034200048d617e65c9508e64bcc5673ac82a6799da3c1446682c258c463fffdf58dfd2fa3e6c378b53d795c4a4dffb4199edd7862f23abaf0203b4b8911ba0569994e101300a06082a8648ce3d0403020347003044022060cd" -a "80 01 0100 40 b6061e9c22262d1aac1d96d8c70829b2366531dda268832cb836bcd30dfa0220631b1459f09e6330055722c8d89b7f48883b9089b88d60d1d9795902b30410df"
+./attestation.py cert upload
 ```
+
+You might have to specify your PCSC reader index using `-r`, use `-l` to list all readers.
 
 See also https://gist.github.com/darconeous/adb1b2c4b15d3d8fbc72a5097270cdaf for more info on these APDUs.
 
@@ -175,5 +131,6 @@ On Android, you can use the *FIDO / Webauthn Example* App at https://play.google
 - https://research.kudelskisecurity.com/2020/02/12/fido2-deep-dive-attestations-trust-model-and-security/
 - https://developers.yubico.com/U2F/Attestation_and_Metadata/
 - https://fidoalliance.org/specs/fido-u2f-v1.2-ps-20170411/fido-u2f-authenticator-transports-extension-v1.2-ps-20170411.html#fido-u2f-certificate-extensions
+- https://github.com/StarGate01/fido-attestation-loader
 
 Improve this document: https://github.com/StarGate01/flexsecure-applets/tree/master/docs

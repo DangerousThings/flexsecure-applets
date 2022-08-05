@@ -73,8 +73,6 @@ The Apex Flex uses either the `J3R200` or the `J3R180` chip, which one is unclea
 
 Measurements show an available persistent (EEPROM) storage of at least `84336` bytes, and a transient (RAM) storage size of at least `4054` / `4160` (reset / deselect) bytes for the Apex Flex.
 
-An issue concerning the fact that Fidesmo does not actually free the card memory upon applet deletion is being investigated.
-
 ## Payments
 
 It is unclear if and when the payment functionality of the Apex Flex will be active. Mastercard / Visa have some ideological issues supporting implants, so although the Fidesmo payment applet works great, it might be disabled on the Apex Flex. The payment applet will be loaded on the chip, but won't be enabled. The applet will lie dormant until Visa / Mastercard sort out their issues.

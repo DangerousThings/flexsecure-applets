@@ -19,3 +19,6 @@
 [submodule "applets/vk-u2f"]
 	path = applets/vk-u2f
 	url = https://github.com/VivoKey/vk-u2f.git
+[submodule "applets/javacard-memory"]
+	path = applets/javacard-memory
+	url = https://github.com/StarGate01/javacard-memory.git

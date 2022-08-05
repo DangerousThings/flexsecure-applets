@@ -10,6 +10,10 @@ This applet is compatible to the Yubikey-style protocol, supported by e.g. KeePa
 - Binary name: `YkHMACApplet.cap`
 - Download: https://github.com/StarGate01/flexsecure-applets/releases
 - AID: `A0:00:00:05:27:20:01`, Package: `A0:00:00:05:27:20`
+- Storage requirements:
+  - Persistent: `3204` bytes
+  - Transient reset: `240` bytes
+  - Transient deselect: `128` bytes
 
 ## Compiling the Applet Yourself
 

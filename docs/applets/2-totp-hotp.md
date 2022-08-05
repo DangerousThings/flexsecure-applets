@@ -10,6 +10,10 @@ These codes are preferred over e.g. SMS codes, because the process requires no c
 - Binary name: `vivokey-otp.cap`
 - Download: https://github.com/StarGate01/flexsecure-applets/releases
 - AID: `A0:00:00:05:27:21:01:01`, Package: `A0:00:00:05:27:21:01`
+- Storage requirements:
+  - Persistent: `5128` bytes (`6020` with three TOTP accounts)
+  - Transient reset: `2296` bytes (`2392`)
+  - Transient deselect: `64` bytes
 
 ## Compiling the Applet Yourself
 

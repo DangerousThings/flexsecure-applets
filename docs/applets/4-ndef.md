@@ -8,6 +8,10 @@ NDEF (NFC Data Exchange Format) is a data format used to store structured data.
 - Binary name: `openjavacard-ndef-full.cap` and `openjavacard-ndef-tiny.cap`
 - Download: https://github.com/StarGate01/flexsecure-applets/releases
 - AID: `D2:76:00:00:85:01:01`, Package: `D2:76:00:00:85`
+- Storage requirements:
+  - Persistent: `4372` bytes
+  - Transient reset: `16` bytes
+  - Transient deselect: `0` bytes
 
 ## Compiling the Applet Yourself
 

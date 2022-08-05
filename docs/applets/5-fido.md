@@ -18,6 +18,10 @@ The FIDO2 applet is still in development, and not completely finished. For examp
 - Binary name: `U2FApplet.cap`
 - Download: https://github.com/StarGate01/flexsecure-applets/releases
 - AID: `A0:00:00:06:47:2F:00:01`, Package: `a0:00:00:06:17:00:4f:97:a2:e9:50:01`
+- Storage requirements:
+  - Persistent: `8020` bytes
+  - Transient reset: `865` bytes
+  - Transient deselect: `0` bytes
 
 ### FIDO2 CTAP2 (in development)
 

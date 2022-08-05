@@ -10,6 +10,10 @@ Explaining the theory of public-key cryptography is out of scope, please refer t
 - Binary name: `SmartPGPApplet-default.cap` and `SmartPGPApplet-large.cap`
 - Download: https://github.com/StarGate01/flexsecure-applets/releases
 - AID: `d2:76:00:01:24:01:03:04:00:0A:00:00:00:00:00:00` (has to be adjusted, see below), Package: `d2:76:00:01:24:01`
+- Storage requirements:
+  - Persistent: `24776` bytes (`28148` with one RSA 2048 key)
+  - Transient reset: `2118` bytes
+  - Transient deselect: `16` bytes
 
 ## Compiling the Applet Yourself
 

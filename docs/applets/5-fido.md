@@ -8,7 +8,9 @@ The attestation certificate is used to sign certificates for transport when you 
 
 **FIDO2 CTAP2** (Client to Authenticator Protocol) is an extension and improvement over FIDO U2F, and remains backwards-compatible to U2F.
 
-The FIDO2 applet is still in development, and not completely finished. For example, Windows Hello is not supported yet. The attestation certificate loading procedure is not yet properly documented, and neither is the generation of such a certificate. Stay tuned.
+The FIDO2 applet is still in development, and not completely finished. For example, Windows Hello is not supported yet. Stay tuned. It is also not officially certified.
+
+If you are feeling lucky, you can however already test the FIDO2 applet.
 
 ## Applet Information
 
@@ -17,7 +19,7 @@ The FIDO2 applet is still in development, and not completely finished. For examp
 - Repository: https://github.com/darconeous/u2f-javacard
 - Binary name: `U2FApplet.cap`
 - Download: https://github.com/StarGate01/flexsecure-applets/releases
-- AID: `A0:00:00:06:47:2F:00:01`, Package: `a0:00:00:06:17:00:4f:97:a2:e9:50:01`
+- AID: `a0:00:00:06:47:2F:00:01`, Package: `a0:00:00:06:47:2F:00`
 - Storage requirements:
   - Persistent: `8020` bytes
   - Transient reset: `865` bytes
@@ -28,7 +30,7 @@ The FIDO2 applet is still in development, and not completely finished. For examp
 - Repository: https://github.com/VivoKey/vk-u2f (forked from u2f-javacard)
 - Binary name: `CTAP2.cap`
 - Download: https://github.com/StarGate01/flexsecure-applets/releases
-- AID: `A0:00:00:06:47:2F:00:01`, Package: `A0:00:00:06:47:2F:00:01`
+- AID: `a0:00:00:06:47:2F:00:01`, Package: `a0:00:00:06:47:2F:00`
 
 ## Compiling the Applet Yourself
 
@@ -42,12 +44,6 @@ You can not use the U2F applet at the same time as the FIDO2 one because they us
 
 Loading the attestation certificate requires manual steps as of now, but Vivokey and I are planning to release tools for U2F and FIDO2 attestation certificate loading sometime in the future.
 
-### Default Attestation Certificate
-
-You can use the default example U2F attestation certificate, which you can extract from https://fidoalliance.org/specs/fido-u2f-v1.2-ps-20170411/fido-u2f-raw-message-formats-v1.2-ps-20170411.html#examples and convert to the OpenSSL x509 / ECC DER format. Note that it is no longer valid according to its date, but it still works. Then again, it was never signed by any company, so it was never seen as valid in the first place. It is also missing a few extensions. I recommend creating a custom one, or getting one signed by Vivokey (maybe in the future).
-
-The instructions at https://gist.github.com/darconeous/adb1b2c4b15d3d8fbc72a5097270cdaf use this certificate.
-
 ### Generate Attestation Certificate
 
 You can also generate your own attestation certificate. This makes your token unique, which is maybe not something you want - but then again, I recon the number of tokens using the default key can be counted on maybe two hands maximum.
@@ -56,7 +52,7 @@ In the future, Vivokey plans offer signed certificates using their own certifica
 
 Creating certificates used to be quite the involved task requiring advanced knowledge of `openssl` commands, but I have written a small tool to simplify the process. Install Python3, and the `cryptography`, `asn1`, and `pyscard` modules (e.g. using Pip). Then, clone or download https://github.com/StarGate01/fido-attestation-loader .
 
-If you specify no flags, the script will use the default file names `attestation.der`, `attestation_key.p8`, `ca.der`, and `ca_key.p8`.
+If you specify no flags, the script will use the default file names `attestation.der`, `attestation_key.p8`, `ca.der`, `ca_key.p8`, and `settings.ini`. If you want to, you can edit the metadata in `settings.ini`.
 
 First, generate a certificate authority, the script will ask you for a passphrase to secure the private key.
 
@@ -70,10 +66,16 @@ Next, generate an attestation certificate and sign it using the CA. You have to 
 ./attestation.py cert create 
 ```
 
-Then, you can derive the applet installation parameter by running:
+Then, you can derive the applet installation parameter by running, for FIDO U2F:
 
 ```
-./attestation.py cert show
+./attestation.py cert show -m u2f
+```
+
+For FIDO2:
+
+```
+./attestation.py cert show -m fido2
 ```
 
 The attestation script has a lot more flags to control which files to use, and to provide passphrases via the arguments instead of interactively typing them. It also provides functionality to validate a certificate gainst an certificate authority. See the `-h` help command for more details.
@@ -81,7 +83,7 @@ The attestation script has a lot more flags to control which files to use, and t
 Use GlobalPlatformPro (GPP) from https://github.com/martinpaljak/GlobalPlatformPro/releases to install the applet:
 
 ```
-gp -install U2FApplet.cap --create A0000006472F0001 --params INSTALLPARAM
+gp -install U2FApplet.cap --params INSTALLPARAM
 ```
 
 The parameter data (`INSTALLPARAM`) is `00`, joined to the length in bytes of the public attestation certificate (16 bit integer = 2 bytes), and joined to the private key (32 bytes). See https://github.com/darconeous/u2f-javacard/blob/master/README.md for more info. You can copy it from the last line of the output of `./attestation.py cert show`.
@@ -101,10 +103,16 @@ PKG: A000000617004F97A2E95001 (LOADED)
 
 Next, you have to load the public attestation certificate by sending a few chained APDUs. The DER encoded public certificate has to be chopped into `128` byte chunks, which are sent attached to a small header. The header is `80 01 HHLL KK`, with `HHLL` being a 16 bit integer offset of that chunk, and `KK` being the chunk length (hex `80`, usually smaller for the last chunk). Before sending the certificate, selecting the applet is required.
 
-This task is covered by the attestation script as well:
+This task is covered by the attestation script as well, for FIDO U2F:
 
 ```
-./attestation.py cert upload
+./attestation.py cert upload -m u2f
+```
+
+For FIDO2:
+
+```
+./attestation.py cert upload -m fido2
 ```
 
 You might have to specify your PCSC reader index using `-r`, use `-l` to list all readers.

@@ -10,11 +10,11 @@ The attestation certificate is used to sign certificates for transport when you 
 
 The FIDO2 applet is still in development, and not completely finished. For example, Windows Hello is not supported yet. Stay tuned. It is also not officially certified.
 
-If you are feeling lucky, you can however already test the FIDO2 applet.
+You can however already test the FIDO2 applet.
 
 ## Applet Information
 
-### FIDO U2F (recommended)
+### FIDO U2F
 
 - Repository: https://github.com/darconeous/u2f-javacard
 - Binary name: `U2FApplet.cap`
@@ -31,6 +31,10 @@ If you are feeling lucky, you can however already test the FIDO2 applet.
 - Binary name: `CTAP2.cap`
 - Download: https://github.com/StarGate01/flexsecure-applets/releases
 - AID: `a0:00:00:06:47:2F:00:01:01`, Package: `a0:00:00:06:47:2F:00:01`
+- Storage requirements:
+  - Persistent: `13520` bytes
+  - Transient reset: `2382` bytes
+  - Transient deselect: `384` bytes
 
 ## Compiling the Applet Yourself
 
@@ -52,7 +56,7 @@ In the future, Vivokey plans offer signed certificates using their own certifica
 
 Creating certificates used to be quite the involved task requiring advanced knowledge of `openssl` commands, but I have written a small tool to simplify the process. Install Python3, and the `cryptography`, `asn1`, and `pyscard` modules (e.g. using Pip). Then, clone or download https://github.com/StarGate01/fido-attestation-loader .
 
-If you specify no flags, the script will use the default file names `attestation.der`, `attestation_key.p8`, `ca.der`, `ca_key.p8`, and `settings.ini`. If you want to, you can edit the metadata in `settings.ini`.
+If you specify no flags, the script will use the default file names `attestation.der`, `attestation_key.p8`, `ca.der`, `ca_key.p8`, and `settings.ini`. If you want to, you can edit the metadata in `settings.ini`, also refer to the Readme file.
 
 First, generate a certificate authority, the script will ask you for a passphrase to secure the private key.
 
@@ -72,18 +76,24 @@ Then, you can derive the applet installation parameter by running, for FIDO U2F:
 ./attestation.py cert show -m u2f
 ```
 
-For FIDO2:
+For FIDO2 (default):
 
 ```
 ./attestation.py cert show -m fido2
 ```
 
-The attestation script has a lot more flags to control which files to use, and to provide passphrases via the arguments instead of interactively typing them. It also provides functionality to validate a certificate gainst an certificate authority. See the `-h` help command for more details.
+The attestation script has a lot more flags to control which files to use, and to provide passphrases via the arguments instead of interactively typing them. It also provides functionality to validate a certificate gainst an certificate authority. See the `-h` help command for more details, or refer to the Readme file of https://github.com/StarGate01/fido-attestation-loader .
 
-Use GlobalPlatformPro (GPP) from https://github.com/martinpaljak/GlobalPlatformPro/releases to install the applet:
+Use GlobalPlatformPro (GPP) from https://github.com/martinpaljak/GlobalPlatformPro/releases to install the applet, for Fido U2F:
 
 ```
 gp -install U2FApplet.cap --params INSTALLPARAM
+```
+
+For FIDO2:
+
+```
+gp -install CTAP2.cap --params INSTALLPARAM
 ```
 
 The parameter data (`INSTALLPARAM`) is `00`, joined to the length in bytes of the public attestation certificate (16 bit integer = 2 bytes), and joined to the private key (32 bytes). See https://github.com/darconeous/u2f-javacard/blob/master/README.md for more info. You can copy it from the last line of the output of `./attestation.py cert show`.
@@ -103,13 +113,15 @@ PKG: A000000617004F97A2E95001 (LOADED)
 
 Next, you have to load the public attestation certificate by sending a few chained APDUs. The DER encoded public certificate has to be chopped into `128` byte chunks, which are sent attached to a small header. The header is `80 01 HHLL KK`, with `HHLL` being a 16 bit integer offset of that chunk, and `KK` being the chunk length (hex `80`, usually smaller for the last chunk). Before sending the certificate, selecting the applet is required.
 
+The FIDO2 applet requires a few more bytes to specify the AAGUID.
+
 This task is covered by the attestation script as well, for FIDO U2F:
 
 ```
 ./attestation.py cert upload -m u2f
 ```
 
-For FIDO2:
+For FIDO2 (default):
 
 ```
 ./attestation.py cert upload -m fido2
@@ -117,7 +129,7 @@ For FIDO2:
 
 You might have to specify your PCSC reader index using `-r`, use `-l` to list all readers.
 
-See also https://gist.github.com/darconeous/adb1b2c4b15d3d8fbc72a5097270cdaf for more info on these APDUs.
+See also https://gist.github.com/darconeous/adb1b2c4b15d3d8fbc72a5097270cdaf for more info on these APDUs for U2F.
 
 ## Using the Applet
 

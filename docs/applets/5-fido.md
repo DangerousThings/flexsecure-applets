@@ -19,7 +19,7 @@ You can however already test the FIDO2 applet.
 - Repository: https://github.com/darconeous/u2f-javacard
 - Binary name: `U2FApplet.cap`
 - Download: https://github.com/StarGate01/flexsecure-applets/releases
-- AID: `a0:00:00:06:47:2F:00:01:01:01`, Package: `a0:00:00:06:47:2F:00:01:01`
+- AID: `a0:00:00:06:47:2F:00:01:01`, Package: `a0:00:00:06:47:2F:00:01`
 - Storage requirements:
   - Persistent: `8020` bytes
   - Transient reset: `865` bytes
@@ -30,7 +30,7 @@ You can however already test the FIDO2 applet.
 - Repository: https://github.com/VivoKey/vk-u2f (forked from u2f-javacard)
 - Binary name: `CTAP2.cap`
 - Download: https://github.com/StarGate01/flexsecure-applets/releases
-- AID: `a0:00:00:06:47:2F:00:01:01:02`, Package: `a0:00:00:06:47:2F:00:01:02`
+- AID: `a0:00:00:06:47:2F:00:01:01`, Package: `a0:00:00:06:47:2F:00:01`
 - Storage requirements:
   - Persistent: `13520` bytes
   - Transient reset: `2382` bytes

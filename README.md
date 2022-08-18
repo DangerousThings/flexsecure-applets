@@ -1,4 +1,4 @@
-[![Build Status](https://drone-github.chrz.de/api/badges/StarGate01/flexsecure-applets/status.svg)](https://drone-github.chrz.de/StarGate01/flexsecure-applets)
+[![Build Status](https://drone-github.chrz.de/api/badges/DangerousThings/flexsecure-applets/status.svg)](https://drone-github.chrz.de/DangerousThings/flexsecure-applets)
 
 # flexsecure-applets
 
@@ -8,7 +8,7 @@ For documentation, see `docs/` . Or read the forums at https://forum.dangerousth
 
 ## Download
 
-Compiled binaries are available from the GitHub releases page: https://github.com/StarGate01/flexsecure-applets/releases .
+Compiled binaries are available from the GitHub releases page: https://github.com/DangerousThings/flexsecure-applets/releases .
 
 ## Development Usage
 

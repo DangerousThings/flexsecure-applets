@@ -91,6 +91,6 @@ If you want full offline control over your hardware and keys, the maximum possib
 - https://www.javacardos.com/store/products/11020
 - https://fidesmo.com/
 - https://github.com/fidesmo/fdsm
-- https://github.com/StarGate01/javacard-memory
+- https://github.com/DangerousThings/javacard-memory
 
-Improve this document: https://github.com/StarGate01/flexsecure-applets/tree/master/docs
+Improve this document: https://github.com/DangerousThings/flexsecure-applets/tree/master/docs

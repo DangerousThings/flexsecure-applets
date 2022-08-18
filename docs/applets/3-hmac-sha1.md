@@ -6,9 +6,9 @@ This applet is compatible to the Yubikey-style protocol, supported by e.g. KeePa
 
 ## Applet Information
 
-- Repository: https://github.com/StarGate01/vk-ykhmac (which is a fork of https://github.com/arekinath/YkOtpApplet. The fork fixes some bugs.). There is also a version by Vivokey at https://github.com/VivoKey/apex-ykhmac , which is forked from StarGate01 but distributed via Fidesmo.
+- Repository: https://github.com/DangerousThings/flexsecure-ykhmac (which is a fork of https://github.com/arekinath/YkOtpApplet. The fork fixes some bugs.).
 - Binary name: `YkHMACApplet.cap`
-- Download: https://github.com/StarGate01/flexsecure-applets/releases
+- Download: https://github.com/DangerousThings/flexsecure-applets/releases
 - AID: `A0:00:00:05:27:20:01`, Package: `A0:00:00:05:27:20`
 - Storage requirements:
   - Persistent: `3204` bytes
@@ -58,7 +58,7 @@ ykman -r 'READER' otp chalresp -f 1 SECRET
 
 Use the `-f` flag to specify the slot (1 or 2).
 
-You can also use the `yktool.jar` utility (Download from https://github.com/StarGate01/flexsecure-applets/releases/). Take care of the string encoding on your operating system, this command is for Linux:
+You can also use the `yktool.jar` utility (Download from https://github.com/DangerousThings/flexsecure-applets/releases/). Take care of the string encoding on your operating system, this command is for Linux:
 
 ```
 echo SECRET | java -jar yktool.jar program hmac 1 -x -X
@@ -97,7 +97,7 @@ The `ykdroid` Android library implements this protocol, and provides it to apps 
 - https://keepassxc.org/
 - https://en.wikipedia.org/wiki/HMAC
 - https://chrz.de/2021/12/22/nfc-hacking-part-1-authentication-systems-security/
-- https://github.com/StarGate01/vk-ykhmac
+- https://github.com/DangerousThings/flexsecure-ykhmac
 - https://github.com/arekinath/yktool
 - http://www.average.org/chal-resp-auth/
 - https://crypto.stackexchange.com/questions/26510/why-is-hmac-sha1-still-considered-secure
@@ -108,4 +108,4 @@ The `ykdroid` Android library implements this protocol, and provides it to apps 
 - https://play.google.com/store/apps/details?id=keepass2android.keepass2android_nonet
 - https://play.google.com/store/apps/details?id=net.pp3345.ykdroid
 
-Improve this document: https://github.com/StarGate01/flexsecure-applets/tree/master/docs
+Improve this document: https://github.com/DangerousThings/flexsecure-applets/tree/master/docs

@@ -1,6 +1,6 @@
 [submodule "applets/vk-ykhmac"]
 	path = applets/vk-ykhmac
-	url = https://github.com/StarGate01/vk-ykhmac
+	url = https://github.com/DangerousThings/flexsecure-ykhmac.git
 [submodule "applets/Flex-OTP"]
 	path = applets/Flex-OTP
 	url = https://github.com/StarGate01/Flex-OTP
@@ -12,13 +12,13 @@
 	url = https://github.com/OpenJavaCard/openjavacard-ndef
 [submodule "smartcard-ci"]
 	path = smartcard-ci
-	url = https://github.com/StarGate01/smartcard-ci
+	url = https://github.com/DangerousThings/smartcard-ci.git
 [submodule "applets/u2f-javacard"]
 	path = applets/u2f-javacard
 	url = https://github.com/darconeous/u2f-javacard.git
 [submodule "applets/vk-u2f"]
 	path = applets/vk-u2f
-	url = https://github.com/VivoKey/vk-u2f.git
+	url = https://github.com/VivoKey/apex-fido2-ctap.git
 [submodule "applets/javacard-memory"]
 	path = applets/javacard-memory
-	url = https://github.com/StarGate01/javacard-memory.git
+	url = https://github.com/DangerousThings/javacard-memory.git

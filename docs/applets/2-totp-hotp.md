@@ -8,7 +8,7 @@ These codes are preferred over e.g. SMS codes, because the process requires no c
 
 - Repository: https://github.com/StarGate01/Flex-OTP (which is a fork of https://github.com/VivoKey/Flex-OTP. The fork impersonates a Yubikey.)
 - Binary name: `vivokey-otp.cap`
-- Download: https://github.com/StarGate01/flexsecure-applets/releases
+- Download: https://github.com/DangerousThings/flexsecure-applets/releases
 - AID: `A0:00:00:05:27:21:01:01`, Package: `A0:00:00:05:27:21:01`
 - Storage requirements:
   - Persistent: `5128` bytes (`6020` with three TOTP accounts)
@@ -65,4 +65,4 @@ This URI string is the same as is encoded in the usual QR codes.
 - https://stefansundin.github.io/2fa-qr/
 - https://developers.yubico.com/yubikey-manager/
 
-Improve this document: https://github.com/StarGate01/flexsecure-applets/tree/master/docs
+Improve this document: https://github.com/DangerousThings/flexsecure-applets/tree/master/docs

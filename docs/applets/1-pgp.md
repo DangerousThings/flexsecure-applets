@@ -8,7 +8,7 @@ Explaining the theory of public-key cryptography is out of scope, please refer t
 
 - Repository: https://github.com/ANSSI-FR/SmartPGP (javacard-3.0.4-without-secure-messaging branch)
 - Binary name: `SmartPGPApplet-default.cap` and `SmartPGPApplet-large.cap`
-- Download: https://github.com/StarGate01/flexsecure-applets/releases
+- Download: https://github.com/DangerousThings/flexsecure-applets/releases
 - AID: `d2:76:00:01:24:01:03:04:00:0A:00:00:00:00:00:00` (has to be adjusted, see below), Package: `d2:76:00:01:24:01`
 - Storage requirements:
   - Persistent: `24776` bytes (`28148` with one RSA 2048 key)
@@ -31,7 +31,7 @@ If you want to use RSA keys larger than 2048 bits, you have to change the consta
 
 Otherwise, gpg might fail with a message like `gpg: KEYTOCARD failed: Hardware problem`.
 
-You might also want to use my Docker image and build environment, which contains all necessary packages for compilation and testing: https://github.com/StarGate01/flexsecure-applets . This environment automatically builds both the default and large configuration.
+You might also want to use my Docker image and build environment, which contains all necessary packages for compilation and testing: https://github.com/DangerousThings/flexsecure-applets . This environment automatically builds both the default and large configuration.
 
 For more options, see the SmartPGP README file.
 
@@ -82,4 +82,4 @@ Generating keys on the card itself can be done for any algorithm without having 
 - https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.pdf
 - https://www.gpg4win.org/
 
-Improve this document: https://github.com/StarGate01/flexsecure-applets/tree/master/docs
+Improve this document: https://github.com/DangerousThings/flexsecure-applets/tree/master/docs

@@ -18,7 +18,7 @@ You can however already test the FIDO2 applet.
 
 - Repository: https://github.com/darconeous/u2f-javacard
 - Binary name: `U2FApplet.cap`
-- Download: https://github.com/StarGate01/flexsecure-applets/releases
+- Download: https://github.com/DangerousThings/flexsecure-applets/releases
 - AID: `a0:00:00:06:47:2F:00:01:01`, Package: `a0:00:00:06:47:2F:00:01`
 - Storage requirements:
   - Persistent: `8020` bytes
@@ -27,9 +27,9 @@ You can however already test the FIDO2 applet.
 
 ### FIDO2 CTAP2 (in development)
 
-- Repository: https://github.com/VivoKey/vk-u2f (forked from u2f-javacard)
+- Repository: https://github.com/VivoKey/apex-fido2-ctap (forked from u2f-javacard)
 - Binary name: `CTAP2.cap`
-- Download: https://github.com/StarGate01/flexsecure-applets/releases
+- Download: https://github.com/DangerousThings/flexsecure-applets/releases
 - AID: `a0:00:00:06:47:2F:00:01:01`, Package: `a0:00:00:06:47:2F:00:01`
 - Storage requirements:
   - Persistent: `13520` bytes
@@ -54,7 +54,7 @@ You can also generate your own attestation certificate. This makes your token un
 
 In the future, Vivokey plans offer signed certificates using their own certificate authority in some way. It is unclear if or how these would be coming to the FlexSecure, as they require the more protected environment of the Apex Flex in order to not leak.
 
-Creating certificates used to be quite the involved task requiring advanced knowledge of `openssl` commands, but I have written a small tool to simplify the process. Install Python3, and the `cryptography`, `asn1`, and `pyscard` modules (e.g. using Pip). Then, clone or download https://github.com/StarGate01/fido-attestation-loader .
+Creating certificates used to be quite the involved task requiring advanced knowledge of `openssl` commands, but I have written a small tool to simplify the process. Install Python3, and the `cryptography`, `asn1`, and `pyscard` modules (e.g. using Pip). Then, clone or download https://github.com/DangerousThings/fido-attestation-loader .
 
 If you specify no flags, the script will use the default file names `attestation.der`, `attestation_key.p8`, `ca.der`, `ca_key.p8`, and `settings.ini`. If you want to, you can edit the metadata in `settings.ini`, also refer to the Readme file.
 
@@ -82,7 +82,7 @@ For FIDO2 (default):
 ./attestation.py cert show -m fido2
 ```
 
-The attestation script has a lot more flags to control which files to use, and to provide passphrases via the arguments instead of interactively typing them. It also provides functionality to validate a certificate gainst an certificate authority. See the `-h` help command for more details, or refer to the Readme file of https://github.com/StarGate01/fido-attestation-loader .
+The attestation script has a lot more flags to control which files to use, and to provide passphrases via the arguments instead of interactively typing them. It also provides functionality to validate a certificate gainst an certificate authority. See the `-h` help command for more details, or refer to the Readme file of https://github.com/DangerousThings/fido-attestation-loader .
 
 Use GlobalPlatformPro (GPP) from https://github.com/martinpaljak/GlobalPlatformPro/releases to install the applet, for Fido U2F:
 
@@ -155,6 +155,6 @@ On Android, you can use the *FIDO / Webauthn Example* App at https://play.google
 - https://research.kudelskisecurity.com/2020/02/12/fido2-deep-dive-attestations-trust-model-and-security/
 - https://developers.yubico.com/U2F/Attestation_and_Metadata/
 - https://fidoalliance.org/specs/fido-u2f-v1.2-ps-20170411/fido-u2f-authenticator-transports-extension-v1.2-ps-20170411.html#fido-u2f-certificate-extensions
-- https://github.com/StarGate01/fido-attestation-loader
+- https://github.com/DangerousThings/fido-attestation-loader
 
-Improve this document: https://github.com/StarGate01/flexsecure-applets/tree/master/docs
+Improve this document: https://github.com/DangerousThings/flexsecure-applets/tree/master/docs

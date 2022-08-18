@@ -6,7 +6,7 @@ NDEF (NFC Data Exchange Format) is a data format used to store structured data.
 
 - Repository: https://github.com/OpenJavaCard/openjavacard-ndef
 - Binary name: `openjavacard-ndef-full.cap` and `openjavacard-ndef-tiny.cap`
-- Download: https://github.com/StarGate01/flexsecure-applets/releases
+- Download: https://github.com/DangerousThings/flexsecure-applets/releases
 - AID: `D2:76:00:00:85:01:01`, Package: `D2:76:00:00:85`
 - Storage requirements:
   - Persistent: `4372` bytes
@@ -90,4 +90,4 @@ python3 pcsc_ndef.py -r "READER" -t 4 read
 - https://ndeflib.readthedocs.io/en/latest
 - https://play.google.com/store/apps/details?id=com.wakdev.nfctools.pro
 
-Improve this document: https://github.com/StarGate01/flexsecure-applets/tree/master/docs
+Improve this document: https://github.com/DangerousThings/flexsecure-applets/tree/master/docs

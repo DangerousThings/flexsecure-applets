@@ -12,7 +12,7 @@ steps:
 - name: clone
   image: alpine/git
   commands:
-  - git clone https://github.com/StarGate01/flexsecure-applets .
+  - git clone https://github.com/DangerousThings/flexsecure-applets .
   - git -c submodule."smartcard-ci".update=none submodule update --init --recursive
 - name: build  
   image: stargate01/smartcard-ci

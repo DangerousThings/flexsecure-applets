@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="applet" name="ledger-javacard">
+  <target name="applet">
+    <get src="https://github.com/martinpaljak/ant-javacard/releases/download/v1.5/ant-javacard.jar" skipexisting="true" dest="."/>
+    <taskdef name="javacard" classname="pro.javacard.ant.JavaCard" classpath="ant-javacard.jar"/>
+    <javacard>
+      <cap output="target/Ledger-wallet.cap" sources="src" classes="target" aid="a0000006170054bf6aa949" verify="true" version="1.0">
+        <applet class="com.ledger.wallet.LedgerWalletApplet" aid="a0000006170054bf6aa94901"/>
+      </cap>
+    </javacard>
+  </target>
+</project>

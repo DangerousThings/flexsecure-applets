@@ -46,11 +46,9 @@ Use git to clone the sources recursively, and change into the directory. To comp
 
 You can not use the U2F applet at the same time as the FIDO2 one because they use the same AID.
 
-Loading the attestation certificate requires manual steps as of now, but Vivokey and I are planning to release tools for U2F and FIDO2 attestation certificate loading sometime in the future.
-
 ### Generate Attestation Certificate
 
-You can also generate your own attestation certificate. This makes your token unique, which is maybe not something you want - but then again, I recon the number of tokens using the default key can be counted on maybe two hands maximum.
+You can generate your own attestation certificate. This makes your token unique, which is maybe not something you want.
 
 In the future, Vivokey plans offer signed certificates using their own certificate authority in some way. It is unclear if or how these would be coming to the FlexSecure, as they require the more protected environment of the Apex Flex in order to not leak.
 

@@ -22,3 +22,9 @@
 [submodule "applets/javacard-memory"]
 	path = applets/javacard-memory
 	url = https://github.com/DangerousThings/javacard-memory.git
+[submodule "applets/apex-ledger-unplugged"]
+	path = applets/apex-ledger-unplugged
+	url = https://github.com/VivoKey/apex-ledger-unplugged.git
+[submodule "applets/ledger-javacard-eligibility"]
+	path = applets/ledger-javacard-eligibility
+	url = https://github.com/LedgerHQ/ledger-javacard-eligibility.git

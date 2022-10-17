@@ -17,9 +17,9 @@ The **Eligibility Applet** can be used to check whether your token supports als 
 - Download: https://github.com/DangerousThings/flexsecure-applets/releases
 - AID: `a0:00:00:06:17:00:54:bf:6a:a9:49:01`, Package: `a0:00:00:06:17:00:54:bf:6a:a9:49`
 - Storage requirements:
-  - Persistent: `TBA` bytes
-  - Transient reset: `TBA` bytes
-  - Transient deselect: `TBA` bytes
+  - Persistent: `37368` bytes
+  - Transient reset: `1338` bytes
+  - Transient deselect: `16` bytes
 
 ### Ledger Unplugged Eligibility
 

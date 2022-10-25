@@ -108,7 +108,7 @@ For Fidesmo-deployed cards, use the `fdsm` tool from https://github.com/fidesmo/
 
 Do not remove the management applet package (`A0000001515350`), or security controller (`A000000151000000`). They are part of the operating system.
 
-## Sources and Further Readingfdsm
+## Sources and Further Reading
 
 - https://www.docker.com/
 - https://github.com/DangerousThings/smartcard-ci/blob/master/Dockerfile

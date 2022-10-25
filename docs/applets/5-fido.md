@@ -6,7 +6,7 @@ The applet requires an attestation certificate. This certificate can be a defaul
 
 The attestation certificate is used to sign certificates for transport when you register with a service. The token manufacturer (e.g. Vivokey) can also use this certificate (which they sign using their certificate authority) to validate the authenticity and model of the token and applet.
 
-**FIDO2 CTAP2** (Client to Authenticator Protocol) is an extension and improvement over FIDO U2F, and remains backwards-compatible to U2F.
+**FIDO2 CTAP2** (Client to Authenticator Protocol) is an extension and improvement over FIDO U2F.
 
 The FIDO2 applet is still in development, and not completely finished. For example, Windows Hello is not supported yet. Stay tuned. It is also not officially certified.
 
@@ -135,7 +135,7 @@ Using the applet in the web requires a modern browser with support for FIDO. NFC
 
 You can use the *Yubikey WebAuthn test page* at https://demo.yubico.com/webauthn-technical/registration to test your token.
 
-On Android, you can use the *FIDO / Webauthn Example* App at https://play.google.com/store/apps/details?id=de.cotech.hw.fido.example for testing (Use the U2F tab).
+On Android, you can use the *FIDO / Webauthn Example* App at https://play.google.com/store/apps/details?id=de.cotech.hw.fido.example for testing (Use the U2F tab), or use any Browser which supports the Security Manager (for details, see *Android Problems and Solutions*) and use the Yubico page.
 
 ## Sources and Further Reading
 

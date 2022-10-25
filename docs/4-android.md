@@ -16,7 +16,7 @@ To change the configuration, add the line
 ISO_DEP_MAX_TRANSCEIVE=0xFEFF 	 	
 ```
 
-to each of the files `/vendor/etc/libnfc-nci.conf` and `/vendor/etc/libnfc-brcm.conf` .
+to each of the files `/vendor/etc/libnfc-nci.conf` and `/vendor/etc/libnfc-brcm.conf` (and any other files you find like e.g. `libnfc-nxp.conf`).
 
 This requires root access.
 

@@ -101,6 +101,7 @@ The `ykdroid` Android library implements this protocol, and provides it to apps 
 - https://github.com/arekinath/yktool
 - http://www.average.org/chal-resp-auth/
 - https://crypto.stackexchange.com/questions/26510/why-is-hmac-sha1-still-considered-secure
+- https://www.rfc-editor.org/rfc/rfc4226#appendix-B.2
 - https://developers.yubico.com/yubikey-manager/
 - https://github.com/arekinath/yktool
 - https://github.com/PhilippC/keepass2android

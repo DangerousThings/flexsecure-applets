@@ -8,6 +8,10 @@ The attestation certificate can be used to establish an encrypted channel during
 
 The **Eligibility Applet** can be used to check whether your token supports als the needed cryptographic algorithms.
 
+## Deprecation Note
+
+This applet is deprecated and not in use anymore. It does not support the Segregated Witness protocol for Bitcoin, which renders is unusable for the modern blockchain. It might be upgraded in the future, but currently this applet is not available in the Fidesmo store.
+
 ## Applet Information
 
 ### Ledger Unplugged

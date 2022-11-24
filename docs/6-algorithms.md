@@ -2,7 +2,7 @@
 
 The applets distributed by VivoKey and contained in this repository require hardware support for a range of cryptographic algorithms.
 
-Not all of these algorithms are hard requirements, some applets might provide fallbacks or limit certain functionality instead.
+Not all of these algorithms are hard requirements, some applets might provide fallbacks (e.g. for `ALG_HMAC_SHA*`) or limit certain functionality instead (e.g. PGP for generating large key sizes).
 
 ## MessageDigest
 
@@ -37,7 +37,7 @@ Not all of these algorithms are hard requirements, some applets might provide fa
 - `KeyAgreement.ALG_EC_SVDP_DH_PLAIN_XY` (BIP32)
 - `KeyAgreement.ALG_EC_SVDP_DH` (Tesla)
 
-## KeyPair
+## KeyPair generation
 
 - `KeyPair.ALG_EC_FP`, size = `256` (BIP32, Tesla, FIDO2)
 - `KeyPair.ALG_RSA_CRT`, size =`2048` (FIDO2)

@@ -1,6 +1,6 @@
 # FlexSecure Primers
 
-This repository contains documentation and instructions on how to use the upcoming FlexSecure chips by DangerousThings.
+This repository contains documentation and instructions on how to use the upcoming flexSecure chips by Dangerous Things.
 
 ## Disclaimer
 

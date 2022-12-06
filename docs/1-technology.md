@@ -24,7 +24,7 @@ The **GlobalPlatform** specifications are another set of industry standards, whi
 
 ### Keys and Authentication
 
-GP enforces authentication and code signatures (DAP Verification) during the applet installation. The card applet storage can only be modified if the correct card administration key is provided, or if the applets are properly signed. The FlexSecure ships with the default GP development administration key `404142434445464748494a4b4c4d4e4f`. You can change this key if you want to - but do not forget it, there is no way to recover the card once it is locked.
+GP enforces authentication and code signatures (DAP Verification) during the applet installation. The card applet storage can only be modified if the correct card administration key is provided, or if the applets are properly signed. The flexSecure ships with the default GP development administration key `404142434445464748494a4b4c4d4e4f`. You can change this key if you want to - but do not forget it, there is no way to recover the card once it is locked.
 
 This key is additionally used to open a secure communication channel to the card, via which the applet data is transferred.
 
@@ -46,7 +46,7 @@ The best user guide for GPP can be found in its repository readme file.
 
 JCOP is an embedded operating system for secure elements, which implements the JavaCard and GlobalPlatform specifications. It is mainly developed by NXP, and used on their chips.
 
-On some chips, JCOP might provide additional proprietary functionality. The version running on the FlexSecure is JCOP4, which implements GP 2.2.1 and 2.3, and is compatible to the JC API 3.0.4 Classic and 3.0.5 Classic.
+On some chips, JCOP might provide additional proprietary functionality. The version running on the flexSecure is JCOP4, which implements GP 2.2.1 and 2.3, and is compatible to the JC API 3.0.4 Classic and 3.0.5 Classic.
 
 ## ISO 7816 and Personal Computer / Smart Card (PC/SC)
 
@@ -104,4 +104,4 @@ Instances are retained across card resets and power cycles, and so is their non-
 - https://smartcard-atr.apdu.fr/
 - https://www.eftlab.com/knowledge-base/211-emv-aid-rid-pix/
 
-Improve this document: https://github.com/DangerousThings/flexsecure-applets/tree/master/docs
+Improve this document: https://github.com/dangerousthings/flexSecure-applets/tree/master/docs

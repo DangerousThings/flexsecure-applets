@@ -13,7 +13,7 @@ On some Android ROMS, the NFC driver is configured improperly, which limits the 
 To change the configuration, add the line
 
 ```
-ISO_DEP_MAX_TRANSCEIVE=0xFEFF 	 	
+ISO_DEP_MAX_TRANSCEIVE=0xFEFF
 ```
 
 to each of the files `/vendor/etc/libnfc-nci.conf` and `/vendor/etc/libnfc-brcm.conf` (and any other files you find like e.g. `libnfc-nxp.conf`).
@@ -33,4 +33,4 @@ The proprietary Google Services security manager does not implement support for 
 - https://github.com/NXPNFCLinux/linux_libnfc-nci/issues/116
 - https://groups.google.com/a/fidoalliance.org/g/fido-dev/c/H_32sr1STAg
 
-Improve this document: https://github.com/DangerousThings/flexsecure-applets/tree/master/docs
+Improve this document: https://github.com/DangerousThings/flexSecure-applets/tree/master/docs

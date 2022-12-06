@@ -86,7 +86,7 @@ To "eject" the card, just stop the Jcardsim process.
 
 ## Docker Container
 
-If you do not want to clutter your system, or don't have a compatible Linux system, you can use a pre-made Docker container for compilation. Install Docker, and use the image at https://hub.docker.com/r/stargate01/smartcard-ci . You can find the source Dockerfile at https://github.com/DangerousThings/smartcard-ci . This image is also used to compile the applets distributed via https://github.com/DangerousThings/flexsecure-applets/releases .
+If you do not want to clutter your system, or don't have a compatible Linux system, you can use a pre-made Docker container for compilation. Install Docker, and use the image at https://hub.docker.com/r/stargate01/smartcard-ci . You can find the source Dockerfile at https://github.com/DangerousThings/smartcard-ci . This image is also used to compile the applets distributed via https://github.com/DangerousThings/flexSecure-applets/releases .
 
 To run a command inside the Docker container:
 
@@ -96,7 +96,7 @@ docker run -it --rm -v SOURCES:/app/src:rw stargate01/smartcard-ci "command"
 
 Replace `SOURCES` with the absolute path to your source code directory, and `"command"` with the command you want to run.
 
-You can look at the compilation scripts in https://github.com/DangerousThings/flexsecure-applets for reference.
+You can look at the compilation scripts in https://github.com/DangerousThings/flexSecure-applets for reference.
 
 The container also contains the virtual smartcard emulator, as well as the Bats test runner. You can use that to run tests against emulated applets. Refer to the test scripts in the repository.
 
@@ -112,7 +112,7 @@ Do not remove the management applet package (`A0000001515350`), or security cont
 
 - https://www.docker.com/
 - https://github.com/DangerousThings/smartcard-ci/blob/master/Dockerfile
-- https://github.com/DangerousThings/flexsecure-applets/tree/master/scripts
+- https://github.com/DangerousThings/flexSecure-applets/tree/master/scripts
 - https://frankmorgner.github.io/vsmartcard/
 - https://pcsclite.apdu.fr/
 - https://github.com/DangerousThings/jcardsim
@@ -123,4 +123,4 @@ Do not remove the management applet package (`A0000001515350`), or security cont
 - https://github.com/fidesmo/fdsm
 - https://fidesmo.com/technology/java-card/
 
-Improve this document: https://github.com/DangerousThings/flexsecure-applets/tree/master/docs
+Improve this document: https://github.com/DangerousThings/flexSecure-applets/tree/master/docs

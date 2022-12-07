@@ -4,7 +4,7 @@ Android has some particularities concerning NFC.
 
 ## FIDO requires Security Manager
 
-FIDO keys are handled by a Google Services component, which is absent on FOSS (e.g. Lineage) Android builds. Use MicroG instead, which implements a security manager and FIDO adapter since version `v0.2.25.223616` . Make sure to also apply my two patches (https://github.com/microg/GmsCore/pulls/StarGate01) for smooth operation. These patches will be eventually released in a new version of MicroG.
+FIDO keys are handled by a Google Services component, which is absent on FOSS (e.g. Lineage) Android builds. Use MicroG instead, which implements a security manager and FIDO adapter since version `v0.2.25.223616` . I contributed a few patches to ensure smooth operation, make sure to use at least version `v0.2.26.223616`.
 
 ## Maximum NFC Transceive Length
 

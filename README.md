@@ -4,7 +4,7 @@
 
 Collection of JavaCard applets for the FlexSecure, as well as build and testing scripts.
 
-For documentation, see `docs/` . Or read the forums at https://forum.dangerousthings.com/c/info/flexsecure/23 .
+For documentation, see `docs/` . Or read the forums at https://forum.dangerousthings.com/c/support/flexsecure-support/24 .
 
 ## Download
 

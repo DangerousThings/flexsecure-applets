@@ -1,5 +1,5 @@
-[submodule "applets/vk-ykhmac"]
-	path = applets/vk-ykhmac
+[submodule "applets/flexsecure-ykhmac"]
+	path = applets/flexsecure-ykhmac
 	url = https://github.com/DangerousThings/flexsecure-ykhmac.git
 [submodule "applets/apex-totp"]
 	path = applets/apex-totp

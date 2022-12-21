@@ -11,7 +11,7 @@ teardown_file() {
 }
 
 setup() {
-    cd /app/src/applets/vk-ykhmac
+    cd /app/src/applets/flexsecure-ykhmac
     java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard test/jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
     sleep 2
@@ -44,6 +44,6 @@ teardown() {
 @test "KeePassXC decrypt and read " {
     echo $SECRET | java -jar /usr/bin/yktool.jar program hmac 1 -x -X
     SERIAL=`java -jar /usr/bin/yktool.jar list | sed -r 's/.*#([0-9]*)\s.*/\1/'`
-    SECRET=`echo '12345678' | keepassxc-cli show -s -a Password -y "1:$SERIAL" /app/src/scripts/test/res/vk-ykhmac.testdb.kdbx Test`
+    SECRET=`echo '12345678' | keepassxc-cli show -s -a Password -y "1:$SERIAL" /app/src/scripts/test/res/flexsecure-ykhmac.testdb.kdbx Test`
     [ "$SECRET" == "RMGG4lkT4Kd3k8FYsQ3b" ]
 }

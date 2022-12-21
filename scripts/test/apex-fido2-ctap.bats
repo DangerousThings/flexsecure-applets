@@ -11,8 +11,8 @@ teardown_file() {
 }
 
 setup() {
-    cd /app/src/applets/vk-u2f
-    java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/vk-u2f.jcardsim.cfg > /dev/null &
+    cd /app/src/applets/apex-fido2-ctap
+    java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/apex-fido2-ctap.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
     sleep 2
     cd /app/tools/fido-attestation-loader

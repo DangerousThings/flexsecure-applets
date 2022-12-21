@@ -12,10 +12,10 @@ teardown_file() {
 
 setup() {
     cd /app/src/applets/flexsecure-ykhmac
-    java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard test/jcardsim.cfg > /dev/null &
+    java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/flexsecure-ykhmac.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
     sleep 2
-    opensc-tool -r 'Virtual PCD 00 00' -s '80 b8 00 00 0A  07  a0 00 00 05 27 20 01  00  FF'
+    opensc-tool -r 'Virtual PCD 00 00' -s '80 b8 00 00 0A  08  a0 00 00 05 27 20 01 01  00  FF'
     SECRET='59fc9f75041ce4848614738a1c39bb565090ad9f'
     CHALLENGE='4e7cbb8fedc4ae11b7546f3c9986fdffeba2d9d7d1cc00799a7e5bcfb267e1bf'
     RESPONSE='4ff8aa748188a4be57f4d7eff27eccda639b289f'

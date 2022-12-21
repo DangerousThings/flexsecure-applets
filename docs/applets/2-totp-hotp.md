@@ -67,7 +67,7 @@ PKG: A0000006170061FC54D501 (LOADED)
 
 Use the VivoKey Apex Manager App to interface this applet.
 
-The Yubikey Authenticator tool is able to interface this applet on both Desktop and Mobile if you emulate a YubiKey AID. On Desktop, you have to specify your PCSC reader in **Settings -> Advanced -> Custom Reader**.
+The Yubikey Authenticator tool is able to interface this applet on both Desktop and Mobile if you emulate a YubiKey AID, and also have the HMAC-SHA1 applet installed (it does not necessarily have to be initialized with keys). On Desktop, you have to specify your PCSC reader in **Settings -> Advanced -> Custom Reader**.
 
 You can also use the yubikey-manager CLI tool (`ykman`) to interface with the applet. You have to specify your reader using the `-r` flag (use `ykman list -r` to get a list of readers). Replace `SECRET` with a 32 character Base-32 encoded secret:
 

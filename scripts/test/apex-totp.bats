@@ -11,8 +11,8 @@ teardown_file() {
 }
 
 setup() {
-    cd /app/src/applets/Flex-OTP
-    java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/Flex-OTP.jcardsim.cfg > /dev/null &
+    cd /app/src/applets/apex-totp
+    java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/apex-totp.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
     sleep 2
     opensc-tool -r 'Virtual PCD 00 00' -s '80 b8 00 00 0B  08  A0 00 00 05 27 21 01 01  00  FF'

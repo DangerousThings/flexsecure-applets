@@ -1,9 +1,9 @@
 [submodule "applets/vk-ykhmac"]
 	path = applets/vk-ykhmac
 	url = https://github.com/DangerousThings/flexsecure-ykhmac.git
-[submodule "applets/Flex-OTP"]
-	path = applets/Flex-OTP
-	url = https://github.com/StarGate01/Flex-OTP
+[submodule "applets/apex-totp"]
+	path = applets/apex-totp
+	url = https://github.com/VivoKey/apex-totp.git
 [submodule "applets/SmartPGP"]
 	path = applets/SmartPGP
 	url = https://github.com/ANSSI-FR/SmartPGP

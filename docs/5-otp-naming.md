@@ -10,7 +10,7 @@ The version distributed via the VivoKey Fidesmo store might not be compatible wi
 
 - Supported protocols: `OATH-TOTP` (RFC 6238) and `OATH-HOTP` (RFC 4226)
 - Yubico calls this `OATH` (see https://docs.yubico.com/software/yubikey/tools/ykman/OATH_Commands.html)
-- Repository: https://github.com/StarGate01/Flex-OTP
+- Repository: https://github.com/VivoKey/apex-totp
 - Documentation: https://github.com/DangerousThings/flexsecure-applets/blob/master/docs/applets/2-totp-hotp.md
 - Applet name: `vivokey-otp.cap`, AID: `A0:00:00:05:27:21:01:01`
 

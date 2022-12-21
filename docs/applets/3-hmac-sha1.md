@@ -9,7 +9,7 @@ This applet is compatible to the Yubikey-style protocol, supported by e.g. KeePa
 - Repository: https://github.com/DangerousThings/flexsecure-ykhmac (which is a fork of https://github.com/arekinath/YkOtpApplet. The fork fixes some bugs.).
 - Binary name: `YkHMACApplet.cap`
 - Download: https://github.com/DangerousThings/flexsecure-applets/releases
-- AID: `A0:00:00:05:27:20:01`, Package: `A0:00:00:05:27:20`
+- AID: `A0:00:00:05:27:20:01:01`, Package: `A0:00:00:05:27:20`
 - Storage requirements:
   - Persistent: `3204` bytes
   - Transient reset: `240` bytes
@@ -32,14 +32,14 @@ gp -install YkHMACApplet.cap
 Listing the applets using `gp --list` should print something like this:
 
 ```
-APP: A0000005272001 (SELECTABLE)
+APP: A000000527200101 (SELECTABLE)
      Parent:  A000000151000000
      From:    A00000052720
 
 PKG: A00000052720 (LOADED)
      Parent:  A000000151000000
      Version: 1.0
-     Applet:  A0000005272001
+     Applet:  A000000527200101
 ```
 
 ## Using the Applet

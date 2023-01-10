@@ -9,7 +9,7 @@ These codes are preferred over e.g. SMS codes, because the process requires no c
 - Repository: https://github.com/VivoKey/apex-totp
 - Binary name: `vivokey-otp.cap`
 - Download: https://github.com/DangerousThings/flexsecure-applets/releases
-- AID: `A0:00:00:06:17:00:61:FC:54:D5:01:01`, Package: `A0:00:00:06:17:00:61:FC:54:D5:01`
+- AID: `A0:00:00:07:47:00:61:FC:54:D5:01:01`, Package: `A0:00:00:07:47:00:61:FC:54:D5:01`
 - Storage requirements:
   - Persistent: `5128` bytes (`6020` with three TOTP accounts)
   - Transient reset: `2296` bytes (`2392`)
@@ -32,14 +32,14 @@ gp -install vivokey-otp.cap
 Listing the applets using `gp --list` should print something like this:
 
 ```
-APP: A0000006170061FC54D50101 (SELECTABLE)
+APP: A0000007470061FC54D50101 (SELECTABLE)
      Parent:  A000000151000000
-     From:    A0000006170061FC54D501
+     From:    A0000007470061FC54D501
 
-PKG: A0000006170061FC54D501 (LOADED)
+PKG: A0000007470061FC54D501 (LOADED)
      Parent:  A000000151000000
-     Version: 1.0
-     Applet:  A0000006170061FC54D50101
+     Version: 1.1
+     Applet:  A0000007470061FC54D50101
 ```
 
 If you want to emulate a YubiKey, e.g. to use the Yubico Authenticator app, you have to specify another AID (`A0:00:00:05:27:21:01:01`):
@@ -47,7 +47,7 @@ If you want to emulate a YubiKey, e.g. to use the Yubico Authenticator app, you 
 ```
 gp -load vivokey-otp.cap
 
-gp -package A0000006170061FC54D501 -applet A0000006170061FC54D50101 -create A000000527210101
+gp -package A0000007470061FC54D501 -applet A0000007470061FC54D50101 -create A000000527210101
 ```
 
 Listing the applets using `gp --list` should print something like this:
@@ -55,12 +55,12 @@ Listing the applets using `gp --list` should print something like this:
 ```
 APP: A000000527210101 (SELECTABLE)
      Parent:  A000000151000000
-     From:    A0000006170061FC54D501
+     From:    A0000007470061FC54D501
 
-PKG: A0000006170061FC54D501 (LOADED)
+PKG: A0000007470061FC54D501 (LOADED)
      Parent:  A000000151000000
      Version: 1.1
-     Applet:  A0000006170061FC54D50101
+     Applet:  A0000007470061FC54D50101
 ```
 
 ## Using the Applet

@@ -1,4 +1,7 @@
 {
     "git.autoRepositoryDetection": "openEditors",
-    "git.detectSubmodules": false
+    "git.detectSubmodules": false,
+    "java.project.referencedLibraries": [
+        "${workspaceRoot}/applets/apex-fido2-ctap/sdks/js304_kit/lib/*.jar"
+    ]
 }

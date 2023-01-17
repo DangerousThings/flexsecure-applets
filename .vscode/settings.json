@@ -10,5 +10,6 @@
         "!**/applets/apex-fido2-ctap/**",
         "!**/smartcard-ci/jcardsim",
         "!**/smartcard-ci/jcardsim/**"
-    ]
+    ],
+    "java.debug.settings.onBuildFailureProceed": true
 }

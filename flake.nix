@@ -13,10 +13,12 @@
       devShell.x86_64-linux =
         pkgs.mkShell {
           shellHook = ''
-            export JAVA_HOME="${pkgs.jdk8}"
+            export JAVA_HOME="${pkgs.jdk}"
+            export JAVA_HOME_JDK8="${pkgs.jdk8}"
           '';
 
           buildInputs = with pkgs; [
+            jdk
             jdk8
             ant
             maven

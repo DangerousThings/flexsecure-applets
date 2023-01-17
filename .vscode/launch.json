@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Jcardsim FIDO2",
+            "request": "launch",
+            "mainClass": "com.licel.jcardsim.remote.VSmartCard",
+            "args": [
+                "${workspaceFolder}/smartcard-ci/jcardsim/jcardsim_fido2.cfg"
+            ],
+            "classPaths": [
+                "${workspaceFolder}/smartcard-ci/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar",
+                "${workspaceFolder}/applets/apex-fido2-ctap/target"
+            ],
+            "console": "integratedTerminal",
+            "preLaunchTask": "Compile FIDO2"
+        }
+    ]
+}

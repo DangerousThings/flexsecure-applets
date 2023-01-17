@@ -1,0 +1,26 @@
+{
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs";
+  };
+
+  outputs = { self, nixpkgs }:
+    let
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+      };
+    in
+    {
+      devShell.x86_64-linux =
+        pkgs.mkShell {
+          shellHook = ''
+            export JAVA_HOME="${pkgs.jdk8}"
+          '';
+
+          buildInputs = with pkgs; [
+            jdk8
+            ant
+            maven
+          ];
+        };
+    };
+}

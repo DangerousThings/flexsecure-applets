@@ -1,0 +1,59 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile FIDO2",
+            "type": "shell",
+            "command": "ant",
+            "options": {
+                "cwd": "${workspaceFolder}/applets/apex-fido2-ctap",
+                "env": {
+                    "JC_HOME": "${workspaceFolder}/applets/apex-fido2-ctap/sdks/jc304_kit"
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean FIDO2",
+            "type": "shell",
+            "command": "rm -rf ${workspaceFolder}/applets/apex-fido2-ctap/target",
+            "problemMatcher": []
+        },
+        {
+            "label": "Compile JCardSim",
+            "type": "shell",
+            "command": "mvn install",
+            "options": {
+                "cwd": "${workspaceFolder}/smartcard-ci/jcardsim",
+                "env": {
+                    "JC_CLASSIC_HOME": "${workspaceFolder}/applets/apex-fido2-ctap/sdks/jc305u3_kit"
+                }
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean JCardSim",
+            "type": "shell",
+            "command": "rm -rf ${workspaceFolder}/smartcard-ci/jcardsim/target",
+            "problemMatcher": []
+        },
+        {
+            "label": "Emulate FIDO2",
+            "type": "shell",
+            "command": "java -cp ${workspaceFolder}/smartcard-ci/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:${workspaceFolder}/applets/apex-fido2-ctap/target com.licel.jcardsim.remote.VSmartCard ${workspaceFolder}/smartcard-ci/jcardsim/jcardsim_fido2.cfg 2>&1",
+            "problemMatcher": [],
+        },
+        {
+            "label": "Setup FIDO2",
+            "type": "shell",
+            "command": "${workspaceFolder}/.vscode/setup_fido2.sh",
+            "problemMatcher": [],
+        },
+    ]
+}

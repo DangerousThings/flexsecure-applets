@@ -3,5 +3,12 @@
     "git.detectSubmodules": false,
     "java.project.referencedLibraries": [
         "${workspaceRoot}/applets/apex-fido2-ctap/sdks/js304_kit/lib/*.jar"
+    ],
+    "java.import.exclusions": [
+        "**",
+        "!**/applets/apex-fido2-ctap",
+        "!**/applets/apex-fido2-ctap/**",
+        "!**/smartcard-ci/jcardsim",
+        "!**/smartcard-ci/jcardsim/**"
     ]
 }

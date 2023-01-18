@@ -2,13 +2,15 @@
 
 # flexsecure-applets
 
-Collection of JavaCard applets for the FlexSecure, as well as build and testing scripts.
+Collection of JavaCard applets for the DangerousThings FlexSecure and VivoKey Apex, as well as build and testing scripts.
 
 For documentation, see `docs/` . Or read the forums at https://forum.dangerousthings.com/c/support/flexsecure-support/24 .
 
+Some submodules contain private / proprietary applets and require access permissions.
+
 ## Download
 
-Compiled binaries are available from the GitHub releases page: https://github.com/DangerousThings/flexsecure-applets/releases .
+Public compiled binaries are available from the GitHub releases page: https://github.com/DangerousThings/flexsecure-applets/releases .
 
 ## Development Usage
 

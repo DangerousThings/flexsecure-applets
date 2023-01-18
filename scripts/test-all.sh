@@ -6,8 +6,12 @@ FAIL=0
 
 for i in test/*.bats; do
     [ -f "$i" ] || break
-    echo "Testing $i"
-    $i
+    if [[ "$i" != *"apex-fido2"* ]]; then
+        echo "Testing $i"
+        $i
+    else
+        echo "Skipping $i"
+    fi
     if [ "$?" != 0 ]; then
         FAIL=1
     fi

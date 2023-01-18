@@ -8,9 +8,9 @@
             "type": "shell",
             "command": "JAVA_HOME=$JAVA_HOME_JDK8 ant",
             "options": {
-                "cwd": "${workspaceFolder}/applets/apex-fido2-ctap",
+                "cwd": "${workspaceFolder}/applets/apex-fido2",
                 "env": {
-                    "JC_HOME": "${workspaceFolder}/applets/apex-fido2-ctap/sdks/jc304_kit"
+                    "JC_HOME": "${workspaceFolder}/applets/apex-fido2/sdks/jc304_kit"
                 }
             },
             "group": {
@@ -22,7 +22,7 @@
         {
             "label": "Clean FIDO2",
             "type": "shell",
-            "command": "rm -rf ${workspaceFolder}/applets/apex-fido2-ctap/target",
+            "command": "rm -rf ${workspaceFolder}/applets/apex-fido2/target",
             "problemMatcher": []
         },
         {
@@ -32,7 +32,7 @@
             "options": {
                 "cwd": "${workspaceFolder}/smartcard-ci/jcardsim",
                 "env": {
-                    "JC_CLASSIC_HOME": "${workspaceFolder}/applets/apex-fido2-ctap/sdks/jc305u3_kit"
+                    "JC_CLASSIC_HOME": "${workspaceFolder}/applets/apex-fido2/sdks/jc305u3_kit"
                 }
             },
             "problemMatcher": []
@@ -46,7 +46,7 @@
         {
             "label": "Emulate FIDO2",
             "type": "shell",
-            "command": "JAVA_HOME=$JAVA_HOME_JDK8 java -cp ${workspaceFolder}/smartcard-ci/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:${workspaceFolder}/applets/apex-fido2-ctap/target com.licel.jcardsim.remote.VSmartCard ${workspaceFolder}/smartcard-ci/jcardsim/jcardsim_fido2.cfg 2>&1",
+            "command": "JAVA_HOME=$JAVA_HOME_JDK8 java -cp ${workspaceFolder}/smartcard-ci/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:${workspaceFolder}/applets/apex-fido2/target com.licel.jcardsim.remote.VSmartCard ${workspaceFolder}/smartcard-ci/jcardsim/jcardsim_fido2.cfg 2>&1",
             "problemMatcher": [],
         },
         {

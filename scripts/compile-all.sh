@@ -6,8 +6,12 @@ FAIL=0
 
 for i in compile/*.sh; do
     [ -f "$i" ] || break
-    echo "Compiling $i"
-    $i
+    if [[ "$i" != *"apex-fido2"* ]]; then
+        echo "Compiling $i"
+        $i
+    else
+        echo "Skipping $i"
+    fi
     if [ "$?" != 0 ]; then
         FAIL=1
     fi

@@ -16,9 +16,9 @@
 [submodule "applets/u2f-javacard"]
 	path = applets/u2f-javacard
 	url = https://github.com/darconeous/u2f-javacard.git
-[submodule "applets/apex-fido2-ctap"]
-	path = applets/apex-fido2-ctap
-	url = https://github.com/VivoKey/apex-fido2-ctap.git
+[submodule "applets/apex-fido2"]
+	path = applets/apex-fido2
+	url = https://github.com/VivoKey/apex-fido2
 [submodule "applets/javacard-memory"]
 	path = applets/javacard-memory
 	url = https://github.com/DangerousThings/javacard-memory.git

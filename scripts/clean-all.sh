@@ -9,4 +9,4 @@ for i in clean/*.sh; do
 done
 
 echo "Cleaning binaries"
-cd /app/src/bin && rm *.cap *.jar
+cd /app/src/bin && rm -f *.cap *.jar

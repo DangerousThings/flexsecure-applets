@@ -10,7 +10,7 @@
             "request": "launch",
             "mainClass": "com.licel.jcardsim.remote.VSmartCard",
             "args": [
-                "${workspaceFolder}/smartcard-ci/jcardsim/jcardsim_fido2.cfg"
+                "${workspaceFolder}/.vscode/jcardsim_fido2.cfg"
             ],
             "classPaths": [
                 "${workspaceFolder}/smartcard-ci/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar",

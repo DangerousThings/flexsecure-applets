@@ -29,6 +29,20 @@ You can use the *Yubikey WebAuthn test page* at https://demo.yubico.com/webauthn
 
 On Android, you can use the *FIDO / Webauthn Example* App at https://play.google.com/store/apps/details?id=de.cotech.hw.fido.example for testing (Use the U2F tab), or use any Browser which supports the Security Manager (for details, see *Android Problems and Solutions*) and use the Yubico page.
 
+### Attestation
+
+Similar to the U2F applet, the FIDO2 applet contains an embedded attestation certificate and key of the manufacturer. This certificate is used to sign responses of the authenticator, such that the relying party can verify the manufacturer and model of the authenticator.
+
+### User Presence and User Verification
+
+User presence is always ensured by default, because the mode of data transportation is via NFC, which requires physical proximity.
+
+User verification has to be requested by the relying party and is provided via the client PIN protocol.
+
+### Server and Resident Credentials
+
+By default, the authenticator creates server credentials, which are not stored on the authenticator, but instead encoded and encrypted into the credential ID and stored with the relying party. If requested by the relying party, the authenticator will instead create a resident credential, which stores the key material on th authenticator until it runs out of storage space.
+
 ## Sources and Further Reading
 
 - https://fidoalliance.org/fido-technotes-the-truth-about-attestation/

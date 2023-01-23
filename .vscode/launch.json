@@ -9,6 +9,7 @@
             "name": "Jcardsim FIDO2",
             "request": "launch",
             "mainClass": "com.licel.jcardsim.remote.VSmartCard",
+            "projectName": "fido2",
             "args": [
                 "${workspaceFolder}/.vscode/jcardsim_fido2.cfg"
             ],

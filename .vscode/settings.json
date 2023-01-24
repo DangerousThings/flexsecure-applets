@@ -12,5 +12,6 @@
         "!**/smartcard-ci/jcardsim/**"
     ],
     "java.debug.settings.onBuildFailureProceed": true,
-    "java.format.settings.url": "eclipse-formatter.xml"
+    "java.format.settings.url": "eclipse-formatter.xml",
+    "java.debug.settings.showHex": false
 }

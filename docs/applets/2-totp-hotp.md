@@ -9,7 +9,7 @@ These codes are preferred over e.g. SMS codes, because the process requires no c
 - Repository: https://github.com/VivoKey/apex-totp
 - Binary name: `vivokey-otp.cap`
 - Download: https://github.com/DangerousThings/flexsecure-applets/releases
-- AID: `A0:00:00:05:27:21:01:01:02`, Package: `A0:00:00:05:27:21:01:01`
+- AID: `A0:00:00:05:27:21:01:01:41:50:45:58:01`, Package: `A0:00:00:05:27:21:01:01:41:50:45:58`
 - Storage requirements:
   - Persistent: `5128` bytes (`6020` with three TOTP accounts)
   - Transient reset: `2296` bytes (`2392`)
@@ -32,14 +32,14 @@ gp -install vivokey-otp.cap
 Listing the applets using `gp --list` should print something like this:
 
 ```
-APP: A00000052721010102 (SELECTABLE)
+APP: A0000005272101014150455801 (SELECTABLE)
      Parent:  A000000151000000
-     From:    A000000527210101
+     From:    A00000052721010141504558
 
-PKG: A000000527210101 (LOADED)
+PKG: A00000052721010141504558 (LOADED)
      Parent:  A000000151000000
      Version: 1.1
-     Applet:  A00000052721010102
+     Applet:  A0000005272101014150455801
 ```
 
 ## Using the Applet

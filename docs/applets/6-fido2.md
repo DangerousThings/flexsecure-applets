@@ -6,7 +6,22 @@ The FIDO2 applet is still in development, and not completely finished. For examp
 
 You can however already test the FIDO2 applet via the Vivokey Apex on Fidesmo.
 
-The FIDO2 applet source code is not publicly available (anymore). Binaries are only distributed via Fidesmo (as of now. There might be an option for a more free option in the future). If you want an open-source authenticator, use the U2F one.
+Supported features (if installed via Fidesmo):
+ - Normal, chained and extended APDU support
+ - Server and resident credentials
+ - Credential types:
+   - ECDSA P-256 + SHA-256 (ES2569)
+   - RSASSA-PKCS1-v1_5 2048 + SHA-256 (RS256)
+   - RSASSA-PSS 2048 + SHA-256 (PS256)
+ - HMAC secret extension
+ - Basic attestation using a fleet certificate
+   - Signed by the VivoKey certificate authority
+ - User verification types:
+   - Client PIN protocol version 1
+ - User presence (assuming the chip is implanted)
+ - FIDO MDS entry
+
+The FIDO2 applet source code is not publicly available (anymore). Binaries are only distributed via Fidesmo (as of now. Options on how to bring it to the FlexSecure are in development). If you want an open-source authenticator, use the U2F one.
 
 ## Applet Information
 

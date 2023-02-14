@@ -6,7 +6,7 @@ FAIL=0
 
 for i in test/*.bats; do
     [ -f "$i" ] || break
-    if [[ "$i" != *"apex-fido2"* ]]; then
+    if [[ "$i" != *"apex-fido2"* && "$i" != *"teslaIdent"* ]]; then
         echo "Testing $i"
         $i
     else

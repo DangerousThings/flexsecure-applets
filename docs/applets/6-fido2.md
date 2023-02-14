@@ -14,11 +14,12 @@ Supported features (if installed via Fidesmo):
    - RSASSA-PKCS1-v1_5 2048 + SHA-256 (RS256)
    - RSASSA-PSS 2048 + SHA-256 (PS256)
  - HMAC secret extension
- - Basic attestation using a fleet certificate
+ - Basic direct attestation using a fleet certificate
    - Signed by the VivoKey certificate authority
  - User verification types:
    - Client PIN protocol version 1
  - User presence (assuming the chip is implanted)
+ - Multiple accounts per relying party
  - FIDO MDS entry
 
 The FIDO2 applet source code is not publicly available (anymore). Binaries are only distributed via Fidesmo (as of now. Options on how to bring it to the FlexSecure are in development). If you want an open-source authenticator, use the U2F one.

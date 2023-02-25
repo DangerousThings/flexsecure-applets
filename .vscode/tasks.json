@@ -62,6 +62,12 @@
             "problemMatcher": []
         },
         {
+            "label": "Reset JCardSim",
+            "type": "shell",
+            "command": "echo 'r' > ${workspaceFolder}/cpipe",
+            "problemMatcher": []
+        },
+        {
             "label": "Emulate FIDO2",
             "type": "shell",
             "command": "JAVA_HOME=$JAVA_HOME_JDK8 java -cp ${workspaceFolder}/smartcard-ci/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:${workspaceFolder}/applets/apex-fido2/target com.licel.jcardsim.remote.VSmartCard ${workspaceFolder}/smartcard-ci/jcardsim/jcardsim_fido2.cfg 2>&1",

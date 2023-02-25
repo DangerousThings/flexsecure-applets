@@ -11,7 +11,8 @@
             "mainClass": "com.licel.jcardsim.remote.VSmartCard",
             "projectName": "fido2",
             "args": [
-                "${workspaceFolder}/.vscode/jcardsim_fido2.cfg"
+                "${workspaceFolder}/.vscode/jcardsim_fido2.cfg",
+                "<", "${workspaceFolder}/cpipe"
             ],
             "classPaths": [
                 "${workspaceFolder}/smartcard-ci/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar",

@@ -32,6 +32,18 @@
             "problemMatcher": []
         },
         {
+            "label": "Compile NDEF",
+            "type": "shell",
+            "command": "JAVA_HOME=$JAVA_HOME_JDK8 ant -DJAVACARD_HOME=${workspaceFolder}/applets/openjavacard-ndef/ext/javacard-sdks/jc222_kit -buildfile openjavacard-ndef.build.xml build",
+            "options": {
+                "cwd": "${workspaceFolder}/applets/openjavacard-ndef",
+                "env": {
+                    "JC_HOME": "${workspaceFolder}/applets/openjavacard-ndef/ext/javacard-sdks/jc222_kit"
+                }
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "Clean FIDO2",
             "type": "shell",
             "command": "rm -rf ${workspaceFolder}/applets/apex-fido2/target",
@@ -83,6 +95,12 @@
             "label": "Setup Tesla",
             "type": "shell",
             "command": "${workspaceFolder}/.vscode/setup_tesla.sh",
+            "problemMatcher": [],
+        },
+        {
+            "label": "Setup NDEF",
+            "type": "shell",
+            "command": "${workspaceFolder}/.vscode/setup_ndef.sh",
             "problemMatcher": [],
         }
     ]

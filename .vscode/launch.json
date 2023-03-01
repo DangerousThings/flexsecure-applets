@@ -35,6 +35,21 @@
             ],
             "console": "integratedTerminal",
             "preLaunchTask": "Compile Tesla"
+        },
+        {
+            "type": "java",
+            "name": "Jcardsim NDEF",
+            "request": "launch",
+            "mainClass": "com.licel.jcardsim.remote.VSmartCard",
+            "args": [
+                "${workspaceFolder}/.vscode/jcardsim_ndef.cfg"
+            ],
+            "classPaths": [
+                "${workspaceFolder}/smartcard-ci/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar",
+                "${workspaceFolder}/applets/openjavacard-ndef/build/classes/full"
+            ],
+            "console": "integratedTerminal",
+            "preLaunchTask": "Compile NDEF"
         }
     ]
 }

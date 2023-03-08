@@ -22,6 +22,8 @@
             jdk8
             ant
             maven
+            doxygen
+            graphviz
           ];
         };
     };

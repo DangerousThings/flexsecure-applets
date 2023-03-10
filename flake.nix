@@ -24,6 +24,7 @@
             maven
             doxygen
             graphviz
+            libfido2
           ];
         };
     };

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "Making credential"
-CID=`fido2-cred -M -h -r -i test_fido2_make.txt /dev/hidraw5 es256 | sed -n 5p`
+CID=`fido2-cred -M -h -i test_fido2_make.txt /dev/hidraw5 es256 | sed -n 5p`
 echo "Credential ID: $CID"
 
 echo ""

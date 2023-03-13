@@ -2,7 +2,7 @@
     "git.autoRepositoryDetection": "openEditors",
     "git.detectSubmodules": false,
     "java.project.referencedLibraries": [
-        "${workspaceRoot}/applets/apex-fido2/sdks/js304_kit/lib/*.jar"
+        "${workspaceRoot}/applets/apex-fido2/sdks/js305u3_kit/lib/*.jar"
     ],
     "java.import.exclusions": [
         "**",
@@ -13,5 +13,6 @@
     ],
     "java.debug.settings.onBuildFailureProceed": true,
     "java.format.settings.url": "eclipse-formatter.xml",
-    "java.debug.settings.showHex": false
+    "java.debug.settings.showHex": false,
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

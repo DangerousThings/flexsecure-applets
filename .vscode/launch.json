@@ -12,7 +12,7 @@
             "projectName": "fido2",
             "args": [
                 "${workspaceFolder}/.vscode/jcardsim_fido2.cfg",
-                "<", "${workspaceFolder}/cpipe"
+                //"<", "${workspaceFolder}/cpipe"
             ],
             "classPaths": [
                 "${workspaceFolder}/smartcard-ci/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar",

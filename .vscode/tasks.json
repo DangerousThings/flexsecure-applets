@@ -10,7 +10,7 @@
             "options": {
                 "cwd": "${workspaceFolder}/applets/apex-fido2",
                 "env": {
-                    "JC_HOME": "${workspaceFolder}/applets/apex-fido2/sdks/jc304_kit"
+                    "JC_HOME": "${workspaceFolder}/applets/apex-fido2/sdks/jc305u3_kit"
                 }
             },
             "group": {
@@ -48,6 +48,19 @@
             "type": "shell",
             "command": "rm -rf ${workspaceFolder}/applets/apex-fido2/target",
             "problemMatcher": []
+        },
+        {
+            "label": "Document FIDO2",
+            "type": "shell",
+            "command": "doxygen",
+            "options": {
+                "cwd": "${workspaceFolder}/applets/apex-fido2"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
         },
         {
             "label": "Clean Tesla",

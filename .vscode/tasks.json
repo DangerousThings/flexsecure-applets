@@ -24,9 +24,9 @@
             "type": "shell",
             "command": "JAVA_HOME=$JAVA_HOME_JDK8 ant",
             "options": {
-                "cwd": "${workspaceFolder}/applets/teslaIdent",
+                "cwd": "${workspaceFolder}/applets/apex-tesla",
                 "env": {
-                    "JC_HOME": "${workspaceFolder}/applets/teslaIdent/sdks/jc304_kit"
+                    "JC_HOME": "${workspaceFolder}/applets/apex-tesla/sdks/jc304_kit"
                 }
             },
             "problemMatcher": []
@@ -52,7 +52,7 @@
         {
             "label": "Clean Tesla",
             "type": "shell",
-            "command": "rm -rf ${workspaceFolder}/applets/teslaIdent/target",
+            "command": "rm -rf ${workspaceFolder}/applets/apex-tesla/target",
             "problemMatcher": []
         },
         {

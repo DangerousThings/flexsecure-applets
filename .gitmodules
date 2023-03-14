@@ -31,6 +31,6 @@
 [submodule "applets/status-keycard"]
 	path = applets/status-keycard
 	url = https://github.com/status-im/status-keycard.git
-[submodule "applets/teslaIdent"]
-	path = applets/teslaIdent
-	url = https://github.com/VivoKey/teslaIdent
+[submodule "applets/apex-tesla"]
+	path = applets/apex-tesla
+	url = https://github.com/VivoKey/apex-tesla.git

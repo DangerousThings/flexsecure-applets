@@ -31,7 +31,7 @@
             ],
             "classPaths": [
                 "${workspaceFolder}/smartcard-ci/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar",
-                "${workspaceFolder}/applets/teslaIdent/target"
+                "${workspaceFolder}/applets/apex-tesla/target"
             ],
             "console": "integratedTerminal",
             "preLaunchTask": "Compile Tesla"

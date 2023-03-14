@@ -6,7 +6,7 @@ FAIL=0
 
 for i in compile/*.sh; do
     [ -f "$i" ] || break
-    if [[ "$i" != *"apex-fido2"* && "$i" != *"teslaIdent"* ]]; then
+    if [[ "$i" != *"apex-fido2"* && "$i" != *"apex-tesla"* ]]; then
         echo "Compiling $i"
         $i
     else

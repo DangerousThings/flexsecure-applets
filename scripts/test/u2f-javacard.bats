@@ -1,6 +1,7 @@
 #!/usr/bin/env bats
 
 load res/common.sh
+load res/FIDO.common.sh
 
 setup_file() {
     _setup_file
@@ -25,10 +26,15 @@ setup() {
 
 teardown() {
     cd /app/tools/fido-attestation-loader
-    rm -f *.der *.p8 
+    rm -f *.der *.p8 assert_param cred* pubkey
     _teardown
 }
 
+
+@test "U2F Register and Authenticate CTAP1-CTAP1" {
+    fido_make_cred es256 nohmac u2f
+    fido_assert_cred es256 nohmac u2f
+}
 
 @test "U2F Register and Authenticate https://demo.yubico.com/" {
     RES=`fido2-webauthn-client "pcsc://slot0" 2>&1 | sed -n -e '/http_response_json: https:\/\/demo\.yubico\.com\/api\/v1\/simple\/webauthn\/authenticate-finish/,$p' | sed 1d`

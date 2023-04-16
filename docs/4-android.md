@@ -22,7 +22,7 @@ This requires root access.
 
 ## Google Services
 
-The proprietary Google Services security manager does not implement support for FIDO2, only U2F (time of writing: October 2022). So you have to use the U2F applet or wait until the U2F functionality has been integrated into the FIDO2 applet as a fallback.
+The proprietary Google Services security manager does not implement support for FIDO2, only U2F (time of writing: October 2022). The FIDO2 applet is backwards-compatible to U2F.
 
 ## Sources and Further Reading
 

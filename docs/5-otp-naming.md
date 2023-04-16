@@ -6,7 +6,7 @@ Due to some historical decisions and industry conventions, the naming of the two
 
 This applet stores a list of user accounts and generates rolling 6-digit codes for each one.
 
-The version distributed via the VivoKey Fidesmo store might not be compatible with the Yubico Authenticator programs (yet).
+The version distributed via the VivoKey Fidesmo store should also be compatible with the Yubico Authenticator programs.
 
 - Supported protocols: `OATH-TOTP` (RFC 6238) and `OATH-HOTP` (RFC 4226)
 - Yubico calls this `OATH` (see https://docs.yubico.com/software/yubikey/tools/ykman/OATH_Commands.html)

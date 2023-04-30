@@ -8,7 +8,7 @@ FIDO keys are handled by a Google Services component, which is absent on FOSS (e
 
 ## Maximum NFC Transceive Length
 
-On some Android ROMS, the NFC driver is configured improperly, which limits the size of data packets that can be exchanged. FIDO2 requires very large packets (~1KB).
+On some Android ROMS, the NFC driver is configured improperly, which limits the size of data packets that can be exchanged. FIDO2 requires very large packets if no chained fragmentation is used (~1KB).
 
 To change the configuration, add the line
 

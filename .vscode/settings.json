@@ -8,6 +8,8 @@
         "**",
         "!**/applets/apex-fido2",
         "!**/applets/apex-fido2/**",
+        "!**/applets/apex-ndef",
+        "!**/applets/apex-ndef/**",
         "!**/smartcard-ci/jcardsim",
         "!**/smartcard-ci/jcardsim/**"
     ],

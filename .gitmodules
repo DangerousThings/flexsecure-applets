@@ -34,3 +34,6 @@
 [submodule "applets/apex-tesla"]
 	path = applets/apex-tesla
 	url = https://github.com/VivoKey/apex-tesla.git
+[submodule "applets/apex-ndef"]
+	path = applets/apex-ndef
+	url = https://github.com/VivoKey/apex-ndef.git

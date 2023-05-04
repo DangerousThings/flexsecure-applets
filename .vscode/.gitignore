@@ -2,3 +2,4 @@ setup*
 assert_param
 cred*
 pubkey
+test_select.sh

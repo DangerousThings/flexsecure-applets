@@ -15,7 +15,7 @@
             },
             "group": {
                 "kind": "build",
-                "isDefault": true
+                "isDefault": false
             },
             "problemMatcher": []
         },
@@ -29,17 +29,25 @@
                     "JC_HOME": "${workspaceFolder}/applets/apex-tesla/sdks/jc304_kit"
                 }
             },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
             "problemMatcher": []
         },
         {
             "label": "Compile NDEF",
             "type": "shell",
-            "command": "JAVA_HOME=$JAVA_HOME_JDK8 ant -DJAVACARD_HOME=${workspaceFolder}/applets/openjavacard-ndef/ext/javacard-sdks/jc222_kit -buildfile openjavacard-ndef.build.xml build",
+            "command": "JAVA_HOME=$JAVA_HOME_JDK8 ant",
             "options": {
-                "cwd": "${workspaceFolder}/applets/openjavacard-ndef",
+                "cwd": "${workspaceFolder}/applets/apex-ndef",
                 "env": {
-                    "JC_HOME": "${workspaceFolder}/applets/openjavacard-ndef/ext/javacard-sdks/jc222_kit"
+                    "JC_HOME": "${workspaceFolder}/applets/apex-ndef/sdks/jc305u3_kit"
                 }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
             },
             "problemMatcher": []
         },
@@ -59,7 +67,7 @@
             "problemMatcher": [],
             "group": {
                 "kind": "test",
-                "isDefault": true
+                "isDefault": false
             }
         },
         {
@@ -67,6 +75,25 @@
             "type": "shell",
             "command": "rm -rf ${workspaceFolder}/applets/apex-tesla/target",
             "problemMatcher": []
+        },
+        {
+            "label": "Clean NDEEF",
+            "type": "shell",
+            "command": "rm -rf ${workspaceFolder}/applets/apex-ndef/target",
+            "problemMatcher": []
+        },
+        {
+            "label": "Document NDEF",
+            "type": "shell",
+            "command": "doxygen",
+            "options": {
+                "cwd": "${workspaceFolder}/applets/apex-ndef"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
         },
         {
             "label": "Compile JCardSim",
@@ -77,6 +104,10 @@
                 "env": {
                     "JC_CLASSIC_HOME": "${workspaceFolder}/applets/apex-fido2/sdks/jc305u3_kit"
                 }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
             },
             "problemMatcher": []
         },

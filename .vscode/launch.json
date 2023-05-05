@@ -41,6 +41,7 @@
             "name": "Jcardsim NDEF",
             "request": "launch",
             "mainClass": "com.licel.jcardsim.remote.VSmartCard",
+            "projectName": "ndef",
             "args": [
                 "${workspaceFolder}/.vscode/jcardsim_ndef.cfg"
             ],

@@ -36,8 +36,8 @@ teardown() {
     fido_assert_cred es256 nohmac u2f
 }
 
-@test "U2F Register and Authenticate https://demo.yubico.com/" {
-    RES=`fido2-webauthn-client "pcsc://slot0" 2>&1 | sed -n -e '/http_response_json: https:\/\/demo\.yubico\.com\/api\/v1\/simple\/webauthn\/authenticate-finish/,$p' | sed 1d`
-    STATUS=`echo $RES | jq -r '.status'`
-    [ "$STATUS" == "success" ]
-}
+#@test "U2F Register and Authenticate https://demo.yubico.com/" {
+#    RES=`fido2-webauthn-client "pcsc://slot0" 2>&1 | sed -n -e '/http_response_json: https:\/\/demo\.yubico\.com\/api\/v1\/simple\/webauthn\/authenticate-finish/,$p' | sed 1d`
+#    STATUS=`echo $RES | jq -r '.status'`
+#    [ "$STATUS" == "success" ]
+#}

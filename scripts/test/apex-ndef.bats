@@ -13,14 +13,29 @@ teardown_file() {
 
 setup() {
     cd /app/src/applets/apex-ndef
-    java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./build/classes/full com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/apex-ndef.jcardsim.cfg > /dev/null &
+    java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/apex-ndef.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
     sleep 2
-    opensc-tool -r 'Virtual PCD 00 00' -s '80 b8 00 00 13  07  D2 76 00 00 85 01 01  00  08  81 02 00 00  82 02 08 00  ff'
+    CUID='f860203a257128'
+    KEY='4173f37fbec4f93f3c66bb9fbf7284bf'
+    opensc-tool -r 'Virtual PCD 00 00' -s "80 b8 00 00 23  07  D2760000850101  00  19  0800 $CUID $KEY FF"
 }
 
 teardown() {
     _teardown
+}
+
+
+
+cmac_setup() {
+    cd /app/src/applets/apex-ndef/test
+    ./cmac.py randomurl | python3 ./pcsc-ndef/pcsc_ndef.py -r "Virtual PCD 00 00" -t4 write
+}
+
+cmac_verify() {
+    ./cmac.py verifyurl -k $1 -i $CUID -u $(python3 ./pcsc-ndef/pcsc_ndef.py -r "Virtual PCD 00 00" -t4 read 2>/dev/null)
+    res=$?
+    return $res
 }
 
 
@@ -30,4 +45,17 @@ teardown() {
 
 @test "NDEF read write" {
     ndef_read_write
+}
+
+@test "NDEF CMAC positive" {
+    cmac_setup
+    cmac_verify $KEY
+    cmac_verify $KEY
+    cmac_verify $KEY
+}
+
+@test "NDEF CMAC negative" {
+    cmac_setup
+    run cmac_verify '1eedb2ff62cfe26dd58c8368d5169bdb'
+    [ "$status" -eq 1 ]
 }

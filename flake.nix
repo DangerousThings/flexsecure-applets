@@ -27,6 +27,7 @@
             libfido2
             (python3.withPackages (ps: with ps; [
               pyscard
+              cryptography
             ]))
           ];
         };

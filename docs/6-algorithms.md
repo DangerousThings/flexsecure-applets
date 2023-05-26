@@ -1,5 +1,7 @@
 # Required JavaCard Algorithms
 
+**This list is out of date / incomplete.**
+
 The applets distributed by VivoKey and contained in this repository require hardware support for a range of cryptographic algorithms.
 
 Not all of these algorithms are hard requirements, some applets might provide fallbacks (e.g. for `ALG_HMAC_SHA*`) or limit certain functionality instead (e.g. PGP for generating large key sizes).

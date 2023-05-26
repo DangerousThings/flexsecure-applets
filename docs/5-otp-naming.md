@@ -24,7 +24,7 @@ Even though this applet implements the Yubico-compatible `HMAC-SHA1` challenge-r
 - Yubico calls this `OTP` (see https://docs.yubico.com/software/yubikey/tools/ykman/OTP_Commands.html, specifically `chalresp`)
 - Repository: https://github.com/DangerousThings/flexsecure-ykhmac
 - Documentation: https://github.com/DangerousThings/flexsecure-applets/blob/master/docs/applets/3-hmac-sha1.md
-- Applet name: `YkHMACApplet.cap`, AID: `A0:00:00:05:27:20:01`
+- Applet name: `YkHMACApplet.cap`, AID: `A0:00:00:05:27:20:01:01`
 
 ## Sources and Further Reading
 

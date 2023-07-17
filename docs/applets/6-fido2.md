@@ -39,7 +39,7 @@ The FIDO2 applet source code is not publicly available (anymore). Binaries are o
 
 ## Using the Applet
 
-Using the applet in the web requires a modern browser with support for FIDO. NFC tokens don't work on Linux browsers (yet, see https://twitter.com/FIDOAlliance/status/1278331283874156544), however you can use my CATP-Bridge (https://github.com/StarGate01/CTAP-bridge) to proxy NFC tokens as virtual USB tokens in Linux.
+Using the applet in the web requires a modern browser with support for FIDO. NFC tokens don't work on Linux browsers (yet, see https://twitter.com/FIDOAlliance/status/1278331283874156544), however you can use my CTAP-Bridge (https://github.com/StarGate01/CTAP-bridge) to proxy NFC tokens as virtual USB tokens in Linux.
 
 You can use the *Yubikey WebAuthn test page* at https://demo.yubico.com/webauthn-technical/registration or the Webauthn Debugger (https://webauthn.me/debugger) to test your token.
 

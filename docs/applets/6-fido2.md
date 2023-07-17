@@ -33,17 +33,17 @@ The FIDO2 applet source code is not publicly available (anymore). Binaries are o
 - Download: N/A
 - AID: `a0:00:00:06:47:2F:00:01:01`, Package: `a0:00:00:06:47:2F:00:01`
 - Storage requirements:
-  - Persistent: `TBA` bytes
-  - Transient reset: `TBA` bytes
-  - Transient deselect: `TBA` bytes
+  - Persistent: `19336` bytes
+  - Transient reset: `2273` bytes
+  - Transient deselect: `32` bytes
 
 ## Using the Applet
 
-Using the applet in the web requires a modern browser with support for FIDO. NFC tokens don't work on Linux (yet, see https://twitter.com/FIDOAlliance/status/1278331283874156544).
+Using the applet in the web requires a modern browser with support for FIDO. NFC tokens don't work on Linux browsers (yet, see https://twitter.com/FIDOAlliance/status/1278331283874156544), however you can use my CATP-Bridge (https://github.com/StarGate01/CTAP-bridge) to proxy NFC tokens as virtual USB tokens in Linux.
 
-You can use the *Yubikey WebAuthn test page* at https://demo.yubico.com/webauthn-technical/registration to test your token.
+You can use the *Yubikey WebAuthn test page* at https://demo.yubico.com/webauthn-technical/registration or the Webauthn Debugger (https://webauthn.me/debugger) to test your token.
 
-On Android, you can use the *FIDO / Webauthn Example* App at https://play.google.com/store/apps/details?id=de.cotech.hw.fido.example for testing (Use the U2F tab), or use any Browser which supports the Security Manager (for details, see *Android Problems and Solutions*) and use the Yubico page.
+On Android, you can use the *FIDO / Webauthn Example* App at https://play.google.com/store/apps/details?id=de.cotech.hw.fido.example for testing, or use any Browser which supports the Security Manager (for details, see *Android Problems and Solutions*) and use the Yubico page.
 
 ### Attestation
 
@@ -51,13 +51,13 @@ Similar to the U2F applet, the FIDO2 applet contains an embedded attestation cer
 
 ### User Presence and User Verification
 
-User presence is always ensured by default, because the mode of data transportation is via NFC, which requires physical proximity.
+User presence is always ensured by default, because the mode of data transportation is via NFC, which requires physical proximity. However, only one operation may be performed per touch, after which the token must be re-presented. This is to defend against automated attacks.
 
 User verification has to be requested by the relying party and is provided via the client PIN protocol.
 
 ### Server and Resident Credentials
 
-By default, the authenticator creates server credentials, which are not stored on the authenticator, but instead encoded and encrypted into the credential ID and stored with the relying party. If requested by the relying party, the authenticator will instead create a resident credential, which stores the key material on th authenticator until it runs out of storage space.
+By default, the authenticator creates server credentials, which are not stored on the authenticator, but instead encoded and encrypted into the credential ID and stored with the relying party. If requested by the relying party, the authenticator will instead create a resident credential, which stores the key material on the authenticator until it runs out of storage space.
 
 ## Sources and Further Reading
 

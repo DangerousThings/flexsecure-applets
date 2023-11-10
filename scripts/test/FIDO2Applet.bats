@@ -19,9 +19,7 @@ setup() {
     PARAM="a800f50505061820071904000818200918fe0a1904000b190400"
     opensc-tool -r 'Virtual PCD 00 00' -s "80 b8 00 00 26  08  A0 00 00 06 47 2F 00 01  00  1A $PARAM FF"
     cd /app/tools/fido-attestation-loader
-    ./attestation.py ca create -cap 123456
-    openssl pkcs8 -in ca_key.p8 -inform DER -out ca_key_raw.p8 -outform DER -passin pass:123456
-    /app/src/applets/FIDO2Applet/install_attestation_cert.py --name "Token Attestation" --aaguid "27291256273545b599f92863c9dddd72" --org "Generic" --country "US" --ca-cert-bytes "$(base64 /app/tools/fido-attestation-loader/ca.der)" --ca-private-key "$(base64 /app/tools/fido-attestation-loader/ca_key_raw.p8)"
+    /app/src/applets/FIDO2Applet/install_attestation_cert.py --name "Token Attestation" --aaguid "27291256273545b599f92863c9dddd72" --org "Generic" --country "US"
 }
 
 teardown() {

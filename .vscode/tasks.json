@@ -22,7 +22,7 @@
         {
             "label": "Compile FIDO2.1",
             "type": "shell",
-            "command": "JAVA_HOME=$JAVA_HOME_JDK8 ./gradlew buildJavaCard",
+            "command": "JAVA_HOME=$JAVA_HOME_JDK8 ./gradlew buildJavaCard classes",
             "options": {
                 "cwd": "${workspaceFolder}/applets/FIDO2Applet",
                 "env": {
@@ -76,7 +76,7 @@
         {
             "label": "Clean FIDO2.1",
             "type": "shell",
-            "command": "rm -rf ${workspaceFolder}/applets/FIDO2Applet/build ${workspaceFolder}/applets/FIDO2Applet/.gradle",
+            "command": "cd ${workspaceFolder}/applets/FIDO2Applet && rm -rf build .gradle bin",
             "problemMatcher": []
         },
         {

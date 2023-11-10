@@ -33,7 +33,7 @@
             ],
             "classPaths": [
                 "${workspaceFolder}/smartcard-ci/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar",
-                "${workspaceFolder}/applets/FIDO2Applet/bin/main"
+                "${workspaceFolder}/applets/FIDO2Applet/build/classes/java/main"
             ],
             "console": "integratedTerminal",
             "preLaunchTask": "Compile FIDO2.1"

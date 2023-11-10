@@ -37,3 +37,6 @@
 [submodule "applets/apex-ndef"]
 	path = applets/apex-ndef
 	url = https://github.com/VivoKey/apex-ndef.git
+[submodule "applets/FIDO2Applet"]
+	path = applets/FIDO2Applet
+	url = https://github.com/BryanJacobs/FIDO2Applet.git

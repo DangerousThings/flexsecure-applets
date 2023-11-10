@@ -23,6 +23,23 @@
         },
         {
             "type": "java",
+            "name": "Jcardsim FIDO2.1",
+            "request": "launch",
+            "mainClass": "com.licel.jcardsim.remote.VSmartCard",
+            "projectName": "fido2applet",
+            "args": [
+                "${workspaceFolder}/.vscode/jcardsim_fido2.1.cfg",
+               // "<", "${workspaceFolder}/cpipe"
+            ],
+            "classPaths": [
+                "${workspaceFolder}/smartcard-ci/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar",
+                "${workspaceFolder}/applets/FIDO2Applet/bin/main"
+            ],
+            "console": "integratedTerminal",
+            "preLaunchTask": "Compile FIDO2.1"
+        },
+        {
+            "type": "java",
             "name": "Jcardsim Tesla",
             "request": "launch",
             "mainClass": "com.licel.jcardsim.remote.VSmartCard",

@@ -20,6 +20,22 @@
             "problemMatcher": []
         },
         {
+            "label": "Compile FIDO2.1",
+            "type": "shell",
+            "command": "JAVA_HOME=$JAVA_HOME_JDK8 ./gradlew buildJavaCard",
+            "options": {
+                "cwd": "${workspaceFolder}/applets/FIDO2Applet",
+                "env": {
+                    "JC_HOME": "${workspaceFolder}/applets/apex-fido2/sdks/jc304_kit"
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "Compile Tesla",
             "type": "shell",
             "command": "JAVA_HOME=$JAVA_HOME_JDK8 ant",
@@ -55,6 +71,12 @@
             "label": "Clean FIDO2",
             "type": "shell",
             "command": "rm -rf ${workspaceFolder}/applets/apex-fido2/target",
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean FIDO2.1",
+            "type": "shell",
+            "command": "rm -rf ${workspaceFolder}/applets/FIDO2Applet/build ${workspaceFolder}/applets/FIDO2Applet/.gradle",
             "problemMatcher": []
         },
         {
@@ -133,6 +155,12 @@
             "label": "Setup FIDO2",
             "type": "shell",
             "command": "${workspaceFolder}/.vscode/setup_fido2.sh",
+            "problemMatcher": [],
+        },
+        {
+            "label": "Setup FIDO2.1",
+            "type": "shell",
+            "command": "${workspaceFolder}/.vscode/setup_fido2.1.sh",
             "problemMatcher": [],
         },
         {

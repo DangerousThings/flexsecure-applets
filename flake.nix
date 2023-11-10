@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
   outputs = { self, nixpkgs }:
@@ -29,6 +29,21 @@
               pyscard
               cryptography
               fido2
+              JPype1
+              parameterized
+              (buildPythonPackage rec {
+                pname = "uhid";
+                version = "0.0.1";
+                src = fetchPypi {
+                    inherit pname version;
+                    sha256 = "sha256-PHgkiYkNvzNiH7LDDRrIH7wbPvGRGufUxzkHzcD1mqs=";
+                };
+                format = "pyproject";
+                doCheck = false;
+                propagatedBuildInputs = [ 
+                  setuptools
+                ];
+              })
             ]))
           ];
         };

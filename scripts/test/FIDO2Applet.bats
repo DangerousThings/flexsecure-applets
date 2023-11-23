@@ -16,10 +16,16 @@ setup() {
     java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./build/classes/java/main com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/FIDO2Applet.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
     sleep 2
-    PARAM="a800f50505061820071904000818200918fe0a1904000b190400"
-    opensc-tool -r 'Virtual PCD 00 00' -s "80 b8 00 00 26  08  A0 00 00 06 47 2F 00 01  00  1A $PARAM FF"
     cd /app/tools/fido-attestation-loader
-    /app/src/applets/FIDO2Applet/install_attestation_cert.py --name "Token Attestation" --aaguid "27291256273545b599f92863c9dddd72" --org "Generic" --country "US"
+    ./attestation.py ca create -cap 123456
+    ./attestation.py cert create -p 1234 -cap 123456 -m fido21
+    PARAM=`./attestation.py cert show -p 1234 -f parameter -m fido21`
+    PLEN=$((${#PARAM} / 2))
+    ALEN=$(($PLEN + 11))
+    PLEN=$(printf "%x\n" $PLEN)
+    ALEN=$(printf "%x\n" $ALEN)
+    opensc-tool -r 'Virtual PCD 00 00' -s "80 b8 00 00 $ALEN  08  A0 00 00 06 47 2F 00 01  00  $PLEN $PARAM FF"
+    ./attestation.py cert upload -m fido21
 }
 
 teardown() {

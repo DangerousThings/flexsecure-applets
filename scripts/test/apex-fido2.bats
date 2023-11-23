@@ -19,8 +19,12 @@ setup() {
     cd /app/tools/fido-attestation-loader
     ./attestation.py ca create -cap 123456
     ./attestation.py cert create -p 1234 -cap 123456
-    PARAM=`./attestation.py cert show -p 1234 -f parameter -m fido2ci -cap 123456`
-    opensc-tool -r 'Virtual PCD 00 00' -s "80 b8 00 00 3F  08  A0 00 00 06 47 2F 00 01  00  33 $PARAM FF"
+    PARAM=`./attestation.py cert show -p 1234 -f parameter -m fido2ci`
+    PLEN=$((${#PARAM} / 2))
+    ALEN=$(($PLEN + 11))
+    PLEN=$(printf "%x\n" $PLEN)
+    ALEN=$(printf "%x\n" $ALEN)
+    opensc-tool -r 'Virtual PCD 00 00' -s "80 b8 00 00 $ALEN  08  A0 00 00 06 47 2F 00 01  00  $PLEN $PARAM FF"
     ./attestation.py cert upload -m fido2
 }
 

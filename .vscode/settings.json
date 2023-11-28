@@ -12,6 +12,8 @@
         "!**/applets/FIDO2Applet/**",
         "!**/applets/apex-ndef",
         "!**/applets/apex-ndef/**",
+        "!**/applets/apex-spark",
+        "!**/applets/apex-spark/**",
         "!**/smartcard-ci/jcardsim",
         "!**/smartcard-ci/jcardsim/**"
     ],

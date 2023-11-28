@@ -68,6 +68,22 @@
             "problemMatcher": []
         },
         {
+            "label": "Compile Spark",
+            "type": "shell",
+            "command": "JAVA_HOME=$JAVA_HOME_JDK8 ant",
+            "options": {
+                "cwd": "${workspaceFolder}/applets/apex-spark",
+                "env": {
+                    "JC_HOME": "${workspaceFolder}/applets/apex-spark/sdks/jc305u3_kit"
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "Clean FIDO2",
             "type": "shell",
             "command": "rm -rf ${workspaceFolder}/applets/apex-fido2/target",
@@ -99,9 +115,15 @@
             "problemMatcher": []
         },
         {
-            "label": "Clean NDEEF",
+            "label": "Clean NDEF",
             "type": "shell",
             "command": "rm -rf ${workspaceFolder}/applets/apex-ndef/target",
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean Spark",
+            "type": "shell",
+            "command": "rm -rf ${workspaceFolder}/applets/apex-spark/target",
             "problemMatcher": []
         },
         {

@@ -40,3 +40,6 @@
 [submodule "applets/FIDO2Applet"]
 	path = applets/FIDO2Applet
 	url = https://github.com/BryanJacobs/FIDO2Applet.git
+[submodule "applets/apex-spark"]
+	path = applets/apex-spark
+	url = https://github.com/Vivokey/apex-spark.git

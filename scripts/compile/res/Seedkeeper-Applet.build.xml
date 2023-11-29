@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="dist" name="Seedkeeper-Applet">
+  <target name="dist">
+    <get src="https://github.com/martinpaljak/ant-javacard/releases/download/v20.03.25/ant-javacard.jar" skipexisting="true" dest="."/>
+    <taskdef name="javacard" classname="pro.javacard.ant.JavaCard" classpath="ant-javacard.jar"/>
+    <javacard>
+      <cap output="target/SeedKeeper.cap" sources="src" classes="target" aid="536565644b6565706572" version="0.1">
+        <applet class="org.seedkeeper.applet.SeedKeeper" aid="536565644b656570657200"/>
+      </cap>
+    </javacard>
+  </target>
+  <target name="clean" description="clean up">
+    <!-- Delete the built applet -->
+    <delete dir="target/SeedKeeper.cap"/>
+  </target>
+</project>

@@ -6,7 +6,7 @@ FAIL=0
 
 for i in compile/*.sh; do
     [ -f "$i" ] || break
-    if [[ "$i" != *"apex-fido2"* && "$i" != *"apex-tesla"* && "$i" != *"apex-ndef"* ]]; then
+    if [[ "$i" != *"apex-fido2"* && "$i" != *"apex-tesla"* && "$i" != *"apex-ndef"* && "$i" != *"apex-spark"* ]] || [[ "$1" == "private" ]]; then
         echo "Compiling $i"
         $i
     else

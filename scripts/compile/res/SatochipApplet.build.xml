@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="dist" name="SatochipApplet">
+  <target name="dist">
+    <get src="https://github.com/martinpaljak/ant-javacard/releases/download/v20.03.25/ant-javacard.jar" skipexisting="true" dest="."/>
+    <taskdef name="javacard" classname="pro.javacard.ant.JavaCard" classpath="ant-javacard.jar"/>
+    <javacard>
+      <cap output="target/SatoChip.cap" sources="src" classes="target" aid="5361746F43686970" version="0.1">
+        <applet class="org.satochip.applet.CardEdge" aid="5361746F4368697000"/>
+      </cap>
+    </javacard>
+  </target>
+  <target name="clean" description="clean up">
+    <!-- Delete the built applet -->
+    <delete dir="target/SatoChip.cap"/>
+  </target>
+</project>

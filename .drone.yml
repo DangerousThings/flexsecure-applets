@@ -13,7 +13,7 @@ steps:
   image: alpine/git
   commands:
   - git clone https://github.com/DangerousThings/flexsecure-applets .
-  - git -c submodule."smartcard-ci".update=none -c submodule."applets/apex-fido2".update=none -c submodule."applets/apex-tesla".update=none -c submodule."applets/apex-ndef".update=none submodule update --init --recursive
+  - git -c submodule."smartcard-ci".update=none -c submodule."applets/apex-fido2".update=none -c submodule."applets/apex-tesla".update=none -c submodule."applets/apex-ndef".update=none -c submodule."applets/apex-spark".update=none submodule update --init --recursive
 - name: build  
   image: stargate01/smartcard-ci
   commands:

@@ -22,12 +22,6 @@
 [submodule "applets/javacard-memory"]
 	path = applets/javacard-memory
 	url = https://github.com/DangerousThings/javacard-memory.git
-[submodule "applets/apex-ledger-unplugged"]
-	path = applets/apex-ledger-unplugged
-	url = https://github.com/VivoKey/apex-ledger-unplugged.git
-[submodule "applets/ledger-javacard-eligibility"]
-	path = applets/ledger-javacard-eligibility
-	url = https://github.com/LedgerHQ/ledger-javacard-eligibility.git
 [submodule "applets/status-keycard"]
 	path = applets/status-keycard
 	url = https://github.com/status-im/status-keycard.git
@@ -43,3 +37,12 @@
 [submodule "applets/apex-spark"]
 	path = applets/apex-spark
 	url = https://github.com/Vivokey/apex-spark.git
+[submodule "applets/SatochipApplet"]
+	path = applets/SatochipApplet
+	url = https://github.com/Toporin/SatochipApplet.git
+[submodule "applets/Satodime-Applet"]
+	path = applets/Satodime-Applet
+	url = https://github.com/Toporin/Satodime-Applet.git
+[submodule "applets/Seedkeeper-Applet"]
+	path = applets/Seedkeeper-Applet
+	url = https://github.com/Toporin/Seedkeeper-Applet.git

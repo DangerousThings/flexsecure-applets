@@ -19,7 +19,7 @@ setup() {
     cd /app/tools/fido-attestation-loader
     ./attestation.py ca create -cap 123456
     ./attestation.py cert create -p 1234 -cap 123456
-    PARAM=`./attestation.py cert show -p 1234 -f parameter -m u2fci -cap 123456`
+    PARAM=`./attestation.py cert show -p 1234 -f parameter -m u2fci`
     opensc-tool -r 'Virtual PCD 00 00' -s "80 b8 00 00 2F  08  A0 00 00 06 47 2F 00 01  00  23 $PARAM FF"
     ./attestation.py cert upload -m u2fci
 }

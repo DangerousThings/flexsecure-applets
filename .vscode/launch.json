@@ -29,7 +29,7 @@
             "projectName": "fido2applet",
             "args": [
                 "${workspaceFolder}/.vscode/jcardsim_fido2.1.cfg",
-                "<", "${workspaceFolder}/cpipe"
+                // "<", "${workspaceFolder}/cpipe"
             ],
             "classPaths": [
                 "${workspaceFolder}/smartcard-ci/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar",
@@ -84,6 +84,37 @@
             ],
             "console": "integratedTerminal",
             "preLaunchTask": "Compile Spark"
+        },
+        {
+            "type": "java",
+            "name": "Jcardsim TOTP",
+            "request": "launch",
+            "mainClass": "com.licel.jcardsim.remote.VSmartCard",
+            "projectName": "totp",
+            "args": [
+                "${workspaceFolder}/.vscode/jcardsim_totp.cfg"
+            ],
+            "classPaths": [
+                "${workspaceFolder}/smartcard-ci/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar",
+                "${workspaceFolder}/applets/apex-totp/target"
+            ],
+            "console": "integratedTerminal",
+            "preLaunchTask": "Compile TOTP",
+            "stepFilters": {
+                "classNameFilters": [
+                    "java.*",
+                    "javax.*",
+                    "com.sun.*",
+                    "sun.*",
+                    "sunw.*",
+                    "org.omg.*",
+                    "com.licel.jcardsim.*",
+                    "com.licel.jcardsim.base.*"
+                ],
+                "skipSynthetics": false,
+                "skipStaticInitializers": false,
+                "skipConstructors": false
+            }
         }
     ]
 }

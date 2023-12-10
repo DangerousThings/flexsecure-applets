@@ -63,7 +63,7 @@
             },
             "group": {
                 "kind": "build",
-                "isDefault": true
+                "isDefault": false
             },
             "problemMatcher": []
         },
@@ -80,6 +80,22 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Compile TOTP",
+            "type": "shell",
+            "command": "JAVA_HOME=$JAVA_HOME_JDK8 ant",
+            "options": {
+                "cwd": "${workspaceFolder}/applets/apex-totp",
+                "env": {
+                    "JC_HOME": "${workspaceFolder}/applets/apex-totp/oracle_javacard_sdks/jc304_kit"
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
             },
             "problemMatcher": []
         },
@@ -124,6 +140,12 @@
             "label": "Clean Spark",
             "type": "shell",
             "command": "rm -rf ${workspaceFolder}/applets/apex-spark/target",
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean TOTP",
+            "type": "shell",
+            "command": "rm -rf ${workspaceFolder}/applets/apex-totp/target",
             "problemMatcher": []
         },
         {
@@ -195,6 +217,12 @@
             "label": "Setup NDEF",
             "type": "shell",
             "command": "${workspaceFolder}/.vscode/setup_ndef.sh",
+            "problemMatcher": [],
+        },
+        {
+            "label": "Setup TOTP",
+            "type": "shell",
+            "command": "${workspaceFolder}/.vscode/setup_totp.sh",
             "problemMatcher": [],
         }
     ]

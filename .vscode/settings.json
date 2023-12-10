@@ -14,11 +14,25 @@
         "!**/applets/apex-ndef/**",
         "!**/applets/apex-spark",
         "!**/applets/apex-spark/**",
+        "!**/applets/apex-totp",
+        "!**/applets/apex-totp/**",
         "!**/smartcard-ci/jcardsim",
         "!**/smartcard-ci/jcardsim/**"
     ],
+    "java.debug.settings.exceptionBreakpoint.skipClasses": [
+        "$JDK",
+        "$Libraries",
+        "com.licel.jcardsim.*",
+        "com.licel.jcardsim.base.*"
+    ],
+    "java.debug.settings.stepping.skipClasses": [
+        "$JDK",
+        "$Libraries",
+        "com.licel.jcardsim.*",
+        "com.licel.jcardsim.base.*"
+    ],
     "java.debug.settings.onBuildFailureProceed": true,
     "java.format.settings.url": "eclipse-formatter.xml",
-    "java.debug.settings.showHex": false,
+    "java.debug.settings.showHex": true,
     "java.configuration.updateBuildConfiguration": "interactive"
 }

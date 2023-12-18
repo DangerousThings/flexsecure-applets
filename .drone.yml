@@ -8,6 +8,11 @@ clone:
 workspace:
   path: /app/src
 
+volumes:
+- name: cache
+  temp:
+    medium: memory
+
 steps:
 - name: clone
   image: alpine/git
@@ -18,10 +23,16 @@ steps:
   image: stargate01/smartcard-ci
   commands:
   - /app/src/scripts/compile-all.sh
+  volumes:
+  - name: cache
+    path: /tmp
 - name: test  
   image: stargate01/smartcard-ci
   commands:
   - /app/src/scripts/test-all.sh
+  volumes:
+  - name: cache
+    path: /tmp
 - name: publish
   image: plugins/github-release
   settings:

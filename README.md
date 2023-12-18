@@ -15,3 +15,7 @@ Public compiled binaries are available from the GitHub releases page: https://gi
 ## Development Usage
 
 Install Docker. Use the `docker-*.sh` scripts in `scripts/` to compile and test the applets. Binaries will be placed in `bin/`. This repository also runs on a Drone CI server.
+
+## Version Command
+
+The build system in this repository adds an extra version APDU command to each applet. See `scripts/compile/res/version.py`. Use this build system if you want to generate release equivalent binaries.

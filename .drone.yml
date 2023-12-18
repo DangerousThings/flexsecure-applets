@@ -10,8 +10,7 @@ workspace:
 
 volumes:
 - name: cache
-  temp:
-    medium: memory
+  temp: {}
 
 steps:
 - name: clone

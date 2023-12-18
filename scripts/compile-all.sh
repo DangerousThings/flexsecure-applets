@@ -13,6 +13,7 @@ for i in compile/*.sh; do
         echo "Skipping $i"
     fi
     if [ "$?" != 0 ]; then
+        echo "Failed to compile $i"
         FAIL=1
     fi
 done

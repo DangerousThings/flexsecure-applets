@@ -7,7 +7,11 @@ The `CLA` class byte is usually `00`, `80`, `B0`, or any of these `| 10` .
 Standard ISO commands:
 
 - `C0`: GET RESPONSE
-- `A4`: SELECT 
+- `A4`: SELECT
+
+Vivokey extension:
+
+- `F4`: GET VERSION
 
 ## apex-fido2, FIDO2Applet, and u2f-javacard
 

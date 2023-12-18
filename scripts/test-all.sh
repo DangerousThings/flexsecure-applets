@@ -13,6 +13,7 @@ for i in test/*.bats; do
         echo "Skipping $i"
     fi
     if [ "$?" != 0 ]; then
+        echo "Failed to test $i"
         FAIL=1
     fi
 done

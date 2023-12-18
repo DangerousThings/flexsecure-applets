@@ -3,5 +3,6 @@
 source "${0%/*}/res/compile.sh"
 
 prepare_build SmartPGP
-cp /app/src/scripts/compile/res/SmartPGP.build.xml $BUILD
-JC_HOME=/app/sdks/jc304_kit build_default -buildfile SmartPGP.build.xml
+patch_version $BUILD/src/fr/anssi/smartpgp/SmartPGPApplet.java
+cp /app/src/scripts/compile/res/SmartPGP.build.xml $BUILD/build.xml
+JC_HOME=/app/sdks/jc304_kit build_default

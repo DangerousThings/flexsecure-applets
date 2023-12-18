@@ -9,6 +9,16 @@ prepare_build() {
     cp -r /app/src/applets/$1 $BUILD
 }
 
+patch_version() {
+    git config --global --add safe.directory /app/src
+    TAG=`git tag --points-at HEAD`
+    SRC="$BUILD/build.xml"
+    if [ ! -f $SRC ]; then
+        SRC="$BUILD/build.gradle"
+    fi
+    /app/src/scripts/compile/res/version.py -s $SRC -p $1 -v $TAG
+}
+
 build_default() {
     cd $BUILD
     mkdir -p $BUILD/target

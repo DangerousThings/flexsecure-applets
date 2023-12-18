@@ -57,7 +57,7 @@
                  classes="build/classes/advanced"
                  sources="applet-advanced/src/main/java"
                  aid="D276000085"
-                 version="0.0">
+                 version="1.0">
                 <applet aid="D2760000850101"
                         class="org.openjavacard.ndef.advanced.NdefApplet"/>
                 <import jar="${sdk.globalplatform}/org.globalplatform-1.1/gpapi-globalplatform.jar"
@@ -73,7 +73,7 @@
                  classes="build/classes/full"
                  sources="applet-full/src/main/java"
                  aid="D276000085"
-                 version="0.0">
+                 version="1.0">
                 <applet aid="D2760000850101"
                         class="org.openjavacard.ndef.full.NdefApplet"/>
             </cap>
@@ -87,7 +87,7 @@
                  classes="build/classes/tiny"
                  sources="applet-tiny/src/main/java"
                  aid="D276000085"
-                 version="0.0">
+                 version="1.0">
                 <applet aid="D2760000850101"
                         class="org.openjavacard.ndef.tiny.NdefApplet"/>
             </cap>
@@ -101,7 +101,7 @@
                  classes="build/classes/stub"
                  sources="applet-stub/src/main/java"
                  aid="D276000085"
-                 version="0.0">
+                 version="1.0">
                 <applet aid="D2760000850101"
                         class="org.openjavacard.ndef.stub.NdefApplet"/>
             </cap>

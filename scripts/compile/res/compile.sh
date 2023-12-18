@@ -11,6 +11,7 @@ prepare_build() {
 
 patch_version() {
     git config --global --add safe.directory /app/src
+    cd /app/src
     TAG=`git tag --points-at HEAD`
     SRC="$BUILD/build.xml"
     if [ ! -f $SRC ]; then

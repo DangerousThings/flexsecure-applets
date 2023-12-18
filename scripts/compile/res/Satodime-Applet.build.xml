@@ -4,7 +4,7 @@
     <get src="https://github.com/martinpaljak/ant-javacard/releases/download/v20.03.25/ant-javacard.jar" skipexisting="true" dest="."/>
     <taskdef name="javacard" classname="pro.javacard.ant.JavaCard" classpath="ant-javacard.jar"/>
     <javacard>
-      <cap output="target/Satodime.cap" sources="src" classes="target" aid="5361746f44696d65" version="0.1">
+      <cap output="target/Satodime.cap" sources="src" classes="target" aid="5361746f44696d65" version="0.2">
         <applet class="org.satodime.applet.Satodime" aid="5361746f44696d6500"/>
       </cap>
     </javacard>

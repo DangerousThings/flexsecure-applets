@@ -31,6 +31,7 @@
               fido2
               JPype1
               parameterized
+              pyasn1
               (buildPythonPackage rec {
                 pname = "uhid";
                 version = "0.0.1";

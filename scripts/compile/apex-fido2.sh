@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir -p /app/src/bin /app/src/applets/apex-fido2/target
-cd /app/src/applets/apex-fido2
-JC_HOME=/app/sdks/jc305u3_kit ant
-cp /app/src/applets/apex-fido2/target/*.cap /app/src/bin/
+source "${0%/*}/res/compile.sh"
+
+prepare_build apex-fido2
+JC_HOME=/app/sdks/jc305u3_kit build_default

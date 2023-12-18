@@ -1,5 +1,8 @@
 #!/bin/bash
 
-cd /app/src/applets/status-keycard
+source "${0%/*}/res/compile.sh"
+
+prepare_build status-keycard
+cd $BUILD
 JC_HOME=/app/sdks/jc304_kit ./gradlew convertJavacard
-cp /app/src/applets/status-keycard/build/javacard/im/status/keycard/javacard/*.cap /app/src/bin/
+cp $BUILD/build/javacard/im/status/keycard/javacard/*.cap /app/src/bin/

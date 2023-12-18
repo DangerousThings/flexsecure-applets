@@ -12,7 +12,7 @@ teardown_file() {
 }
 
 setup() {
-    cd /app/src/applets/u2f-javacard
+    cd /tmp/builds/u2f-javacard
     java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/u2f-javacard.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
     sleep 2

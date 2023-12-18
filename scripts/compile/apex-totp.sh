@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir -p /app/src/bin
-cd /app/src/applets/apex-totp
-JC_HOME=/app/sdks/jc304_kit ant dist
-cp /app/src/applets/apex-totp/target/*.cap /app/src/bin/
+source "${0%/*}/res/compile.sh"
+
+prepare_build apex-totp
+JC_HOME=/app/sdks/jc304_kit build_default dist

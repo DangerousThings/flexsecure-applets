@@ -11,7 +11,7 @@ teardown_file() {
 }
 
 setup() {
-    cd /app/src/applets/flexsecure-ykhmac
+    cd /tmp/builds/flexsecure-ykhmac
     java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/flexsecure-ykhmac.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
     sleep 2

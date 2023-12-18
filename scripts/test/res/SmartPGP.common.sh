@@ -2,7 +2,7 @@
 
 pgp_setup() {
     mkdir -p /app/tmp
-    cd /app/src/applets/SmartPGP
+    cd /tmp/builds/SmartPGP
     java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target/$1 com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/SmartPGP.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
     sleep 2
@@ -10,7 +10,7 @@ pgp_setup() {
 }
 
 algo_switch() {
-    cd /app/src/applets/SmartPGP/bin
+    cd /tmp/builds/SmartPGP/bin
     ./smartpgp-cli switch-$1
 }
 

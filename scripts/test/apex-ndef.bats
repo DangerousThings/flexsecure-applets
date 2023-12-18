@@ -12,13 +12,14 @@ teardown_file() {
 }
 
 setup() {
-    cd /app/src/applets/apex-ndef
+    cd /tmp/builds/apex-ndef
     java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/apex-ndef.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
     sleep 2
     CUID='f860203a257128'
     KEY='4173f37fbec4f93f3c66bb9fbf7284bf'
-    opensc-tool -r 'Virtual PCD 00 00' -s "80 b8 00 00 23  07  D2760000850101  00  19  0800 $CUID $KEY FF"
+    SALT='ead73d4e5aeb64b0ddb26b470bb85856'
+    opensc-tool -r 'Virtual PCD 00 00' -s "80 b8 00 00 33  07  D2760000850101  00  29  0800 $CUID $KEY $SALT FF"
 }
 
 teardown() {
@@ -28,12 +29,12 @@ teardown() {
 
 
 cmac_setup() {
-    cd /app/src/applets/apex-ndef/test
+    cd /tmp/builds/apex-ndef/test
     ./cmac.py randomurl | python3 ./pcsc-ndef/pcsc_ndef.py -r "Virtual PCD 00 00" -t4 write
 }
 
 cmac_verify() {
-    ./cmac.py verifyurl -k $1 -i $CUID -u $(python3 ./pcsc-ndef/pcsc_ndef.py -r "Virtual PCD 00 00" -t4 read 2>/dev/null)
+    ./cmac.py verifyurl -k $1 -i $CUID -a $SALT -u $(python3 ./pcsc-ndef/pcsc_ndef.py -r "Virtual PCD 00 00" -t4 read 2>/dev/null)
     res=$?
     return $res
 }

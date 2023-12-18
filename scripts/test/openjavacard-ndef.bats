@@ -12,7 +12,7 @@ teardown_file() {
 }
 
 setup() {
-    cd /app/src/applets/openjavacard-ndef
+    cd /tmp/builds/openjavacard-ndef
     java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./build/classes/full com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/openjavacard-ndef.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
     sleep 2

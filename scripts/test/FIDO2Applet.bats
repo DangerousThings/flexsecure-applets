@@ -12,7 +12,7 @@ teardown_file() {
 }
 
 setup() {
-    cd /app/src/applets/FIDO2Applet
+    cd /tmp/builds/FIDO2Applet
     java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./build/classes/java/main com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/FIDO2Applet.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
     sleep 2

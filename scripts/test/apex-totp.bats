@@ -11,7 +11,7 @@ teardown_file() {
 }
 
 setup() {
-    cd /app/src/applets/apex-totp
+    cd /tmp/builds/apex-totp
     java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/apex-totp.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
     sleep 2

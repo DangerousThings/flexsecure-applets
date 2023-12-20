@@ -224,6 +224,12 @@
             "type": "shell",
             "command": "${workspaceFolder}/.vscode/setup_totp.sh",
             "problemMatcher": [],
-        }
+        },
+        {
+            "label": "Setup Spark",
+            "type": "shell",
+            "command": "${workspaceFolder}/.vscode/setup_spark.sh",
+            "problemMatcher": [],
+        },
     ]
 }

@@ -16,10 +16,10 @@ setup() {
     java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/apex-ndef.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
     sleep 2
-    CUID='f860203a257128'
+    CUID='fff860203a257128'
     KEY='4173f37fbec4f93f3c66bb9fbf7284bf'
     SALT='ead73d4e5aeb64b0ddb26b470bb85856'
-    opensc-tool -r 'Virtual PCD 00 00' -s "80 b8 00 00 33  07  D2760000850101  00  29  0800 $CUID $KEY $SALT FF"
+    opensc-tool -r 'Virtual PCD 00 00' -s "80 b8 00 00 34  07  D2760000850101  00  2A  0800 $CUID $KEY $SALT FF"
 }
 
 teardown() {

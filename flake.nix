@@ -32,6 +32,7 @@
               JPype1
               parameterized
               pyasn1
+              requests
               (buildPythonPackage rec {
                 pname = "uhid";
                 version = "0.0.1";

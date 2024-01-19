@@ -33,6 +33,7 @@
               parameterized
               pyasn1
               requests
+              pyjwt
               (buildPythonPackage rec {
                 pname = "uhid";
                 version = "0.0.1";

@@ -58,7 +58,7 @@ ykman -r 'READER' otp chalresp -f 1 SECRET
 
 Use the `-f` flag to specify the slot (1 or 2).
 
-You can also use the `yktool.jar` utility (Download from https://github.com/DangerousThings/flexsecure-applets/releases/). Take care of the string encoding on your operating system, this command is for Linux:
+You can also use the `yktool.jar` utility (Download from https://github.com/arekinath/yktool/releases). Take care of the string encoding on your operating system, this command is for Linux:
 
 ```
 echo SECRET | java -jar yktool.jar program hmac 1 -x -X

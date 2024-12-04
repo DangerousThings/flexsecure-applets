@@ -85,7 +85,7 @@ The following apps can be installed with a single GPP command and the requisite 
         - c: country. we use US
         - o: organization. we use Dangerous Things
         - cn: certificate name. Leave these alone
-    - Install python packages
+    - Install python packages. This is presently broken. Install cbor2 and then the latest version of the other packages in requirements.txt
     ```shell
     pip install -r "requirements.txt"
     ```
@@ -98,19 +98,36 @@ The following apps can be installed with a single GPP command and the requisite 
   python attestation.py cert create -m fido21
   ```
   ```shell
-  python attestation.py cert validate -m fido21
+  python attestation.py cert validate
   ```
   ```shell
   # Example Output
+  info: Validating an existing attestation certificate against a certificate authority
+  info: Loading settings file settings.ini
+  info: Public attestation certificate serial number: 723321508150486599877570106078221356789683409469
+  info: Public attestation certificate SHA256 fingerprint: 1c104b3380b028b703f2ab2cc841bfebb966d792f218aa2bb56bd81e88599842
+  info: Public certificate authority serial number: 385004152696321157272772190328151754561352515268
+  info: Public certificate authority SHA256 fingerprint: 9e8b43d2688663e9937c490bfa0ad4e59cc086d5e96e547f1c1f7ca27e977972
+  success: The attestation certificate has a valid signature by the certificate authority
   ```
   ```shell
   python attestation.py cert -f show -m fido21
   ```
   ```shell
   # Example Output
+  info: Showing an existing attestation certificate
+  info: Loading settings file settings.ini
+  info: Public certificate authority serial number: 385004152696321157272772190328151754561352515268
+  info: Public certificate authority SHA256 fingerprint: 9e8b43d2688663e9937c490bfa0ad4e59cc086d5e96e547f1c1f7ca27e977972
+  info: Public attestation certificate serial number: 723321508150486599877570106078221356789683409469
+  info: Public attestation certificate SHA256 fingerprint: 1c104b3380b028b703f2ab2cc841bfebb966d792f218aa2bb56bd81e88599842
+  info: Public attestation certificate (574 bytes):   <certificate>
+  info: Private attestation key (32 bytes): <private key>
+  info: AAGUID: ad7f2c9e-94e4-48e8-98d8-e8d288c769f5
+  info: Applet installation parameter (contains CBOR configuration map with private attestation key 32 bytes): <monstrous hex string>
   ```
   Copy the params value
-  - Install the applet with the generated parameters
+  - Install the applet with the "Applet installation parameter" for the install's --params switch. It will most likely complain about an invalid TLV.
   ```shell
   --install FIDO2.cap --params <monstrous-hex-string>
   ```

@@ -6,6 +6,13 @@ This is aimed at getting you up and running as quickly as possible but it is str
 
 ## flexSecure Preloaded Apps
 All of these sold after 12/2/2024 come preloaded with FIDO2Applet, javacard-memory, apex-totp, and openjavacard-ndef with a 32k container.
+Release v0.19.1:
+|App Name                                   |AID                        |Persistent Storage   |Transient Memory  |
+|-------------------------------------------|---------------------------|---------------------|------------------|
+|[JavaCard Memory](https://github.com/DangerousThings/javacard-memory)|A0000008466D656D6F727901|?                    |?                 |
+|[FIDO2Applet](#FIDO2Applet)                |A0000006472F0002           |~41748 bytes         |~2745 bytes       |
+|[Apex TOTP](#apex-totp)                    |A0000005272101014150455801 |5416 bytes           |2344 bytes        |
+|[Open JavaCard NDEF](#openjavacard-ndef)   |D2760000850101             |2428 bytes + 32 kB   |0                 |
 
 ## Setting up Global Platform Pro
 - Windows
@@ -34,15 +41,15 @@ Check the [latest release](releases) and download the apps you're interested in 
 
 ## Apps with a simple install
 The following apps can be installed with a single GPP command and the requisite cap file.
-- [apex-tesla]()
+### apex-tesla
   Use your flexSecure as a Tesla key.
-- apex-totp
+### apex-totp
   OTP codes generated in vivo.
-- flexsecure-ykhmac
+### flexsecure-ykhmac
   Generate HMAC-SHA1 hashes on the flexSecure. Can be used to secure LastPass.
-- javacard-memory
+### javacard-memory
   This is used with Apex Manager to provide a rough estimate on available storage.
-- openjavacard-ndef
+### openjavacard-ndef
   Create NDEF containers up to 32k on the flexSecure. If no parameters are provided, it defaults to a 2k container
   - 2k
     ```cmd
@@ -64,17 +71,19 @@ The following apps can be installed with a single GPP command and the requisite 
     ```cmd
     --params 810200F182027fff
     ```
-- SatochipApplet
+
+    If you want to do other things such as preload data, enable read only or write once modes, [checkout the docs](https://github.com/OpenJavaCard/openjavacard-ndef).
+- SatoChipApplet
   This allows your flexSecure to act as a cold wallet. Currently, cold wallets are not supported by Sato mobile apps.
 - Satodime-Applet
-- Seedkeeper-Applet
+- SeedKeeper-Applet
 - status-keycard
   This allows your flexSecure to act as a cold wallet. Currently, cold wallets are not supported by Status.im mobile apps.
 - u2f-javacard
   This is unnecessary if the FIDO2 applet is installed. If, however, you want U2F but don't care about passkeys, this will save you storage.
 
 ## Apps with complex install
-- FIDO2Applet
+### [FIDO2Applet](https://github.com/BryanJacobs/FIDO2Applet)
   To install this applet, you'll need to generate and load attestation data. You'll need [Python](https://python.org/downloads) and [this repo](https://github.com/dangerousthings/fido-attestation-loader).
   - Setup fido-attestation-loader
     - Update the update settings.example.ini and save it as settings.ini
@@ -135,4 +144,20 @@ The following apps can be installed with a single GPP command and the requisite 
   ```shell
   python attestation.py cert upload -m fido21
   ```
-- SmartPGP
+
+## Apps with additional setup
+### [SmartPGP](https://github.com/github-af/SmartPGP)
+This one comes in two flavors: default and large. Do yourself a favor and stick to default--unless you want really large, insecure RSA keys.
+
+The SmartPGP applet is configured with the following default values:
+- Admin PIN is 12345678;
+- User PIN is 123456;
+- No PUK (a.k.a. resetting code) is defined;
+- RSA 2048 bits for PGP keys;
+- NIST P-256 for the secure messaging key.
+
+### Android
+Checkout these [videos on using this app](https://github.com/github-af/SmartPGP/tree/master/videos) with [OpenKeychain](https://www.openkeychain.org/).
+
+### PC
+Checkout [aegis](https://gist.github.com/ageis)' [guide](https://gist.github.com/ageis/14adc308087859e199912b4c79c4aaa4). 

@@ -73,13 +73,14 @@ The following apps can be installed with a single GPP command and the requisite 
     ```
 
     If you want to do other things such as preload data, enable read only or write once modes, [checkout the docs](https://github.com/OpenJavaCard/openjavacard-ndef).
-- SatoChipApplet
+### SatoChipApplet
   This allows your flexSecure to act as a cold wallet. Currently, cold wallets are not supported by Sato mobile apps.
-- Satodime-Applet
-- SeedKeeper-Applet
-- status-keycard
+### Satodime-Applet
+  This is not compatible with Apex or flexSecure devices.
+### SeedKeeper-Applet
+### status-keycard
   This allows your flexSecure to act as a cold wallet. Currently, cold wallets are not supported by Status.im mobile apps.
-- u2f-javacard
+### u2f-javacard
   This is unnecessary if the FIDO2 applet is installed. If, however, you want U2F but don't care about passkeys, this will save you storage.
 
 ## Apps with complex install

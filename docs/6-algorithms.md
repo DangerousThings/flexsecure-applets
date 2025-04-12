@@ -1,69 +1,279 @@
 # Required JavaCard Algorithms
 
-**This list is out of date / incomplete.**
-
 The applets distributed by VivoKey and contained in this repository require hardware support for a range of cryptographic algorithms.
 
 Not all of these algorithms are hard requirements, some applets might provide fallbacks (e.g. for `ALG_HMAC_SHA*`) or limit certain functionality instead (e.g. PGP for generating large key sizes).
 
-## MessageDigest
+The `scripts/algscan.sh` script was used to generate this report.
 
-- `MessageDigest.ALG_SHA` (OTP, HMAC-SHA1)
-- `MessageDigest.ALG_SHA_224` (OTP)
-- `MessageDigest.ALG_SHA_256` (OTP, BIP32, FIDO2)
-- `MessageDigest.ALG_SHA_512` (BIP32)
+## Combined list
 
-## Cipher
+```
+Cipher.ALG_AES_BLOCK_128_CBC_NOPAD
+Cipher.ALG_AES_BLOCK_128_ECB_NOPAD
+Cipher.ALG_AES_CBC_ISO9797_M2
+Cipher.ALG_RSA_PKCS1
+Cipher.CIPHER_AES_CBC, Cipher.PAD_NOPAD
+KeyAgreement.ALG_EC_SVDP_DH
+KeyAgreement.ALG_EC_SVDP_DH_PLAIN
+KeyBuilder.ALG_TYPE_AES, JCSystem.MEMORY_TYPE_TRANSIENT_DESELECT, KeyBuilder.LENGTH_AES_128
+KeyBuilder.ALG_TYPE_EC_FP_PARAMETERS, JCSystem.MEMORY_TYPE_PERSISTENT, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.ALG_TYPE_EC_FP_PRIVATE, JCSystem.MEMORY_TYPE_PERSISTENT
+KeyBuilder.ALG_TYPE_EC_FP_PRIVATE, JCSystem.MEMORY_TYPE_PERSISTENT, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.ALG_TYPE_EC_FP_PRIVATE, JCSystem.MEMORY_TYPE_TRANSIENT_DESELECT
+KeyBuilder.ALG_TYPE_EC_FP_PRIVATE, JCSystem.MEMORY_TYPE_TRANSIENT_DESELECT, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.ALG_TYPE_EC_FP_PUBLIC, JCSystem.MEMORY_TYPE_TRANSIENT_DESELECT
+KeyBuilder.ALG_TYPE_EC_FP_PUBLIC, JCSystem.MEMORY_TYPE_TRANSIENT_DESELECT, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.ALG_TYPE_RSA_PRIVATE, JCSystem.MEMORY_TYPE_TRANSIENT_DESELECT, KeyBuilder.LENGTH_RSA_2048
+KeyBuilder.ALG_TYPE_RSA_PUBLIC, JCSystem.MEMORY_TYPE_TRANSIENT_DESELECT, KeyBuilder.LENGTH_RSA_2048
+KeyBuilder.TYPE_AES_TRANSIENT_DESELECT, KeyBuilder.LENGTH_AES_256
+KeyBuilder.TYPE_AES_TRANSIENT_DESELECT, KeyBuilder.LENGTH_AES_256,
+KeyBuilder.TYPE_AES, KeyBuilder.LENGTH_AES_128
+KeyBuilder.TYPE_AES, KeyBuilder.LENGTH_AES_256
+KeyBuilder.TYPE_EC_FP_PRIVATE_TRANSIENT_DESELECT, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.TYPE_EC_FP_PRIVATE_TRANSIENT_RESET, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.TYPE_EC_FP_PRIVATE, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.TYPE_EC_FP_PRIVATE, KeyBuilder.LENGTH_EC_FP_384
+KeyBuilder.TYPE_EC_FP_PRIVATE, KeyBuilder.LENGTH_EC_FP_521
+KeyBuilder.TYPE_EC_FP_PRIVATE, LENGTH_EC_FP_256
+KeyBuilder.TYPE_EC_FP_PUBLIC, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.TYPE_EC_FP_PUBLIC, KeyBuilder.LENGTH_EC_FP_384
+KeyBuilder.TYPE_EC_FP_PUBLIC, KeyBuilder.LENGTH_EC_FP_521
+KeyBuilder.TYPE_EC_FP_PUBLIC, LENGTH_EC_FP_256
+KeyBuilder.TYPE_HMAC_TRANSIENT_DESELECT, KeyBuilder.LENGTH_AES_256
+KeyBuilder.TYPE_HMAC_TRANSIENT_RESET, KeyBuilder.LENGTH_HMAC_SHA_1_BLOCK_64
+KeyBuilder.TYPE_RSA_CRT_PRIVATE, KeyBuilder.LENGTH_RSA_2048
+KeyBuilder.TYPE_RSA_CRT_PRIVATE, KeyBuilder.LENGTH_RSA_3072
+KeyBuilder.TYPE_RSA_CRT_PRIVATE, KeyBuilder.LENGTH_RSA_4096
+KeyBuilder.TYPE_RSA_PRIVATE, KeyBuilder.LENGTH_RSA_2048
+KeyBuilder.TYPE_RSA_PRIVATE, KeyBuilder.LENGTH_RSA_3072
+KeyBuilder.TYPE_RSA_PRIVATE, KeyBuilder.LENGTH_RSA_4096
+KeyBuilder.TYPE_RSA_PUBLIC, KeyBuilder.LENGTH_RSA_2048
+KeyBuilder.TYPE_RSA_PUBLIC, KeyBuilder.LENGTH_RSA_3072
+KeyBuilder.TYPE_RSA_PUBLIC, KeyBuilder.LENGTH_RSA_4096
+KeyPair.ALG_EC_FP, KeyBuilder.LENGTH_EC_FP_256
+MessageDigest.ALG_NULL, Signature.SIG_CIPHER_AES_CMAC128, Cipher.PAD_ISO9797_M2
+MessageDigest.ALG_SHA
+MessageDigest.ALG_SHA_224
+MessageDigest.ALG_SHA_256
+MessageDigest.ALG_SHA_256, Signature.SIG_CIPHER_ECDSA, Cipher.PAD_NULL
+MessageDigest.ALG_SHA_256, Signature.SIG_CIPHER_RSA, Cipher.PAD_PKCS1
+MessageDigest.ALG_SHA_256, Signature.SIG_CIPHER_RSA, Cipher.PAD_PKCS1_PSS
+MessageDigest.ALG_SHA_512
+RandomData.ALG_PSEUDO_RANDOM
+RandomData.ALG_SECURE_RANDOM
+RandomData.ALG_TRNG
+Signature.ALG_AES_CMAC_128
+Signature.ALG_AES_MAC_128_NOPAD
+Signature.ALG_ECDSA_SHA
+Signature.ALG_ECDSA_SHA_224
+Signature.ALG_ECDSA_SHA_256
+Signature.ALG_ECDSA_SHA_384
+Signature.ALG_ECDSA_SHA_512
+Signature.ALG_HMAC_SHA_512
+Signature.ALG_HMAC_SHA1
+Signature.ALG_RSA_SHA_256_PKCS1
+Signature.ALG_RSA_SHA_256_PKCS1_PSS
+```
 
-- `Cipher.ALG_AES_CBC_ISO9797_M2` (BIP32)
-- `Cipher.ALG_AES_BLOCK_128_CBC_NOPAD` (U2F, PGP, BIP32)
-- `Cipher.ALG_AES_BLOCK_128_ECB_NOPAD` (Tesla)  
-- `Cipher.ALG_RSA_PKCS1` (FIDO2, PGP)
+## Individual applets
 
-## Signature
+### apex-tesla
 
-- `Signature.ALG_AES_MAC_128_NOPAD` (BIP32)
-- `Signature.ALG_RSA_SHA_256_PKCS1`(FIDO2)
-- `Signature.ALG_RSA_SHA_256_PKCS1_PSS`(FIDO2)
-- `Signature.ALG_ECDSA_SHA` (PGP)
-- `Signature.ALG_ECDSA_SHA_224` (PGP)
-- `Signature.ALG_ECDSA_SHA_256` (BIP32, U2F, FIDO2, PGP)
-- `Signature.ALG_ECDSA_SHA_384` (PGP)
-- `Signature.ALG_ECDSA_SHA_512` (PGP)
-- `Signature.ALG_HMAC_SHA1`(HMAC-SHA1)
-- `Signature.ALG_HMAC_SHA_512` (BIP32)
+```
+KeyPair.ALG_EC_FP, KeyBuilder.LENGTH_EC_FP_256
+KeyAgreement.ALG_EC_SVDP_DH
+Cipher.ALG_AES_BLOCK_128_ECB_NOPAD
+KeyBuilder.ALG_TYPE_AES, JCSystem.MEMORY_TYPE_TRANSIENT_DESELECT, KeyBuilder.LENGTH_AES_128
+```
 
-## KeyAgreement
+### apex-totp
 
-- `KeyAgreement.ALG_EC_SVDP_DH_PLAIN` (BIP32, PGP)
-- `KeyAgreement.ALG_EC_SVDP_DH_PLAIN_XY` (BIP32)
-- `KeyAgreement.ALG_EC_SVDP_DH` (Tesla)
+```
+MessageDigest.ALG_SHA
+MessageDigest.ALG_SHA_256
+RandomData.ALG_PSEUDO_RANDOM
+MessageDigest.ALG_SHA_224
+```
 
-## KeyPair generation
+### status-keycard
 
-- `KeyPair.ALG_EC_FP`, size = `256` (BIP32, Tesla, FIDO2)
-- `KeyPair.ALG_RSA_CRT`, size =`2048` (FIDO2)
+```
+KeyPair.ALG_EC_FP, KeyBuilder.LENGTH_EC_FP_256
+Signature.ALG_ECDSA_SHA_256
+RandomData.ALG_SECURE_RANDOM
+MessageDigest.ALG_SHA_256
+KeyAgreement.ALG_EC_SVDP_DH_PLAIN
+MessageDigest.ALG_SHA_512
+Cipher.ALG_AES_CBC_ISO9797_M2
+Signature.ALG_HMAC_SHA_512
+KeyBuilder.TYPE_HMAC_TRANSIENT_DESELECT, KeyBuilder.LENGTH_AES_256
+Signature.ALG_AES_MAC_128_NOPAD
+KeyBuilder.TYPE_AES_TRANSIENT_DESELECT, KeyBuilder.LENGTH_AES_256
+KeyBuilder.TYPE_EC_FP_PRIVATE, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.TYPE_EC_FP_PUBLIC, KeyBuilder.LENGTH_EC_FP_256
+```
 
-## KeyBuilder
+### apex-spark
 
-- `KeyBuilder.ALG_TYPE_AES`, size = `128, 256` (Tesla, U2F)
-- `KeyBuilder.TYPE_AES`, size = `128, 256` (PGP)
-- `KeyBuilder.TYPE_HMAC_TRANSIENT_DESELECT`, size = `256` (BIP32)
-- `KeyBuilder.TYPE_HMAC_TRANSIENT_RESET`, size = `64` (HMAC-SHA1)
-- `KeyBuilder.TYPE_AES_TRANSIENT_DESELECT`, size = `256` (BIP32)
-- `KeyBuilder.TYPE_EC_FP_PRIVATE`, size = `256, (384, 512, 521)` (BIP32, U2F, PGP, FIDO2)
-- `KeyBuilder.TYPE_EC_FP_PUBLIC`, size = `256, (384, 512, 521)` (BIP32, U2F, PGP)
-- `KeyBuilder.ALG_TYPE_EC_FP_PRIVATE`, size = `256` (FIDO2)
-- `KeyBuilder.ALG_TYPE_EC_FP_PUBLIC`, size = `256` (FIDO2)
-- `KeyBuilder.TYPE_EC_FP_PRIVATE_TRANSIENT_DESELECT`, size = `256` (U2F)
-- `KeyBuilder.TYPE_EC_FP_PRIVATE_TRANSIENT_RESET`, size = `256` (U2F)
-- `KeyBuilder.TYPE_RSA_CRT_PRIVATE`, size = `2048 (3072, 4096)` (PGP)
-- `KeyBuilder.TYPE_RSA_PUBLIC`, size = `2048 (3072, 4096)` (PGP)
+```
+KeyBuilder.TYPE_AES, KeyBuilder.LENGTH_AES_128
+RandomData.ALG_TRNG
+RandomData.ALG_SECURE_RANDOM
+Cipher.CIPHER_AES_CBC, Cipher.PAD_NOPAD
+Cipher.ALG_AES_BLOCK_128_CBC_NOPAD
+```
 
-## RandomData
+### u2f-javacard
 
-- `RandomData.ALG_PSEUDO_RANDOM` (OTP)
-- `RandomData.ALG_SECURE_RANDOM` (BIP32, U2F, FIDO2, HMAC-SHA1)
+```
+KeyBuilder.TYPE_EC_FP_PRIVATE_TRANSIENT_DESELECT, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.TYPE_EC_FP_PRIVATE_TRANSIENT_RESET, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.TYPE_EC_FP_PRIVATE, KeyBuilder.LENGTH_EC_FP_256
+Signature.ALG_ECDSA_SHA_256
+KeyBuilder.TYPE_EC_FP_PUBLIC, KeyBuilder.LENGTH_EC_FP_256
+RandomData.ALG_SECURE_RANDOM
+KeyBuilder.TYPE_AES, KeyBuilder.LENGTH_AES_256
+Cipher.ALG_AES_BLOCK_128_CBC_NOPAD
+```
+
+### apex-fido2
+
+```
+KeyAgreement.ALG_EC_SVDP_DH_PLAIN
+KeyBuilder.TYPE_AES_TRANSIENT_DESELECT, KeyBuilder.LENGTH_AES_256,
+MessageDigest.ALG_SHA_256
+KeyBuilder.ALG_TYPE_EC_FP_PARAMETERS, JCSystem.MEMORY_TYPE_PERSISTENT, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.ALG_TYPE_EC_FP_PUBLIC, JCSystem.MEMORY_TYPE_TRANSIENT_DESELECT
+KeyBuilder.ALG_TYPE_EC_FP_PUBLIC, JCSystem.MEMORY_TYPE_TRANSIENT_DESELECT, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.TYPE_EC_FP_PUBLIC, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.ALG_TYPE_EC_FP_PRIVATE, JCSystem.MEMORY_TYPE_TRANSIENT_DESELECT
+KeyBuilder.ALG_TYPE_EC_FP_PRIVATE, JCSystem.MEMORY_TYPE_TRANSIENT_DESELECT, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.TYPE_EC_FP_PRIVATE, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.ALG_TYPE_RSA_PUBLIC, JCSystem.MEMORY_TYPE_TRANSIENT_DESELECT, KeyBuilder.LENGTH_RSA_2048
+KeyBuilder.TYPE_RSA_PUBLIC, KeyBuilder.LENGTH_RSA_2048
+KeyBuilder.ALG_TYPE_RSA_PRIVATE, JCSystem.MEMORY_TYPE_TRANSIENT_DESELECT, KeyBuilder.LENGTH_RSA_2048
+KeyBuilder.TYPE_RSA_PRIVATE, KeyBuilder.LENGTH_RSA_2048
+RandomData.ALG_TRNG
+RandomData.ALG_SECURE_RANDOM
+Cipher.CIPHER_AES_CBC, Cipher.PAD_NOPAD
+Cipher.ALG_AES_BLOCK_128_CBC_NOPAD
+MessageDigest.ALG_SHA_256, Signature.SIG_CIPHER_ECDSA, Cipher.PAD_NULL
+Signature.ALG_ECDSA_SHA_256
+MessageDigest.ALG_SHA_256, Signature.SIG_CIPHER_RSA, Cipher.PAD_PKCS1
+Signature.ALG_RSA_SHA_256_PKCS1
+MessageDigest.ALG_SHA_256, Signature.SIG_CIPHER_RSA, Cipher.PAD_PKCS1_PSS
+Signature.ALG_RSA_SHA_256_PKCS1_PSS
+KeyBuilder.TYPE_AES, KeyBuilder.LENGTH_AES_256
+KeyBuilder.ALG_TYPE_EC_FP_PRIVATE, JCSystem.MEMORY_TYPE_PERSISTENT
+KeyBuilder.ALG_TYPE_EC_FP_PRIVATE, JCSystem.MEMORY_TYPE_PERSISTENT, KeyBuilder.LENGTH_EC_FP_256
+```
+
+## SatochipApplet
+
+```
+MessageDigest.ALG_SHA_512
+RandomData.ALG_SECURE_RANDOM
+MessageDigest.ALG_SHA_256
+Cipher.ALG_AES_BLOCK_128_ECB_NOPAD
+KeyBuilder.TYPE_AES, KeyBuilder.LENGTH_AES_128
+KeyBuilder.TYPE_EC_FP_PRIVATE, LENGTH_EC_FP_256
+Cipher.ALG_AES_BLOCK_128_CBC_NOPAD
+KeyBuilder.TYPE_EC_FP_PUBLIC, LENGTH_EC_FP_256
+KeyBuilder.TYPE_AES, KeyBuilder.LENGTH_AES_256
+MessageDigest.ALG_SHA
+```
+
+### FIDO2Applet
+
+```
+Cipher.ALG_AES_BLOCK_128_CBC_NOPAD
+Signature.ALG_ECDSA_SHA_256
+KeyBuilder.TYPE_EC_FP_PRIVATE_TRANSIENT_DESELECT, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.TYPE_EC_FP_PRIVATE_TRANSIENT_RESET, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.TYPE_EC_FP_PRIVATE, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.TYPE_AES, KeyBuilder.LENGTH_AES_256
+KeyBuilder.TYPE_AES_TRANSIENT_DESELECT, KeyBuilder.LENGTH_AES_256
+RandomData.ALG_SECURE_RANDOM
+KeyAgreement.ALG_EC_SVDP_DH_PLAIN
+MessageDigest.ALG_SHA_256
+KeyBuilder.TYPE_EC_FP_PUBLIC, KeyBuilder.LENGTH_EC_FP_256
+```
+
+### apex-ndef
+
+```
+KeyBuilder.TYPE_AES, KeyBuilder.LENGTH_AES_128
+MessageDigest.ALG_NULL, Signature.SIG_CIPHER_AES_CMAC128, Cipher.PAD_ISO9797_M2
+Signature.ALG_AES_CMAC_128
+```
+
+### SmartPGP
+
+```
+RandomData.ALG_SECURE_RANDOM
+KeyBuilder.TYPE_RSA_PUBLIC, KeyBuilder.LENGTH_RSA_2048
+KeyBuilder.TYPE_RSA_PUBLIC, KeyBuilder.LENGTH_RSA_3072
+KeyBuilder.TYPE_RSA_PUBLIC, KeyBuilder.LENGTH_RSA_4096
+KeyBuilder.TYPE_RSA_CRT_PRIVATE, KeyBuilder.LENGTH_RSA_2048
+KeyBuilder.TYPE_RSA_CRT_PRIVATE, KeyBuilder.LENGTH_RSA_3072
+KeyBuilder.TYPE_RSA_CRT_PRIVATE, KeyBuilder.LENGTH_RSA_4096
+KeyBuilder.TYPE_RSA_PRIVATE, KeyBuilder.LENGTH_RSA_2048
+KeyBuilder.TYPE_RSA_PRIVATE, KeyBuilder.LENGTH_RSA_3072
+KeyBuilder.TYPE_RSA_PRIVATE, KeyBuilder.LENGTH_RSA_4096
+Cipher.ALG_RSA_PKCS1
+KeyBuilder.TYPE_EC_FP_PUBLIC, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.TYPE_EC_FP_PUBLIC, KeyBuilder.LENGTH_EC_FP_384
+KeyBuilder.TYPE_EC_FP_PUBLIC, KeyBuilder.LENGTH_EC_FP_521
+KeyBuilder.TYPE_EC_FP_PRIVATE, KeyBuilder.LENGTH_EC_FP_256
+KeyBuilder.TYPE_EC_FP_PRIVATE, KeyBuilder.LENGTH_EC_FP_384
+KeyBuilder.TYPE_EC_FP_PRIVATE, KeyBuilder.LENGTH_EC_FP_521
+Signature.ALG_ECDSA_SHA_512
+Cipher.ALG_AES_BLOCK_128_CBC_NOPAD
+Signature.ALG_ECDSA_SHA
+Signature.ALG_ECDSA_SHA_224
+Signature.ALG_ECDSA_SHA_256
+Signature.ALG_ECDSA_SHA_384
+KeyAgreement.ALG_EC_SVDP_DH_PLAIN
+KeyBuilder.TYPE_AES, KeyBuilder.LENGTH_AES_128
+KeyBuilder.TYPE_AES, KeyBuilder.LENGTH_AES_256
+```
+
+## flexsecure-ykhmac
+
+```
+RandomData.ALG_SECURE_RANDOM
+MessageDigest.ALG_SHA
+Signature.ALG_HMAC_SHA1
+KeyBuilder.TYPE_HMAC_TRANSIENT_RESET, KeyBuilder.LENGTH_HMAC_SHA_1_BLOCK_64
+```
+
+### Satodime-Applet
+
+```
+RandomData.ALG_SECURE_RANDOM
+MessageDigest.ALG_SHA_256
+Cipher.ALG_AES_BLOCK_128_ECB_NOPAD
+KeyBuilder.TYPE_AES, KeyBuilder.LENGTH_AES_128
+KeyBuilder.TYPE_EC_FP_PRIVATE, LENGTH_EC_FP_256
+Cipher.ALG_AES_BLOCK_128_CBC_NOPAD 
+KeyBuilder.TYPE_EC_FP_PUBLIC, LENGTH_EC_FP_256 
+MessageDigest.ALG_SHA
+```
+
+### Seedkeeper-Applet
+
+```
+MessageDigest.ALG_SHA_512
+MessageDigest.ALG_SHA
+RandomData.ALG_SECURE_RANDOM
+MessageDigest.ALG_SHA_256
+KeyBuilder.TYPE_AES, KeyBuilder.LENGTH_AES_128
+KeyBuilder.TYPE_EC_FP_PRIVATE, LENGTH_EC_FP_256
+Cipher.ALG_AES_BLOCK_128_CBC_NOPAD
+Cipher.ALG_AES_BLOCK_128_ECB_NOPAD
+KeyBuilder.TYPE_EC_FP_PUBLIC, LENGTH_EC_FP_256
+```
 
 ## Sources and Further Reading
 

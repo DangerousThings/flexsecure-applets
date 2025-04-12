@@ -169,7 +169,7 @@ Signature.ALG_RSA_SHA_256_PKCS1
 Signature.ALG_RSA_SHA_256_PKCS1_PSS
 ```
 
-## SatochipApplet
+### SatochipApplet
 
 ```
 Cipher.ALG_AES_BLOCK_128_CBC_NOPAD
@@ -239,7 +239,7 @@ Signature.ALG_ECDSA_SHA_384
 Signature.ALG_ECDSA_SHA_512
 ```
 
-## flexsecure-ykhmac
+### flexsecure-ykhmac
 
 ```
 KeyBuilder.TYPE_HMAC_TRANSIENT_RESET, KeyBuilder.LENGTH_HMAC_SHA_1_BLOCK_64

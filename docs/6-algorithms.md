@@ -6,6 +6,47 @@ Not all of these algorithms are hard requirements, some applets might provide fa
 
 The `scripts/algscan.sh` script was used to generate this report.
 
+## Overview
+
+AES:
+ - AES sizes 128, 256
+ - AES modes CBC, ECB
+ - AES paddings ISO9797-M2, None
+
+RSA:
+ - RSA sizes 2048, 3072, 4096
+ - RSA paddings PKCS#1, None
+ - RSA signatures SHA 256
+ - RSA signature paddings PKCS1, PKCS1-PSS
+
+SHA:
+ - SHA sizes 224, 256, 512
+ - SHA signatures ECDSA, RSA
+ - SHA paddings PKCS1, PKCS1-PSS, None
+
+EC:
+ - EC sizes 256, 384, 521
+
+ECDH:
+ - ECDH types Default, Plain, Plain XY
+
+HMAC:
+ - HMAC types SHA1, SHA1 (64 block), SHA256
+
+CMAC:
+ - CMAC types AES (CMAC 128)
+ - CMAC paddings ISO9797-M2, None
+
+MAC:
+ - MAC types AES 128
+ - MAC paddings None
+
+ECDSA:
+ - ECDSA SHA sizes 224, 256, 384, 512
+
+RNG:
+ - RNG types Pseudo, True, Secure
+
 ## Combined list
 
 ```

@@ -3,7 +3,7 @@
 _setup_file() {
     pcscd -f &
     PCSCD_PID="$!"
-    sleep 2
+    sleep 4
 }
 
 _teardown_file() {
@@ -12,5 +12,5 @@ _teardown_file() {
 
 _teardown() {
     kill $JCSIM_PID
-    sleep 2
+    sleep 4
 }

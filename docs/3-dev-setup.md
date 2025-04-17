@@ -86,12 +86,12 @@ To "eject" the card, just stop the Jcardsim process.
 
 ## Docker Container
 
-If you do not want to clutter your system, or don't have a compatible Linux system, you can use a pre-made Docker container for compilation. Install Docker, and use the image at https://hub.docker.com/r/stargate01/smartcard-ci . You can find the source Dockerfile at https://github.com/DangerousThings/smartcard-ci . This image is also used to compile the applets distributed via https://github.com/DangerousThings/flexSecure-applets/releases .
+If you do not want to clutter your system, or don't have a compatible Linux system, you can use a pre-made Docker container for compilation. Install Docker, and use the image at https://hub.docker.com/r/vivokey/smartcard-ci . You can find the source Dockerfile at https://github.com/DangerousThings/smartcard-ci . This image is also used to compile the applets distributed via https://github.com/DangerousThings/flexSecure-applets/releases .
 
 To run a command inside the Docker container:
 
 ```
-docker run -it --rm -v SOURCES:/app/src:rw stargate01/smartcard-ci "command"
+docker run -it --rm -v SOURCES:/app/src:rw vivokey/smartcard-ci "command"
 ```
 
 Replace `SOURCES` with the absolute path to your source code directory, and `"command"` with the command you want to run.

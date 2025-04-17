@@ -1,4 +1,4 @@
-[![Build Status](https://drone-github.chrz.de/api/badges/DangerousThings/flexsecure-applets/status.svg)](https://drone-github.chrz.de/DangerousThings/flexsecure-applets)
+[![Build Status](https://drone-github.infrastructure.vivokey.com/api/badges/DangerousThings/flexsecure-applets/status.svg)](https://drone-github.infrastructure.vivokey.com/DangerousThings/flexsecure-applets)
 
 # flexsecure-applets
 

@@ -69,9 +69,11 @@ The CPLC data contains information about the card itself, and who was involved a
 - who pre-personalized the chip, what equipment they used, and when 
 - who personalized the chip, when
 
-The manufacturing and pre-personalization stages will have already been completed on any card recieved in the OP_READY state.  
-The personalization section of the CPLC data can be written to with anything you desire via GlobalPlatformPro.
-
+### Security Domains
+Security domains are partitions on the card that separate applets from each other.  
+When you set up the card, you are installing keys and applets to the ISD, or Issuer security domain. it is possible to create additional security domains, known as SSDs or supplemental security domains on the card. these can have their own keys installed, and be configured to allow applets to be moved in and out of them (often referred to as extradition).
+creating SSDs has little benefit for an individual user of a card, and is meant for situations where multiple organizations have applets on one card, for example a payment applet provided by mastercard would likely be in a seperate security domain from any end user applets.  
+Information on creating and using SSDs is available in the GlobalPlatformPro documentation.  
 
 ## Java Card OpenPlatform (JCOP)
 

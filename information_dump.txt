@@ -1,5 +1,0 @@
-Information to add to this repo
-
-- security domains
-
-#TODO: write up information on these topics, insert into the appropriate documentation sections, and submit a pull request

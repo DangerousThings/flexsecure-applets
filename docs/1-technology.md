@@ -42,6 +42,24 @@ If you use the jar version, download and install the latest version of the Java 
 
 The best user guide for GPP can be found in its repository readme file.
 
+### Lifecycle states
+Global Platform specs define a lifecycle management system which is intended to indicate what has been configured on the card in preparation for it to be issued. transitioning between these states is, with the exception of CARD_LOCKED, irreversible.  
+these states are as follows:
+- OP_READY
+  - The card will be in this state when it is brought up to the point where it can run applications.
+  - in this state, the card should have keys loaded to it, and any security domains set up.
+- INITIALIZED
+  - this state indicates that some initial configuration has been populated, but the card is not yet ready to be issued to an end user
+- SECURED
+  - This state indicates that the card has been fully set up and is ready to be issued
+  - transitioning a card to secured may cause JCOP to be more strict about what the card allows you to change on it, but as far as use with GlobalPlatformPro tools is concerned, there is no real difference with this particular chip.
+- CARD_LOCKED
+  - This state locks the card out from being used. it can be triggered either from GlobalPlatformPro or by an individual applet
+- TERMINATED
+  - The card is permanently locked out and can no longer be used or modified in any way, with the exception of an applet that has been grated permission to run post-termination.
+
+The flexsecure and test card from dangerous things both ship in the OP_READY state.
+
 ## Java Card OpenPlatform (JCOP)
 
 JCOP is an embedded operating system for secure elements, which implements the JavaCard and GlobalPlatform specifications. It is mainly developed by NXP, and used on their chips.

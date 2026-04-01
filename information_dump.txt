@@ -1,8 +1,5 @@
 Information to add to this repo
 
-- CPLC personalization data
-- key diversification schemes
-- globalplatform lifecycle states
 - security domains
 
 #TODO: write up information on these topics, insert into the appropriate documentation sections, and submit a pull request

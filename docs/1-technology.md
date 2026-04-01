@@ -43,6 +43,7 @@ If you use the jar version, download and install the latest version of the Java 
 The best user guide for GPP can be found in its repository readme file.
 
 ### Lifecycle states
+
 Global Platform specs define a lifecycle management system which is intended to indicate what has been configured on the card in preparation for it to be issued. transitioning between these states is, with the exception of CARD_LOCKED, irreversible.  
 these states are as follows:
 - OP_READY
@@ -59,6 +60,18 @@ these states are as follows:
   - The card is permanently locked out and can no longer be used or modified in any way, with the exception of an applet that has been grated permission to run post-termination.
 
 The flexsecure and test card from dangerous things both ship in the OP_READY state.
+
+### CPLC (Card production lifecycle) data
+
+The CPLC data contains information about the card itself, and who was involved at each step of its lifecycle. it includes
+- Who fabricated the chip, and when
+- What OS the chip is running
+- who pre-personalized the chip, what equipment they used, and when 
+- who personalized the chip, when
+
+The manufacturing and pre-personalization stages will have already been completed on any card recieved in the OP_READY state.  
+The personalization section of the CPLC data can be written to with anything you desire via GlobalPlatformPro.
+
 
 ## Java Card OpenPlatform (JCOP)
 
@@ -121,5 +134,6 @@ Instances are retained across card resets and power cycles, and so is their non-
 - https://www.eftlab.com/knowledge-base/171-atr-list-full/
 - https://smartcard-atr.apdu.fr/
 - https://www.eftlab.com/knowledge-base/211-emv-aid-rid-pix/
+- https://globalplatform.org/specs-library/card-specification
 
 Improve this document: https://github.com/dangerousthings/flexSecure-applets/tree/master/docs

@@ -74,6 +74,7 @@ Security domains are partitions on the card that separate applets from each othe
 When you set up the card, you are installing keys and applets to the ISD, or Issuer security domain. it is possible to create additional security domains, known as SSDs or supplemental security domains on the card. these can have their own keys installed, and be configured to allow applets to be moved in and out of them (often referred to as extradition).
 creating SSDs has little benefit for an individual user of a card, and is meant for situations where multiple organizations have applets on one card, for example a payment applet provided by mastercard would likely be in a seperate security domain from any end user applets.  
 Information on creating and using SSDs is available in the GlobalPlatformPro documentation.  
+Note: applets cannot be extradited to a security domain until you install keys to it with `gp -c <$SSD_AID> --lock <keys>
 
 ## Java Card OpenPlatform (JCOP)
 

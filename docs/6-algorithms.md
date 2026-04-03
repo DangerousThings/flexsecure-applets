@@ -9,47 +9,57 @@ The `scripts/algscan.sh` script was used to generate this report.
 ## Overview
 
 AES:
- - AES sizes 128, 256
- - AES modes CBC, ECB
- - AES paddings ISO9797-M2, None
+
+- AES sizes 128, 256
+- AES modes CBC, ECB
+- AES paddings ISO9797-M2, None
 
 RSA:
- - RSA sizes 2048, 3072, 4096
- - RSA paddings PKCS#1, None
- - RSA signatures SHA 256
- - RSA signature paddings PKCS1, PKCS1-PSS
+
+- RSA sizes 2048, 3072, 4096
+- RSA paddings PKCS#1, None
+- RSA signatures SHA 256
+- RSA signature paddings PKCS1, PKCS1-PSS
 
 SHA:
- - SHA sizes 224, 256, 512
- - SHA signatures ECDSA, RSA
- - SHA paddings PKCS1, PKCS1-PSS, None
+
+- SHA sizes 224, 256, 512
+- SHA signatures ECDSA, RSA
+- SHA paddings PKCS1, PKCS1-PSS, None
 
 EC:
- - EC sizes 256, 384, 521
+
+- EC sizes 256, 384, 521
 
 ECDH:
- - ECDH types Default, Plain, Plain XY
+
+- ECDH types Default, Plain, Plain XY
 
 HMAC:
- - HMAC types SHA1, SHA1 (64 block), SHA256
+
+- HMAC types SHA1, SHA1 (64 block), SHA256
 
 CMAC:
- - CMAC types AES (CMAC 128)
- - CMAC paddings ISO9797-M2, None
+
+- CMAC types AES (CMAC 128)
+- CMAC paddings ISO9797-M2, None
 
 MAC:
- - MAC types AES 128
- - MAC paddings None
+
+- MAC types AES 128
+- MAC paddings None
 
 ECDSA:
- - ECDSA SHA sizes 224, 256, 384, 512
+
+- ECDSA SHA sizes 224, 256, 384, 512
 
 RNG:
- - RNG types Pseudo, True, Secure
+
+- RNG types Pseudo, True, Secure
 
 ## Combined list
 
-```
+```text
 Cipher.ALG_AES_BLOCK_128_CBC_NOPAD
 Cipher.ALG_AES_BLOCK_128_ECB_NOPAD
 Cipher.ALG_AES_CBC_ISO9797_M2
@@ -122,7 +132,7 @@ Signature.ALG_RSA_SHA_256_PKCS1_PSS
 
 ### apex-tesla
 
-```
+```text
 Cipher.ALG_AES_BLOCK_128_ECB_NOPAD
 KeyAgreement.ALG_EC_SVDP_DH
 KeyBuilder.ALG_TYPE_AES, JCSystem.MEMORY_TYPE_TRANSIENT_DESELECT, KeyBuilder.LENGTH_AES_128
@@ -131,7 +141,7 @@ KeyPair.ALG_EC_FP, KeyBuilder.LENGTH_EC_FP_256
 
 ### apex-totp
 
-```
+```text
 MessageDigest.ALG_SHA
 MessageDigest.ALG_SHA_224
 MessageDigest.ALG_SHA_256
@@ -140,7 +150,7 @@ RandomData.ALG_PSEUDO_RANDOM
 
 ### status-keycard
 
-```
+```text
 Cipher.ALG_AES_CBC_ISO9797_M2
 KeyAgreement.ALG_EC_SVDP_DH_PLAIN
 KeyAgreement.ALG_EC_SVDP_DH_PLAIN_XY
@@ -159,7 +169,7 @@ Signature.ALG_HMAC_SHA_512
 
 ### apex-spark
 
-```
+```text
 Cipher.ALG_AES_BLOCK_128_CBC_NOPAD
 Cipher.CIPHER_AES_CBC, Cipher.PAD_NOPAD
 KeyBuilder.TYPE_AES, KeyBuilder.LENGTH_AES_128
@@ -169,7 +179,7 @@ RandomData.ALG_TRNG
 
 ### u2f-javacard
 
-```
+```text
 Cipher.ALG_AES_BLOCK_128_CBC_NOPAD
 KeyBuilder.TYPE_AES, KeyBuilder.LENGTH_AES_256
 KeyBuilder.TYPE_EC_FP_PRIVATE_TRANSIENT_DESELECT, KeyBuilder.LENGTH_EC_FP_256
@@ -182,7 +192,7 @@ Signature.ALG_ECDSA_SHA_256
 
 ### apex-fido2
 
-```
+```text
 Cipher.ALG_AES_BLOCK_128_CBC_NOPAD
 Cipher.CIPHER_AES_CBC, Cipher.PAD_NOPAD
 KeyAgreement.ALG_EC_SVDP_DH_PLAIN
@@ -214,7 +224,7 @@ Signature.ALG_RSA_SHA_256_PKCS1_PSS
 
 ### SatochipApplet
 
-```
+```text
 Cipher.ALG_AES_BLOCK_128_CBC_NOPAD
 Cipher.ALG_AES_BLOCK_128_ECB_NOPAD
 KeyAgreement.ALG_EC_SVDP_DH_PLAIN_XY
@@ -230,7 +240,7 @@ RandomData.ALG_SECURE_RANDOM
 
 ### FIDO2Applet
 
-```
+```text
 Cipher.ALG_AES_BLOCK_128_CBC_NOPAD
 KeyAgreement.ALG_EC_SVDP_DH_PLAIN
 KeyBuilder.TYPE_AES_TRANSIENT_DESELECT, KeyBuilder.LENGTH_AES_256
@@ -246,7 +256,7 @@ Signature.ALG_ECDSA_SHA_256
 
 ### apex-ndef
 
-```
+```text
 KeyBuilder.TYPE_AES, KeyBuilder.LENGTH_AES_128
 MessageDigest.ALG_NULL, Signature.SIG_CIPHER_AES_CMAC128, Cipher.PAD_ISO9797_M2
 Signature.ALG_AES_CMAC_128
@@ -254,7 +264,7 @@ Signature.ALG_AES_CMAC_128
 
 ### SmartPGP
 
-```
+```text
 Cipher.ALG_AES_BLOCK_128_CBC_NOPAD
 Cipher.ALG_RSA_PKCS1
 KeyAgreement.ALG_EC_SVDP_DH_PLAIN
@@ -285,7 +295,7 @@ Signature.ALG_ECDSA_SHA_512
 
 ### flexsecure-ykhmac
 
-```
+```text
 KeyBuilder.TYPE_HMAC_TRANSIENT_RESET, KeyBuilder.LENGTH_HMAC_SHA_1_BLOCK_64
 MessageDigest.ALG_SHA
 RandomData.ALG_SECURE_RANDOM
@@ -294,13 +304,13 @@ Signature.ALG_HMAC_SHA1
 
 ### Satodime-Applet
 
-```
-Cipher.ALG_AES_BLOCK_128_CBC_NOPAD 
+```text
+Cipher.ALG_AES_BLOCK_128_CBC_NOPAD
 Cipher.ALG_AES_BLOCK_128_ECB_NOPAD
 KeyAgreement.ALG_EC_SVDP_DH_PLAIN_XY
 KeyBuilder.TYPE_AES, KeyBuilder.LENGTH_AES_128
 KeyBuilder.TYPE_EC_FP_PRIVATE, LENGTH_EC_FP_256
-KeyBuilder.TYPE_EC_FP_PUBLIC, LENGTH_EC_FP_256 
+KeyBuilder.TYPE_EC_FP_PUBLIC, LENGTH_EC_FP_256
 MessageDigest.ALG_SHA
 MessageDigest.ALG_SHA_256
 RandomData.ALG_SECURE_RANDOM
@@ -308,7 +318,7 @@ RandomData.ALG_SECURE_RANDOM
 
 ### Seedkeeper-Applet
 
-```
+```text
 Cipher.ALG_AES_BLOCK_128_CBC_NOPAD
 Cipher.ALG_AES_BLOCK_128_ECB_NOPAD
 KeyAgreement.ALG_EC_SVDP_DH_PLAIN_XY
@@ -323,6 +333,6 @@ RandomData.ALG_SECURE_RANDOM
 
 ## Sources and Further Reading
 
-- https://docs.oracle.com/javase/7/docs/api/javax/crypto/package-summary.html
+- <https://docs.oracle.com/javase/7/docs/api/javax/crypto/package-summary.html>
 
-Improve this document: https://github.com/DangerousThings/flexsecure-applets/tree/master/docs
+Improve this document: <https://github.com/DangerousThings/flexsecure-applets/tree/master/docs>

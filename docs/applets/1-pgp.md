@@ -6,14 +6,14 @@ Explaining the theory of public-key cryptography is out of scope, please refer t
 
 ## Applet Information
 
-- Repository: https://github.com/ANSSI-FR/SmartPGP (javacard-3.0.4-without-secure-messaging branch)
+- Repository: <https://github.com/ANSSI-FR/SmartPGP> (javacard-3.0.4-without-secure-messaging branch)
 - Binary name: `SmartPGPApplet-default.cap` and `SmartPGPApplet-large.cap`
-- Download: https://github.com/DangerousThings/flexsecure-applets/releases
+- Download: <https://github.com/DangerousThings/flexsecure-applets/releases>
 - AID: `d2:76:00:01:24:01:03:04:00:0A:00:00:00:00:00:00` (has to be adjusted, see below), Package: `d2:76:00:01:24:01`
 - Storage requirements:
-  - Persistent: `24776` bytes (`28148` with one RSA 2048 key)
-  - Transient reset: `2118` bytes
-  - Transient deselect: `16` bytes
+   - Persistent: `24776` bytes (`28148` with one RSA 2048 key)
+   - Transient reset: `2118` bytes
+   - Transient deselect: `16` bytes
 
 ## Compiling the Applet Yourself
 
@@ -31,7 +31,7 @@ If you want to use RSA keys larger than 2048 bits, you have to change the consta
 
 Otherwise, gpg might fail with a message like `gpg: KEYTOCARD failed: Hardware problem`.
 
-You might also want to use my Docker image and build environment, which contains all necessary packages for compilation and testing: https://github.com/DangerousThings/flexsecure-applets . This environment automatically builds both the default and large configuration.
+You might also want to use my Docker image and build environment, which contains all necessary packages for compilation and testing: <https://github.com/DangerousThings/flexsecure-applets> . This environment automatically builds both the default and large configuration.
 
 For more options, see the SmartPGP README file.
 
@@ -41,15 +41,15 @@ To install the applet to your card, you have to first construct a valid AID (ref
 
 The complete AID should look like this: `D2 76 00 01 24 01 03 04 C0 FE 00 00 00 01 00 00`.
 
-Use GlobalPlatformPro (GPP) from https://github.com/martinpaljak/GlobalPlatformPro/releases to install the applet:
+Use GlobalPlatformPro (GPP) from <https://github.com/martinpaljak/GlobalPlatformPro/releases> to install the applet:
 
-```
+```bash
 gp -install SmartPGPApplet.cap -create D276000124010304C0FE000000010000
 ```
 
 Listing the applets using `gp --list` should print something like this:
 
-```
+```text
 APP: D276000124010304C0FE000000010000 (SELECTABLE)
      Parent:   A000000151000000
      From:     D27600012401
@@ -68,18 +68,18 @@ For usage, refer to the manuals for GnuPGP, GPG4Win, OpenKeychain, Thunderbird, 
 
 ### Importing Keys
 
-Due to an implementation detail of the SmartPGP applet (https://github.com/ANSSI-FR/SmartPGP/issues/15), the card has to be configured for a specific algorithm before an existing key can be imported. This can be done using the `smartpgp-cli` tool in `SmartPGP/bin/`. For example, to configure the card for NIST P-512, run `./smartpgp-cli switch-p521`. You might have to install various Python 3 modules like `pyscard` and `pyasn1` using your system or Python package manager.
+Due to an implementation detail of the SmartPGP applet (<https://github.com/ANSSI-FR/SmartPGP/issues/15>), the card has to be configured for a specific algorithm before an existing key can be imported. This can be done using the `smartpgp-cli` tool in `SmartPGP/bin/`. For example, to configure the card for NIST P-512, run `./smartpgp-cli switch-p521`. You might have to install various Python 3 modules like `pyscard` and `pyasn1` using your system or Python package manager.
 
 Generating keys on the card itself can be done for any algorithm without having to pre-configure the algorithm.
 
 ## Sources and Further Reading
 
-- https://en.wikipedia.org/wiki/Public-key_cryptography
-- https://en.wikipedia.org/wiki/Pretty_Good_Privacy
-- https://www.thunderbird.net/
-- https://gnupg.org/
-- https://en.wikipedia.org/wiki/OpenPGP_card
-- https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.pdf
-- https://www.gpg4win.org/
+- <https://en.wikipedia.org/wiki/Public-key_cryptography>
+- <https://en.wikipedia.org/wiki/Pretty_Good_Privacy>
+- <https://www.thunderbird.net/>
+- <https://gnupg.org/>
+- <https://en.wikipedia.org/wiki/OpenPGP_card>
+- <https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.pdf>
+- <https://www.gpg4win.org/>
 
-Improve this document: https://github.com/DangerousThings/flexsecure-applets/tree/master/docs
+Improve this document: <https://github.com/DangerousThings/flexsecure-applets/tree/master/docs>

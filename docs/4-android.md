@@ -12,7 +12,7 @@ On some Android ROMS, the NFC driver is configured improperly, which limits the 
 
 To change the configuration, add the line
 
-```
+```text
 ISO_DEP_MAX_TRANSCEIVE=0xFEFF
 ```
 
@@ -26,11 +26,11 @@ The proprietary Google Services security manager does not implement support for 
 
 ## Sources and Further Reading
 
-- https://github.com/microg/GmsCore
-- https://microg.org/
-- https://android.stackexchange.com/questions/110927/how-to-mount-system-rewritable-or-read-only-rw-ro
-- https://github.com/microg/GmsCore/pulls/StarGate01
-- https://github.com/NXPNFCLinux/linux_libnfc-nci/issues/116
-- https://groups.google.com/a/fidoalliance.org/g/fido-dev/c/H_32sr1STAg
+- <https://github.com/microg/GmsCore>
+- <https://microg.org/>
+- <https://android.stackexchange.com/questions/110927/how-to-mount-system-rewritable-or-read-only-rw-ro>
+- <https://github.com/microg/GmsCore/pulls/StarGate01>
+- <https://github.com/NXPNFCLinux/linux_libnfc-nci/issues/116>
+- <https://groups.google.com/a/fidoalliance.org/g/fido-dev/c/H_32sr1STAg>
 
-Improve this document: https://github.com/DangerousThings/flexSecure-applets/tree/master/docs
+Improve this document: <https://github.com/DangerousThings/flexSecure-applets/tree/master/docs>

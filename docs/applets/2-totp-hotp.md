@@ -6,14 +6,14 @@ These codes are preferred over e.g. SMS codes, because the process requires no c
 
 ## Applet Information
 
-- Repository: https://github.com/VivoKey/apex-totp
+- Repository: <https://github.com/VivoKey/apex-totp>
 - Binary name: `vivokey-otp.cap`
-- Download: https://github.com/DangerousThings/flexsecure-applets/releases
+- Download: <https://github.com/DangerousThings/flexsecure-applets/releases>
 - AID: `A0:00:00:05:27:21:01:01:41:50:45:58:01`, Package: `A0:00:00:05:27:21:01:01:41:50:45:58`
 - Storage requirements:
-  - Persistent: `5128` bytes (`6020` with three TOTP accounts)
-  - Transient reset: `2296` bytes (`2392`)
-  - Transient deselect: `64` bytes
+   - Persistent: `5128` bytes (`6020` with three TOTP accounts)
+   - Transient reset: `2296` bytes (`2392`)
+   - Transient deselect: `64` bytes
 
 ## Compiling the Applet Yourself
 
@@ -23,15 +23,15 @@ Use git to clone the sources recursively, and change into the directory. Make su
 
 ## Installing the Applet
 
-Use GlobalPlatformPro (GPP) from https://github.com/martinpaljak/GlobalPlatformPro/releases to install the applet:
+Use GlobalPlatformPro (GPP) from <https://github.com/martinpaljak/GlobalPlatformPro/releases> to install the applet:
 
-```
+```bash
 gp -install vivokey-otp.cap
 ```
 
 Listing the applets using `gp --list` should print something like this:
 
-```
+```text
 APP: A0000005272101014150455801 (SELECTABLE)
      Parent:  A000000151000000
      From:    A00000052721010141504558
@@ -50,7 +50,7 @@ The Yubikey Authenticator tool is able to interface this applet on both Desktop 
 
 You can also use the yubikey-manager CLI tool (`ykman`) to interface with the applet. You have to specify your reader using the `-r` flag (use `ykman list -r` to get a list of readers). Replace `SECRET` with a 32 character Base-32 encoded secret:
 
-```
+```bash
 ykman -r 'READER' oath accounts uri "otpauth://totp/Test?secret=SECRET"
 
 ykman -r 'READER' oath accounts code Test
@@ -60,11 +60,11 @@ This URI string is the same as is encoded in the usual QR codes.
 
 ## Sources and Further Reading
 
-- https://www.yubico.com/products/yubico-authenticator/
-- https://en.wikipedia.org/wiki/Time-based_one-time_password
-- https://www.yubico.com/resources/glossary/oath-totp/
-- https://www.yubico.com/resources/glossary/oath-hotp/
-- https://stefansundin.github.io/2fa-qr/
-- https://developers.yubico.com/yubikey-manager/
+- <https://www.yubico.com/products/yubico-authenticator/>
+- <https://en.wikipedia.org/wiki/Time-based_one-time_password>
+- <https://www.yubico.com/resources/glossary/oath-totp/>
+- <https://www.yubico.com/resources/glossary/oath-hotp/>
+- <https://stefansundin.github.io/2fa-qr/>
+- <https://developers.yubico.com/yubikey-manager/>
 
-Improve this document: https://github.com/DangerousThings/flexsecure-applets/tree/master/docs
+Improve this document: <https://github.com/DangerousThings/flexsecure-applets/tree/master/docs>

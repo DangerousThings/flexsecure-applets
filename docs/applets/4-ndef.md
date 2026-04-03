@@ -4,14 +4,14 @@ NDEF (NFC Data Exchange Format) is a data format used to store structured data.
 
 ## Applet Information
 
-- Repository: https://github.com/OpenJavaCard/openjavacard-ndef
+- Repository: <https://github.com/OpenJavaCard/openjavacard-ndef>
 - Binary name: `openjavacard-ndef-full.cap` and `openjavacard-ndef-tiny.cap`
-- Download: https://github.com/DangerousThings/flexsecure-applets/releases
+- Download: <https://github.com/DangerousThings/flexsecure-applets/releases>
 - AID: `D2:76:00:00:85:01:01`, Package: `D2:76:00:00:85`
 - Storage requirements:
-  - Persistent: `4372` bytes
-  - Transient reset: `16` bytes
-  - Transient deselect: `0` bytes
+   - Persistent: `4372` bytes
+   - Transient reset: `16` bytes
+   - Transient deselect: `0` bytes
 
 ## Compiling the Applet Yourself
 
@@ -25,19 +25,19 @@ The build definition produces various versions of the applet, the most interesti
 
 To install the applet to your card, you have to pass along some configuration data.
 
-Use GlobalPlatformPro (GPP) from https://github.com/martinpaljak/GlobalPlatformPro/releases to install the applet:
+Use GlobalPlatformPro (GPP) from <https://github.com/martinpaljak/GlobalPlatformPro/releases> to install the applet:
 
 To install the `full` variant with 2KB re-writeable storage:
 
-```
+```bash
 gp -install openjavacard-ndef-full.cap -create D2760000850101 -params 8102000082020800
 ```
 
-The TLV configuration format has a few options, for the specification see the openjavacard-ndef documentation at https://github.com/OpenJavaCard/openjavacard-ndef/blob/master/doc/install.md .
+The TLV configuration format has a few options, for the specification see the openjavacard-ndef documentation at <https://github.com/OpenJavaCard/openjavacard-ndef/blob/master/doc/install.md> .
 
-To install the `tiny` variant with the static URL "https://chrz.de":
+To install the `tiny` variant with the static URL "<https://chrz.de>":
 
-```
+```bash
 gp -install openjavacard-ndef-tiny.cap -create D2760000850101 -params d90108015531046368727a2e6465
 ```
 
@@ -49,11 +49,11 @@ record = ndef.Record('urn:nfc:wkt:U', '1', b'\x04chrz.de')
 print((b''.join((ndef.message_encoder([ record ])))).hex())
 ```
 
-Check the documentation at https://ndeflib.readthedocs.io/en/latest/ndef.html#record-class . Make sure your data has a maximum size of about 200 bytes.
+Check the documentation at <https://ndeflib.readthedocs.io/en/latest/ndef.html#record-class> . Make sure your data has a maximum size of about 200 bytes.
 
 Listing the applets using `gp --list` should print something like this:
 
-```
+```text
 APP: D2760000850101 (SELECTABLE)
      Parent:  A000000151000000
      From:    D276000177100211030001
@@ -68,11 +68,11 @@ For more options, see the openjavacard-ndef documentation.
 
 ## Using the Applet
 
-NDEF is widely supported by most smartphones. To write data to a re-writeable tag, I recommend using NFC Tools Pro an Android, but most apps should be compatible. 
+NDEF is widely supported by most smartphones. To write data to a re-writeable tag, I recommend using NFC Tools Pro an Android, but most apps should be compatible.
 
-On PC, you can use the `pcsc_ndef.py` tool from https://github.com/Giraut/pcsc-ndef, you have to specify your reader using the `-r` flag. Substitute `PAYLOAD` for the data you want to write:
+On PC, you can use the `pcsc_ndef.py` tool from <https://github.com/Giraut/pcsc-ndef>, you have to specify your reader using the `-r` flag. Substitute `PAYLOAD` for the data you want to write:
 
-```
+```bash
 echo PAYLOAD | python3 pcsc_ndef.py -r "READER" -t 4 write
 
 python3 pcsc_ndef.py -r "READER" -t 4 read
@@ -80,14 +80,14 @@ python3 pcsc_ndef.py -r "READER" -t 4 read
 
 ## Sources and Further Reading
 
-- https://learn.adafruit.com/adafruit-pn532-rfid-nfc/ndef
-- https://developer.nordicsemi.com/nRF_Connect_SDK/doc/1.0.0/nrf/include/nfc/ndef/nfc.html
-- http://sweet.ua.pt/andre.zuquete/Aulas/IRFID/11-12/docs/NFC%20Data%20Exchange%20Format%20(NDEF).pdf
-- https://www.netes.com.tr/netes/dosyalar/dosya/B6159F60458582512B16EF1263ADE707.pdf
-- https://github.com/OpenJavaCard/openjavacard-ndef/tree/master/doc
-- https://github.com/Giraut/pcsc-ndef
-- https://github.com/nfcpy/ndeflib
-- https://ndeflib.readthedocs.io/en/latest
-- https://play.google.com/store/apps/details?id=com.wakdev.nfctools.pro
+- <https://learn.adafruit.com/adafruit-pn532-rfid-nfc/ndef>
+- <https://developer.nordicsemi.com/nRF_Connect_SDK/doc/1.0.0/nrf/include/nfc/ndef/nfc.html>
+- <http://sweet.ua.pt/andre.zuquete/Aulas/IRFID/11-12/docs/NFC%20Data%20Exchange%20Format%20(NDEF).pdf>
+- <https://www.netes.com.tr/netes/dosyalar/dosya/B6159F60458582512B16EF1263ADE707.pdf>
+- <https://github.com/OpenJavaCard/openjavacard-ndef/tree/master/doc>
+- <https://github.com/Giraut/pcsc-ndef>
+- <https://github.com/nfcpy/ndeflib>
+- <https://ndeflib.readthedocs.io/en/latest>
+- <https://play.google.com/store/apps/details?id=com.wakdev.nfctools.pro>
 
-Improve this document: https://github.com/DangerousThings/flexsecure-applets/tree/master/docs
+Improve this document: <https://github.com/DangerousThings/flexsecure-applets/tree/master/docs>

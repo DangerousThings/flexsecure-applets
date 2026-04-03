@@ -28,14 +28,14 @@ Install `pcscd`, `pcsc-tools`, `opensc` and `vsmartcard-vpcd` from your package 
 
 Make sure the virtual reader shows up when running `pcsc_scan -r` or `opensc-tool -lr`:
 
-```
+```text
 pcsc_scan -r
 
 0: Virtual PCD 00 00
 1: Virtual PCD 00 01
 ```
 
-```
+```bash
 opensc-tool -l
 
 # Detected readers (pcsc)
@@ -46,15 +46,15 @@ Nr.  Card  Features  Name
 
 ### Applet Emulation
 
-Clone `jcardsim` from https://github.com/DangerousThings/jcardsim using git. To emulate the compiled applet, run:
+Clone `jcardsim` from <https://github.com/DangerousThings/jcardsim> using git. To emulate the compiled applet, run:
 
-```
+```text
 java -cp jcardsim-3.0.5-SNAPSHOT.jar:TARGET com.licel.jcardsim.remote.VSmartCard CONFIG.cfg
 ```
 
 Replace `TARGET` with the relative path to the directory containing the compiled class files of your applet, e.g. `./target`. Replace `CONFIG.cfg` with the path to your jcardsim configuration file. This file looks like this:
 
-```
+```java
 com.licel.jcardsim.card.applet.0.AID=YOURAID
 com.licel.jcardsim.card.applet.0.Class=your.main.ClassName
 com.licel.jcardsim.card.ATR=YOURATR
@@ -68,7 +68,7 @@ Replace `YOURAID` with the AID you want the applet to have, e.g. `A0000005272001
 
 Next, send the initial boot APDU to create the applet, using `opensc-tool` to send raw APDUs:
 
-```
+```bash
 opensc-tool -r 'Virtual PCD 00 00' -s '80 b8 00 00 KK  PP  QQ QQ QQ ... 00 [RR SS SS SS ...] FF'
 ```
 
@@ -86,41 +86,41 @@ To "eject" the card, just stop the Jcardsim process.
 
 ## Docker Container
 
-If you do not want to clutter your system, or don't have a compatible Linux system, you can use a pre-made Docker container for compilation. Install Docker, and use the image at https://hub.docker.com/r/vivokey/smartcard-ci . You can find the source Dockerfile at https://github.com/DangerousThings/smartcard-ci . This image is also used to compile the applets distributed via https://github.com/DangerousThings/flexSecure-applets/releases .
+If you do not want to clutter your system, or don't have a compatible Linux system, you can use a pre-made Docker container for compilation. Install Docker, and use the image at <https://hub.docker.com/r/vivokey/smartcard-ci> . You can find the source Dockerfile at <https://github.com/DangerousThings/smartcard-ci> . This image is also used to compile the applets distributed via <https://github.com/DangerousThings/flexSecure-applets/releases> .
 
 To run a command inside the Docker container:
 
-```
+```bash
 docker run -it --rm -v SOURCES:/app/src:rw vivokey/smartcard-ci "command"
 ```
 
 Replace `SOURCES` with the absolute path to your source code directory, and `"command"` with the command you want to run.
 
-You can look at the compilation scripts in https://github.com/DangerousThings/flexSecure-applets for reference.
+You can look at the compilation scripts in <https://github.com/DangerousThings/flexSecure-applets> for reference.
 
 The container also contains the virtual smartcard emulator, as well as the Bats test runner. You can use that to run tests against emulated applets. Refer to the test scripts in the repository.
 
 ## Sideloading
 
-Use the GlobalPlatformPro tools (GPP) from https://github.com/martinpaljak/GlobalPlatformPro/releases to load the compiled applets onto a card. Refer to the GPP documentation for details.
+Use the GlobalPlatformPro tools (GPP) from <https://github.com/martinpaljak/GlobalPlatformPro/releases> to load the compiled applets onto a card. Refer to the GPP documentation for details.
 
-For Fidesmo-deployed cards, use the `fdsm` tool from https://github.com/fidesmo/fdsm/releases to sign and sideload your applet. Refer to the Fidesmo developer documentation for details.
+For Fidesmo-deployed cards, use the `fdsm` tool from <https://github.com/fidesmo/fdsm/releases> to sign and sideload your applet. Refer to the Fidesmo developer documentation for details.
 
 Do not remove the management applet package (`A0000001515350`), or security controller (`A000000151000000`). They are part of the operating system.
 
 ## Sources and Further Reading
 
-- https://www.docker.com/
-- https://github.com/DangerousThings/smartcard-ci/blob/master/Dockerfile
-- https://github.com/DangerousThings/flexSecure-applets/tree/master/scripts
-- https://frankmorgner.github.io/vsmartcard/
-- https://pcsclite.apdu.fr/
-- https://github.com/DangerousThings/jcardsim
-- https://www.eftlab.com/knowledge-base/171-atr-list-full/
-- https://github.com/LudovicRousseau/pcsc-tools/blob/master/smartcard_list.txt
-- https://github.com/bats-core/bats-core
-- https://github.com/martinpaljak/GlobalPlatformPro
-- https://github.com/fidesmo/fdsm
-- https://fidesmo.com/technology/java-card/
+- <https://www.docker.com/>
+- <https://github.com/DangerousThings/smartcard-ci/blob/master/Dockerfile>
+- <https://github.com/DangerousThings/flexSecure-applets/tree/master/scripts>
+- <https://frankmorgner.github.io/vsmartcard/>
+- <https://pcsclite.apdu.fr/>
+- <https://github.com/DangerousThings/jcardsim>
+- <https://www.eftlab.com/knowledge-base/171-atr-list-full/>
+- <https://github.com/LudovicRousseau/pcsc-tools/blob/master/smartcard_list.txt>
+- <https://github.com/bats-core/bats-core>
+- <https://github.com/martinpaljak/GlobalPlatformPro>
+- <https://github.com/fidesmo/fdsm>
+- <https://fidesmo.com/technology/java-card/>
 
-Improve this document: https://github.com/DangerousThings/flexSecure-applets/tree/master/docs
+Improve this document: <https://github.com/DangerousThings/flexSecure-applets/tree/master/docs>

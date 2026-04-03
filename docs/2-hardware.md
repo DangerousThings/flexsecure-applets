@@ -33,7 +33,7 @@ The P71 J3R200 has about `200 KB` of EEPROM (re-writeable) nonvolatile flash mem
 
 Measurements show an available persistent (EEPROM) storage of at least `167736` bytes for the flexSecure.
 
-The ROM is typically used for storing pre-deployed packages which will never change. The EEPROM then stores only the applet instances, as well as configuration data like e.g. secret keys. In our case, all packages are loaded during runtime into the EEPROM, and the ROM is pretty much unused expect for some cryptographic algorithms and the operating system. 
+The ROM is typically used for storing pre-deployed packages which will never change. The EEPROM then stores only the applet instances, as well as configuration data like e.g. secret keys. In our case, all packages are loaded during runtime into the EEPROM, and the ROM is pretty much unused expect for some cryptographic algorithms and the operating system.
 
 The P71 J3R200 has about `8 KB` of volatile RAM available. Some of that is used by the operating system and cryptographic algorithms. According to our manufacturer, at least `4 KB` of RAM is available for applets on the flexSecure.
 
@@ -63,7 +63,7 @@ The Fidesmo `fdsm` tool handles the signing process, and is able to interface GP
 
 ### Applet Availability
 
-It should be said that Fidesmo provides a very valuable service, and that their partnership with VivoKey on the Apex Flex is a big win for everyone. For example, Fidesmo provides the mentioned mobile app store, which provides an easy way to discover and install applets onto the Apex Flex. 
+It should be said that Fidesmo provides a very valuable service, and that their partnership with VivoKey on the Apex Flex is a big win for everyone. For example, Fidesmo provides the mentioned mobile app store, which provides an easy way to discover and install applets onto the Apex Flex.
 
 Typically companies will deploy their applets to a smart card and lock he chip down, creating a single application card (like payment cards, access badges, Tesla key cards, etc). Fidesmo brokers on-chip security in a way that makes it possible for 3rd parties to feel comfortable enough to allow their applets to be deployed and operate on-chip with other applets. More specifically, Fidesmo's management of the master key, review of applets before publication, and deployment of applets into separate security domains on-chip, does not allow end users the means to access or attempt to subvert or maliciously attack the applet code or data stored in memory. Without this arrangement, it would not be possible to deploy trusted applications from 3rd parties (like payment applets) in a multi-application environment.
 
@@ -77,10 +77,10 @@ The flexSecure comes without a payment applet. Although there are payment applet
 
 ## Sources and Further Reading
 
-- https://www.nxp.com/products/security-and-authentication/security-controllers/smartmx3-p71d321-secure-and-flexible-microcontroller:SMARTMX3-P71D321
-- https://www.javacardos.com/store/products/11020
-- https://fidesmo.com/
-- https://github.com/fidesmo/fdsm
-- https://github.com/DangerousThings/javacard-memory
+- <https://www.nxp.com/products/security-and-authentication/security-controllers/smartmx3-p71d321-secure-and-flexible-microcontroller:SMARTMX3-P71D321>
+- <https://www.javacardos.com/store/products/11020>
+- <https://fidesmo.com/>
+- <https://github.com/fidesmo/fdsm>
+- <https://github.com/DangerousThings/javacard-memory>
 
-Improve this document: https://github.com/DangerousThings/flexSecure-applets/tree/master/docs
+Improve this document: <https://github.com/DangerousThings/flexSecure-applets/tree/master/docs>

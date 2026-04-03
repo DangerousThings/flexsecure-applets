@@ -8,7 +8,7 @@ Compared to other microprocessors, JavaCards are actually pretty complex. They u
 
 Some chips come with a wireless NFC interface, some come with gold contacts (like on a SIM card), and some have both.
 
-![](img/javacards.jpeg)
+![A variety of common java card devices](img/javacards.jpeg)
 
 ## JavaCard (JC)
 
@@ -36,7 +36,7 @@ Many vendors implement their own proprietary extensions on top of GP, e.g. for E
 
 ### GlobalPlatformPro (GPP)
 
-A good and open-source GP interfacing software is GlobalPlatformPro (GPP). Download the latest stable version of GPP from https://github.com/martinpaljak/GlobalPlatformPro/releases . On Windows, you have the option to use the exe file, the jar file works on all operating systems.
+A good and open-source GP interfacing software is GlobalPlatformPro (GPP). Download the latest stable version of GPP from <https://github.com/martinpaljak/GlobalPlatformPro/releases> . On Windows, you have the option to use the exe file, the jar file works on all operating systems.
 
 If you use the jar version, download and install the latest version of the Java runtime from your package manager or e.g. the Oracle website.
 
@@ -46,35 +46,38 @@ The best user guide for GPP can be found in its repository readme file.
 
 Global Platform specs define a lifecycle management system which is intended to indicate what has been configured on the card in preparation for it to be issued. transitioning between these states is, with the exception of CARD_LOCKED, irreversible.  
 these states are as follows:
+
 - OP_READY
-  - The card will be in this state when it is brought up to the point where it can run applications.
-  - in this state, the card should have keys loaded to it, and any security domains set up.
+   - The card will be in this state when it is brought up to the point where it can run applications.
+   - in this state, the card should have keys loaded to it, and any security domains set up.
 - INITIALIZED
-  - this state indicates that some initial configuration has been populated, but the card is not yet ready to be issued to an end user
+   - this state indicates that some initial configuration has been populated, but the card is not yet ready to be issued to an end user
 - SECURED
-  - This state indicates that the card has been fully set up and is ready to be issued
-  - transitioning a card to secured may cause JCOP to be more strict about what the card allows you to change on it, but as far as use with GlobalPlatformPro tools is concerned, there is no real difference with this particular chip.
+   - This state indicates that the card has been fully set up and is ready to be issued
+   - transitioning a card to secured may cause JCOP to be more strict about what the card allows you to change on it, but as far as use with GlobalPlatformPro tools is concerned, there is no real difference with this particular chip.
 - CARD_LOCKED
-  - This state locks the card out from being used. it can be triggered either from GlobalPlatformPro or by an individual applet
+   - This state locks the card out from being used. it can be triggered either from GlobalPlatformPro or by an individual applet
 - TERMINATED
-  - The card is permanently locked out and can no longer be used or modified in any way, with the exception of an applet that has been grated permission to run post-termination.
+   - The card is permanently locked out and can no longer be used or modified in any way, with the exception of an applet that has been grated permission to run post-termination.
 
 The flexsecure and test card from dangerous things both ship in the OP_READY state.
 
 ### CPLC (Card production lifecycle) data
 
 The CPLC data contains information about the card itself, and who was involved at each step of its lifecycle. it includes
+
 - Who fabricated the chip, and when
 - What OS the chip is running
-- who pre-personalized the chip, what equipment they used, and when 
+- who pre-personalized the chip, what equipment they used, and when
 - who personalized the chip, when
 
 ### Security Domains
+
 Security domains are partitions on the card that separate applets from each other.  
 When you set up the card, you are installing keys and applets to the ISD, or Issuer security domain. it is possible to create additional security domains, known as SSDs or supplemental security domains on the card. these can have their own keys installed, and be configured to allow applets to be moved in and out of them (often referred to as extradition).
 creating SSDs has little benefit for an individual user of a card, and is meant for situations where multiple organizations have applets on one card, for example a payment applet provided by mastercard would likely be in a seperate security domain from any end user applets.  
 Information on creating and using SSDs is available in the GlobalPlatformPro documentation.  
-Note: applets cannot be extradited to a security domain until you install keys to it with `gp -c <$SSD_AID> --lock <keys>
+Note: applets cannot be extradited to a security domain until you install keys to it with `gp -c <$SSD_AID> --lock <keys>`
 
 ## Java Card OpenPlatform (JCOP)
 
@@ -118,25 +121,25 @@ Instances are retained across card resets and power cycles, and so is their non-
 
 ## Sources and Further Reading
 
-- https://en.wikipedia.org/wiki/Java_Card
-- https://en.wikipedia.org/wiki/Java_Card_OpenPlatform
-- https://www.oracle.com/java/technologies/java-card-tech.html
-- https://www.oracle.com/java/technologies/java-card/javacard1.html
-- https://globalplatform.org/
-- https://github.com/martinpaljak/GlobalPlatformPro
-- https://javacardos.com/javacardforum/
-- https://en.wikipedia.org/wiki/ISO/IEC_7816
-- http://cardwerk.com/iso-7816-part-4
-- https://en.wikipedia.org/wiki/Smart_card_application_protocol_data_unit
-- https://en.wikipedia.org/wiki/PC/SC
-- https://docs.microsoft.com/en-us/windows/win32/api/winscard/
-- https://pcsclite.apdu.fr/
-- https://en.wikipedia.org/wiki/Smart_card_application_protocol_data_unit
-- https://www.javacardos.com/tools/apdu-parser
-- https://www.eftlab.com/knowledge-base/complete-list-of-apdu-responses/
-- https://www.eftlab.com/knowledge-base/171-atr-list-full/
-- https://smartcard-atr.apdu.fr/
-- https://www.eftlab.com/knowledge-base/211-emv-aid-rid-pix/
-- https://globalplatform.org/specs-library/card-specification
+- <https://en.wikipedia.org/wiki/Java_Card>
+- <https://en.wikipedia.org/wiki/Java_Card_OpenPlatform>
+- <https://www.oracle.com/java/technologies/java-card-tech.html>
+- <https://www.oracle.com/java/technologies/java-card/javacard1.html>
+- <https://globalplatform.org/>
+- <https://github.com/martinpaljak/GlobalPlatformPro>
+- <https://javacardos.com/javacardforum/>
+- <https://en.wikipedia.org/wiki/ISO/IEC_7816>
+- <http://cardwerk.com/iso-7816-part-4>
+- <https://en.wikipedia.org/wiki/Smart_card_application_protocol_data_unit>
+- <https://en.wikipedia.org/wiki/PC/SC>
+- <https://docs.microsoft.com/en-us/windows/win32/api/winscard/>
+- <https://pcsclite.apdu.fr/>
+- <https://en.wikipedia.org/wiki/Smart_card_application_protocol_data_unit>
+- <https://www.javacardos.com/tools/apdu-parser>
+- <https://www.eftlab.com/knowledge-base/complete-list-of-apdu-responses/>
+- <https://www.eftlab.com/knowledge-base/171-atr-list-full/>
+- <https://smartcard-atr.apdu.fr/>
+- <https://www.eftlab.com/knowledge-base/211-emv-aid-rid-pix/>
+- <https://globalplatform.org/specs-library/card-specification>
 
-Improve this document: https://github.com/dangerousthings/flexSecure-applets/tree/master/docs
+Improve this document: <https://github.com/dangerousthings/flexSecure-applets/tree/master/docs>

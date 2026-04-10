@@ -30,7 +30,7 @@ setup() {
 
 teardown() {
     cd /app/tools/fido-attestation-loader
-    rm -f *.der *.p8 assert_param cred* pubkey
+    rm -f *.der *.p8 assert_param assert_raw cred* pubkey
     _teardown
 }
 
@@ -53,6 +53,16 @@ teardown() {
 @test "FIDO2 Register and Authenticate CTAP1-CTAP1" {
     fido_make_cred es256 nohmac u2f
     fido_assert_cred es256 nohmac u2f
+}
+
+@test "FIDO2 Discoverable Credential Lifecycle" {
+    fido_set_pin
+    fido_make_resident_cred es256
+    fido_assert_resident_cred es256
+    fido_token_list_rps | grep -q "$FIDO_RP"
+    fido_delete_resident_cred
+    run fido_attempt_assert_resident_cred es256
+    [ "$status" -ne 0 ]
 }
 
 #@test "FIDO2 Register and Authenticate https://demo.yubico.com/" {

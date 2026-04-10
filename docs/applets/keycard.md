@@ -5,9 +5,11 @@ The BIP32 Wallet is a distribution of the Status.im KeyCard applet. Read more at
 ## Applet Information
 
 - Repository: <https://github.com/status-im/status-keycard>
-- Binary name: `keycard.cap`
+- Binary name: `keycard.cap` (Gradle produces multiple CAP files; the core and cash applets are used)
 - Download: <https://github.com/DangerousThings/flexsecure-applets/releases>
 - AID: `A0:00:00:08:04:00:01:01:01` (core) and `A0:00:00:08:04:00:01:03:01` (cash), Package: `A0:00:00:08:04:00:01`
+- Fidesmo App ID: `38ea914a`
+- License: Apache v2
 - Storage requirements:
    - Persistent: `16424` bytes
    - Transient reset: `1366` bytes
@@ -15,9 +17,11 @@ The BIP32 Wallet is a distribution of the Status.im KeyCard applet. Read more at
 
 ## Compiling the Applet Yourself
 
-Setup your environment as described in *JavaCard Development Setup* .
+Setup your environment as described in *JavaCard Development Setup*. The build scripts in `scripts/compile/` automate the steps below.
 
-Use git to clone the sources recursively, and change into the directory. To compile, run `./gradlew convertJavacard`.
+```bash
+JC_HOME=<sdks>/jc304_kit ./gradlew convertJavacard
+```
 
 ## Installing the Applet
 
@@ -56,7 +60,9 @@ PKG: A0000008040001 (LOADED)
 
 ## Using the Applet
 
-Install the Status.im app on your phone and follow the setup instructions. For more information, refer to the app documentation.
+Keycard is supported by several wallet applications. The primary integration is [Status](https://status.im/), but the applet implements the open [Keycard API](https://keycard.tech/) and can be used with any compatible client. The [Keycard CLI](https://keycard.tech/docs/keycard-cli.html) can be used for card management from the command line.
+
+For more information, refer to the documentation at <https://keycard.tech/docs/>.
 
 ## Sources and Further Reading
 

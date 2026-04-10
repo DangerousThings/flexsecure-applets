@@ -6,10 +6,13 @@ Explaining the theory of public-key cryptography is out of scope, please refer t
 
 ## Applet Information
 
-- Repository: <https://github.com/ANSSI-FR/SmartPGP> (javacard-3.0.4-without-secure-messaging branch)
+- Repository: <https://github.com/ANSSI-FR/SmartPGP> (`javacard-3.0.4-without-secure-messaging` branch)
 - Binary name: `SmartPGPApplet-default.cap` and `SmartPGPApplet-large.cap`
 - Download: <https://github.com/DangerousThings/flexsecure-applets/releases>
-- AID: `d2:76:00:01:24:01:03:04:00:0A:00:00:00:00:00:00` (has to be adjusted, see below), Package: `d2:76:00:01:24:01`
+- AID: `D2:76:00:01:24:01:03:04:00:0A:00:00:00:00:00:00` (configurable, see below), Package: `D2:76:00:01:24:01`
+- Fidesmo App ID: `30c2ea30`
+- License: GPL v2
+- Supported algorithms: RSA 2048, 3072, 4096; ECDSA/ECDH over NIST P-256, P-384, P-521 and Brainpool-r1 256, 384, 512. Secure messaging is not supported.
 - Storage requirements:
    - Persistent: `24776` bytes (`28148` with one RSA 2048 key)
    - Transient reset: `2118` bytes
@@ -17,9 +20,16 @@ Explaining the theory of public-key cryptography is out of scope, please refer t
 
 ## Compiling the Applet Yourself
 
-Setup your environment as described in *JavaCard Development Setup* .
+Setup your environment as described in *JavaCard Development Setup*. The build scripts in `scripts/compile/` automate the steps below.
 
-Use git to clone the sources, and change into the directory. To compile, run `JC_HOME=/<sdks>/jc304_kit ant`, replacing `<sdks>` with the path to your JavaCard SDKs.
+A custom `build.xml` is required:
+
+```bash
+cp scripts/compile/res/SmartPGP.build.xml applets/SmartPGP/build.xml
+JC_HOME=<sdks>/jc304_kit ant
+```
+
+This produces both `target/SmartPGPApplet-default.cap` and `target/SmartPGPApplet-large.cap`.
 
 ## Using Large Keys
 
@@ -68,7 +78,7 @@ For usage, refer to the manuals for GnuPGP, GPG4Win, OpenKeychain, Thunderbird, 
 
 ### Importing Keys
 
-Due to an implementation detail of the SmartPGP applet (<https://github.com/ANSSI-FR/SmartPGP/issues/15>), the card has to be configured for a specific algorithm before an existing key can be imported. This can be done using the `smartpgp-cli` tool in `SmartPGP/bin/`. For example, to configure the card for NIST P-512, run `./smartpgp-cli switch-p521`. You might have to install various Python 3 modules like `pyscard` and `pyasn1` using your system or Python package manager.
+Due to an implementation detail of the SmartPGP applet (<https://github.com/ANSSI-FR/SmartPGP/issues/15>), the card has to be configured for a specific algorithm before an existing key can be imported. This can be done using the `smartpgp-cli` tool in `SmartPGP/bin/`. For example, to configure the card for NIST P-521, run `./smartpgp-cli switch-p521`. You might have to install various Python 3 modules like `pyscard` and `pyasn1` using your system or Python package manager.
 
 Generating keys on the card itself can be done for any algorithm without having to pre-configure the algorithm.
 

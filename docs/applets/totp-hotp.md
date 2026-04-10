@@ -10,6 +10,8 @@ These codes are preferred over e.g. SMS codes, because the process requires no c
 - Binary name: `vivokey-otp.cap`
 - Download: <https://github.com/DangerousThings/flexsecure-applets/releases>
 - AID: `A0:00:00:05:27:21:01:01:41:50:45:58:01`, Package: `A0:00:00:05:27:21:01:01:41:50:45:58`
+- Fidesmo App ID: `61fc54d5`
+- License: GPL v3
 - Storage requirements:
    - Persistent: `5128` bytes (`6020` with three TOTP accounts)
    - Transient reset: `2296` bytes (`2392`)
@@ -17,9 +19,11 @@ These codes are preferred over e.g. SMS codes, because the process requires no c
 
 ## Compiling the Applet Yourself
 
-Setup your environment as described in *JavaCard Development Setup* .
+Setup your environment as described in *JavaCard Development Setup*. The build scripts in `scripts/compile/` automate the steps below.
 
-Use git to clone the sources recursively, and change into the directory. Make sure the submodule in `/oracle_javacard_sdks` is checked out. To compile, run `ant dist`.
+```bash
+JC_HOME=<sdks>/jc304_kit ant dist
+```
 
 ## Installing the Applet
 

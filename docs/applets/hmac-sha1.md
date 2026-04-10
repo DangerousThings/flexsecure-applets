@@ -6,10 +6,12 @@ This applet is compatible to the Yubikey-style protocol, supported by e.g. KeePa
 
 ## Applet Information
 
-- Repository: <https://github.com/DangerousThings/flexsecure-ykhmac> (which is a fork of <https://github.com/arekinath/YkOtpApplet>. The fork fixes some bugs.).
+- Repository: <https://github.com/DangerousThings/flexsecure-ykhmac> (which is a fork of <https://github.com/arekinath/YkOtpApplet>. The fork fixes some bugs.)
 - Binary name: `YkHMACApplet.cap`
 - Download: <https://github.com/DangerousThings/flexsecure-applets/releases>
 - AID: `A0:00:00:05:27:20:01:01`, Package: `A0:00:00:05:27:20`
+- Fidesmo App ID: `2f2e363b`
+- License: MPL v2
 - Storage requirements:
    - Persistent: `3204` bytes
    - Transient reset: `240` bytes
@@ -17,9 +19,13 @@ This applet is compatible to the Yubikey-style protocol, supported by e.g. KeePa
 
 ## Compiling the Applet Yourself
 
-Setup your environment as described in *JavaCard Development Setup* .
+Setup your environment as described in *JavaCard Development Setup*. The build scripts in `scripts/compile/` automate the steps below.
 
-Use git to clone the sources recursively, and change into the directory. Make sure the submodule in `/sdks` is checked out. To compile, run `ant dist`.
+This applet uses `jc222_kit` (older than most other applets):
+
+```bash
+JC_HOME=<sdks>/jc222_kit ant dist
+```
 
 ## Installing the Applet
 

@@ -2,7 +2,8 @@
     "git.autoRepositoryDetection": "openEditors",
     "git.detectSubmodules": false,
     "java.project.referencedLibraries": [
-        "${workspaceRoot}/applets/apex-fido2/sdks/js305u3_kit/lib/*.jar"
+        "${workspaceRoot}/applets/apex-fido2/sdks/js305u3_kit/lib/*.jar",
+        "${workspaceRoot}/applets/javacard-memory/globalplatform_javacard_sdks/gp1.8_kit/*.jar"
     ],
     "java.import.exclusions": [
         "**",

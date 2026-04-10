@@ -1,48 +1,64 @@
 [submodule "applets/flexsecure-ykhmac"]
 	path = applets/flexsecure-ykhmac
 	url = https://github.com/DangerousThings/flexsecure-ykhmac.git
+	branch = master
 [submodule "applets/apex-totp"]
 	path = applets/apex-totp
 	url = https://github.com/VivoKey/apex-totp.git
+	branch = master
 [submodule "applets/SmartPGP"]
 	path = applets/SmartPGP
 	url = https://github.com/ANSSI-FR/SmartPGP
+	branch = javacard-3.0.4-without-secure-messaging
 [submodule "applets/openjavacard-ndef"]
 	path = applets/openjavacard-ndef
 	url = https://github.com/OpenJavaCard/openjavacard-ndef
+	branch = master
 [submodule "smartcard-ci"]
 	path = smartcard-ci
 	url = https://github.com/DangerousThings/smartcard-ci.git
+	branch = master
 [submodule "applets/u2f-javacard"]
 	path = applets/u2f-javacard
 	url = https://github.com/darconeous/u2f-javacard.git
+	branch = master
 [submodule "applets/apex-fido2"]
 	path = applets/apex-fido2
 	url = https://github.com/VivoKey/apex-fido2
+	branch = master
 [submodule "applets/javacard-memory"]
 	path = applets/javacard-memory
 	url = https://github.com/DangerousThings/javacard-memory.git
+	branch = master
 [submodule "applets/status-keycard"]
 	path = applets/status-keycard
 	url = https://github.com/status-im/status-keycard.git
+	branch = master
 [submodule "applets/apex-tesla"]
 	path = applets/apex-tesla
 	url = https://github.com/VivoKey/apex-tesla.git
+	branch = master
 [submodule "applets/apex-ndef"]
 	path = applets/apex-ndef
 	url = https://github.com/VivoKey/apex-ndef.git
+	branch = master
 [submodule "applets/FIDO2Applet"]
 	path = applets/FIDO2Applet
 	url = https://github.com/BryanJacobs/FIDO2Applet.git
+	branch = main
 [submodule "applets/apex-spark"]
 	path = applets/apex-spark
 	url = https://github.com/Vivokey/apex-spark.git
+	branch = master
 [submodule "applets/SatochipApplet"]
 	path = applets/SatochipApplet
 	url = https://github.com/Toporin/SatochipApplet.git
+	branch = master
 [submodule "applets/Satodime-Applet"]
 	path = applets/Satodime-Applet
 	url = https://github.com/Toporin/Satodime-Applet.git
+	branch = master
 [submodule "applets/Seedkeeper-Applet"]
 	path = applets/Seedkeeper-Applet
 	url = https://github.com/Toporin/Seedkeeper-Applet.git
+	branch = master

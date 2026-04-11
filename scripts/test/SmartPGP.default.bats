@@ -31,6 +31,10 @@ teardown() {
 # algo_switch: tells the applet which algorithm to expect before an import.
 # write_*_keygen: writes a gpg --batch key spec to /app/tmp/gen-key for import_sign.
 
+@test "version" {
+    _test_version "$AID"
+}
+
 @test "GPG generate RSA 2048 key and sign" {
     generate_sign RSA 2048
     [ "$?" == 0 ]

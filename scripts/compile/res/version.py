@@ -26,10 +26,10 @@ if __name__ == '__main__':
         config = f.read()
     if(ext == '.xml'):
         # Ant XML file
-        matches = re.search(r"cap.*version[\s='\"]*([^\s'\"]*)", config, flags=re.DOTALL)
+        matches = re.search(r'cap.*version[\s=\'"]*([^\s\'"]*)', config, flags=re.DOTALL)
     elif(ext == '.gradle'):
         # Gradle config
-        matches = re.search(r"javacard {.*version[\s=']*([^\s']*)", config, flags=re.DOTALL)
+        matches = re.search(r"javacard \{.*version[\s=']*([^\s']*)", config, flags=re.DOTALL)
     else:
         print('error: Unknown source file format: ' + ext)
     if(matches == None):
@@ -67,7 +67,7 @@ if __name__ == '__main__':
         exit(1)
     with open(args.patch, 'r') as f:
         patchtarget = f.read()
-    match = re.search(r"void\s*process\s*\((?:final)?\s*APDU apdu\)\s*(?:throws ISOException)?\s*{", patchtarget, flags=re.DOTALL)
+    match = re.search(r'void\s*process\s*\((?:final)?\s*APDU apdu\)\s*(?:throws ISOException)?\s*\{', patchtarget, flags=re.DOTALL)
     if(match == None):
         print("error: Cannot find process method in patch file")
         exit(1)

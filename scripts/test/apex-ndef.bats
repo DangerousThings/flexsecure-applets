@@ -15,12 +15,14 @@ setup() {
     cd /tmp/builds/apex-ndef
     java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/apex-ndef.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
-    sleep 2
+    sleep 5
+    AID='D2760000850101'
     CUID='fff860203a257128'              # 8-byte card unique ID, embedded in NDEF URLs
     KEY='4173f37fbec4f93f3c66bb9fbf7284bf'  # AES-128 key used to compute CMAC
     SALT='ead73d4e5aeb64b0ddb26b470bb85856'  # Salt mixed into the CMAC input alongside CUID and counter
-    # GlobalPlatform INSTALL: AID D2760000850101 (NDEF Type 4 Tag), install params include CUID, KEY, SALT.
-    opensc-tool -r 'Virtual PCD 00 00' -s "80 b8 00 00 34  07  D2760000850101  00  2A  0800 $CUID $KEY $SALT FF"
+    # GlobalPlatform INSTALL: apex-ndef (NDEF Type 4 Tag), install params include CUID, KEY, SALT.
+    opensc-tool -r 'Virtual PCD 00 00' -s "$(_install_apdu "$AID" "00 2A 0800 $CUID $KEY $SALT FF")"
+    sleep 3
 }
 
 teardown() {
@@ -42,6 +44,10 @@ cmac_verify() {
     return $res
 }
 
+
+@test "version" {
+    _test_version "$AID"
+}
 
 @test "NDEF check size" {
     ndef_check_size

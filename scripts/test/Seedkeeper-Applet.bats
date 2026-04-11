@@ -20,10 +20,11 @@ setup() {
         com.licel.jcardsim.remote.VSmartCard \
         /app/src/scripts/test/res/SeedkeeperApplet.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
-    sleep 2
-    # GlobalPlatform INSTALL: AID = "SeedKeeper" (0x536565644B6565706572),
-    # install parameter 0x1000 sets the vault size to 4 kB.
-    opensc-tool -r 'Virtual PCD 00 00' -s "80 b8 00 00 10 0B 53 65 65 64 4B 65 65 70 65 72 00 00 02 10 00 FF"
+    sleep 5
+    AID='536565644b656570657200'
+    # GlobalPlatform INSTALL: SeedkeeperApplet ("SeedKeeper\x00"), install param 0x1000 = 4 kB vault.
+    opensc-tool -r 'Virtual PCD 00 00' -s "$(_install_apdu "$AID" '00 02 10 00 FF')"
+    sleep 3
     # common-initial-setup prompts for PIN twice via getpass; setsid provides the TTY fallback.
     printf '%s\n%s\n' "$SEEDKEEPER_PIN" "$SEEDKEEPER_PIN" | setsid satochip-cli common-initial-setup
 }
@@ -42,6 +43,10 @@ seedkeeper_import_test_mnemonic() {
             --export-rights Plaintext_export_allowed
 }
 
+
+@test "version" {
+    _test_version "$AID"
+}
 
 @test "SeedKeeper card status shows zero secrets" {
     PYSATOCHIP_PIN="$SEEDKEEPER_PIN" satochip-cli seedkeeper-get-card-status | grep -q "nb_secrets: 0"

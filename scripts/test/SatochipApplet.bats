@@ -20,9 +20,11 @@ setup() {
         com.licel.jcardsim.remote.VSmartCard \
         /app/src/scripts/test/res/SatochipApplet.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
-    sleep 2
-    # GlobalPlatform INSTALL [for load+install]: AID = 5361744F43686970 ("SatoChip"), no install params.
-    opensc-tool -r 'Virtual PCD 00 00' -s "80 b8 00 00 0C 09 53 61 74 6F 43 68 69 70 00 00 00 FF"
+    sleep 5
+    AID='5361746F4368697000'
+    # GlobalPlatform INSTALL: SatochipApplet ("SatoChip\x00").
+    opensc-tool -r 'Virtual PCD 00 00' -s "$(_install_apdu "$AID" '00 00 FF')"
+    sleep 3
     # common-initial-setup prompts for PIN twice via getpass (requires a TTY);
     # setsid allocates a new session so getpass falls back to stdin.
     printf '%s\n%s\n' "$SATOCHIP_PIN" "$SATOCHIP_PIN" | setsid satochip-cli common-initial-setup
@@ -43,6 +45,10 @@ satochip_get_xpub() {
     PYSATOCHIP_PIN="$1" satochip-cli satochip-bip32-get-xpub --path "m/44'/0'/0'"
 }
 
+
+@test "version" {
+    _test_version "$AID"
+}
 
 @test "Satochip card status shows initialized" {
     PYSATOCHIP_PIN="$SATOCHIP_PIN" satochip-cli common-get-card-status | grep -q "'setup_done': True"

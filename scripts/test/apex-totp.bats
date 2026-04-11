@@ -14,9 +14,11 @@ setup() {
     cd /tmp/builds/apex-totp
     java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/apex-totp.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
-    sleep 2
-    # GlobalPlatform INSTALL: AID A000000527210101 41504558 01 → apex-totp (OATH applet).
-    opensc-tool -r 'Virtual PCD 00 00' -s '80 b8 00 00 10  0D  A0 00 00 05 27 21 01 01 41 50 45 58 01  00  FF'
+    sleep 5
+    AID='A0000005272101014150455801'
+    # GlobalPlatform INSTALL: apex-totp (OATH applet).
+    opensc-tool -r 'Virtual PCD 00 00' -s "$(_install_apdu "$AID" '00 FF')"
+    sleep 3
     # Fixed base32 TOTP secret used across both tests for reproducibility.
     SECRETB32='IVCEGRTIOQ3UGSLNI5KDMT2RKF4FGUCO'
 }
@@ -25,6 +27,10 @@ teardown() {
     _teardown
 }
 
+
+@test "version" {
+    _test_version "$AID"
+}
 
 @test "ykman program TOTP and oathtool validate" {
     ykman -r 'Virtual PCD 00 00' oath accounts uri "otpauth://totp/Test?secret=$SECRETB32"

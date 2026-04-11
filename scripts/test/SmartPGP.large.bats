@@ -26,6 +26,10 @@ teardown() {
 }
 
 
+@test "version" {
+    _test_version "$AID"
+}
+
 @test "GPG generate RSA 3072 key and sign" {
     generate_sign RSA 3072
     [ "$?" == 0 ]

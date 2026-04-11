@@ -14,9 +14,11 @@ setup() {
     cd /tmp/builds/flexsecure-ykhmac
     java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/flexsecure-ykhmac.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
-    sleep 2
-    # GlobalPlatform INSTALL: AID A0000005272001 01 → YubiKey HMAC-SHA1 challenge-response applet.
-    opensc-tool -r 'Virtual PCD 00 00' -s '80 b8 00 00 0A  08  a0 00 00 05 27 20 01 01  00  FF'
+    sleep 5
+    AID='A000000527200101'
+    # GlobalPlatform INSTALL: flexsecure-ykhmac (YubiKey HMAC-SHA1 challenge-response applet).
+    opensc-tool -r 'Virtual PCD 00 00' -s "$(_install_apdu "$AID" '00 FF')"
+    sleep 3
     SECRET='59fc9f75041ce4848614738a1c39bb565090ad9f'    # 20-byte HMAC-SHA1 key (hex)
     CHALLENGE='4e7cbb8fedc4ae11b7546f3c9986fdffeba2d9d7d1cc00799a7e5bcfb267e1bf'
     RESPONSE='4ff8aa748188a4be57f4d7eff27eccda639b289f'  # Expected HMAC-SHA1(SECRET, CHALLENGE)
@@ -26,6 +28,10 @@ teardown() {
     _teardown
 }
 
+
+@test "version" {
+    _test_version "$AID"
+}
 
 @test "ykman program and respond" {
     ykman -r 'Virtual PCD 00 00' otp chalresp -f 1 $SECRET

@@ -7,8 +7,10 @@ pgp_setup() {
     cd /tmp/builds/SmartPGP
     java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target/$1 com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/SmartPGP.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
-    sleep 2
-    opensc-tool -r 'Virtual PCD 00 00' -s '80 b8 00 00 13  10  d2 76 00 01 24 01 03 04 C0 FE 00 00 00 01 00 00  00  FF'
+    sleep 5
+    AID='d276000124010304C0FE000000010000'
+    opensc-tool -r 'Virtual PCD 00 00' -s "$(_install_apdu "$AID" '00 FF')"
+    sleep 3
 }
 
 algo_switch() {

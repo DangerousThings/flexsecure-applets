@@ -20,9 +20,12 @@ setup() {
         com.licel.jcardsim.remote.VSmartCard \
         /app/src/scripts/test/res/status-keycard.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
-    sleep 2
-    opensc-tool -r 'Virtual PCD 00 00' -s "80 b8 00 00 0C 09 A0 00 00 08 04 00 01 01 01 00 00 FF"
-    opensc-tool -r 'Virtual PCD 00 00' -s "80 b8 00 00 0C 09 A0 00 00 08 04 00 01 03 01 00 00 FF"
+    sleep 5
+    AID='A00000080400010101'
+    opensc-tool -r 'Virtual PCD 00 00' -s "$(_install_apdu "$AID" '00 00 FF')"
+    sleep 3
+    opensc-tool -r 'Virtual PCD 00 00' -s "$(_install_apdu 'A00000080400010301' '00 00 FF')"
+    sleep 3
 }
 
 teardown() {
@@ -66,6 +69,10 @@ keycard_session() {
         | keycard shell 2>&1
 }
 
+
+@test "version" {
+    _test_version "$AID"
+}
 
 @test "Keycard info shows not initialized before setup" {
     keycard info 2>&1 | grep -q "Initialized: false"

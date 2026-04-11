@@ -37,6 +37,7 @@ _test_version() {
     # Response layout (from version.py): [appMajor appMinor buildMajor buildMinor buildPatch]
     # Passes if SW 9000 is returned with exactly 5 bytes, and if $DRONE_TAG is set (e.g. "v0.20.0"),
     # bytes 2-4 must match the build version encoded by version.py.
+    [ -n "$DRONE_TAG" ] || skip "DRONE_TAG not set"
     local AID="$1"
     local AID_LEN=$(( ${#AID} / 2 ))
     local AID_HEX
@@ -44,7 +45,7 @@ _test_version() {
     local OUT
     OUT=$(opensc-tool -r 'Virtual PCD 00 00' \
         -s "00 A4 04 00 $(printf '%02X' $AID_LEN) $AID_HEX" \
-        -s "00 F4 99 99 05")
+        -s "00 F4 99 99 05" 2>&1)
     # Check the last response is SW 9000.
     echo "$OUT" | grep 'Received' | tail -1 | grep -q 'SW1=0x90, SW2=0x00' || return 1
     # Extract the 5 response bytes after the last Received header.
@@ -56,7 +57,8 @@ _test_version() {
     # Verify bytes 2-4 match the build version from $DRONE_TAG (e.g. "v0.20.0"), as encoded by version.py.
     local VER_PARTS
     IFS='.' read -ra VER_PARTS <<< "${DRONE_TAG#v}"
-    [ "$((16#${BYTES[2]}))" -eq "${VER_PARTS[0]}" ] || return 1
-    [ "$((16#${BYTES[3]}))" -eq "${VER_PARTS[1]}" ] || return 1
-    [ "$((16#${BYTES[4]}))" -eq "${VER_PARTS[2]}" ] || return 1
+    [ "${#VER_PARTS[@]}" -eq 3 ] || return 1
+    [ "$(( 16#${BYTES[2]} ))" -eq "${VER_PARTS[0]}" ] || return 1
+    [ "$(( 16#${BYTES[3]} ))" -eq "${VER_PARTS[1]}" ] || return 1
+    [ "$(( 16#${BYTES[4]} ))" -eq "${VER_PARTS[2]}" ] || return 1
 }

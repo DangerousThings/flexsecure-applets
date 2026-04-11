@@ -27,9 +27,8 @@ teardown() {
 
 
 @test "ykman program TOTP and oathtool validate" {
-    cd /app/tools/yubikey-manager
-    poetry run ykman -r 'Virtual PCD 00 00' oath accounts uri "otpauth://totp/Test?secret=$SECRETB32"
-    YKRES=`poetry run ykman -r 'Virtual PCD 00 00' oath accounts code Test`
+    ykman -r 'Virtual PCD 00 00' oath accounts uri "otpauth://totp/Test?secret=$SECRETB32"
+    YKRES=`ykman -r 'Virtual PCD 00 00' oath accounts code Test`
     # Strip the account name prefix ("Test  ") that ykman prepends to the OTP code.
     YKRES=${YKRES#"Test  "}
     REF=`oathtool -b --totp "$SECRETB32"`
@@ -37,10 +36,9 @@ teardown() {
 }
 
 @test "ykman program HOTP and oathtool validate" {
-    cd /app/tools/yubikey-manager
     # Counter 42 is an arbitrary non-zero starting point to confirm the counter is stored and used.
-    poetry run ykman -r 'Virtual PCD 00 00' oath accounts uri "otpauth://hotp/Test?secret=$SECRETB32&counter=42"
-    YKRES=`poetry run ykman -r 'Virtual PCD 00 00' oath accounts code Test`
+    ykman -r 'Virtual PCD 00 00' oath accounts uri "otpauth://hotp/Test?secret=$SECRETB32&counter=42"
+    YKRES=`ykman -r 'Virtual PCD 00 00' oath accounts code Test`
     YKRES=${YKRES#"Test  "}
     REF=`oathtool -c 42 -b --hotp "$SECRETB32"`
     [ "$YKRES" == "$REF" ]

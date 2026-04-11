@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 _setup_file() {
-    pcscd -f &
+    mkdir -p /run/pcscd
+    pcscd -f --disable-polkit &
     PCSCD_PID="$!"
     sleep 4
 }

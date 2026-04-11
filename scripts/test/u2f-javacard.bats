@@ -16,10 +16,14 @@ setup() {
     java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/u2f-javacard.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
     sleep 2
+    # fido-attestation-loader generates a self-signed CA and a device certificate.
+    # The certificate bytes are passed as install parameters in the INSTALL APDU so the
+    # applet can include a valid attestation statement in registration responses.
     cd /app/tools/fido-attestation-loader
     ./attestation.py ca create -cap 123456
     ./attestation.py cert create -p 1234 -cap 123456
     PARAM=`./attestation.py cert show -p 1234 -f parameter -m u2fci`
+    # GlobalPlatform INSTALL: AID A0000006472F0001 (FIDO U2F AID), install params = attestation cert bytes.
     opensc-tool -r 'Virtual PCD 00 00' -s "80 b8 00 00 2F  08  A0 00 00 06 47 2F 00 01  00  23 $PARAM FF"
     ./attestation.py cert upload -m u2fci
 }
@@ -31,6 +35,7 @@ teardown() {
 }
 
 
+# U2F (CTAP1) only supports ES256; cross-protocol tests use u2f for registration or assertion.
 @test "U2F Register and Authenticate CTAP1-CTAP1" {
     fido_make_cred es256 nohmac u2f
     fido_assert_cred es256 nohmac u2f

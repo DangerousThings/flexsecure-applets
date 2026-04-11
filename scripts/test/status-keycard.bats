@@ -6,7 +6,7 @@ KEYCARD_PIN="123456"
 KEYCARD_PUK="123456789012"
 KEYCARD_PAIRING="KeycardDefaultPairing"
 
-setup_file() { 
+setup_file() {
     _setup_file
 }
 
@@ -25,11 +25,14 @@ setup() {
     opensc-tool -r 'Virtual PCD 00 00' -s "80 b8 00 00 0C 09 A0 00 00 08 04 00 01 03 01 00 00 FF"
 }
 
-teardown() { _teardown; }
+teardown() {
+    _teardown
+}
 
-# Session 1: initialize only. keycard-init regenerates the SC keypair internally;
-# all subsequent operations must run in a fresh shell so keycard-select picks up
-# the new public key before OPEN SECURE CHANNEL.
+# Session 1: initialize only. INITIALIZE APDU calls initSecureChannel() internally,
+# which regenerates the SC keypair (A→B). All subsequent operations must run in a
+# fresh shell so SELECT returns keypair B's public key before OPEN SECURE CHANNEL.
+# Mixing init and pair in the same session causes an ECDH mismatch → SW 6982.
 keycard_init() {
     printf '%s\n' \
         "keycard-select" \
@@ -38,7 +41,9 @@ keycard_init() {
         | keycard shell 2>&1
 }
 
-# Pair without opening a secure channel. Accepts optional extra commands.
+# Pair without opening a secure channel. Accepts optional extra commands after pair.
+# The pairing secret set by keycard-set-secrets is session-local and must be re-set
+# in every shell invocation before keycard-pair.
 keycard_pair() {
     printf '%s\n' \
         "keycard-select" \
@@ -81,6 +86,7 @@ keycard_session() {
 }
 
 @test "Keycard init enables key management capability" {
+    # Key management capability is off until INITIALIZE sets it.
     keycard_init
     keycard info 2>&1 | grep -q "Key management:true"
 }
@@ -103,6 +109,7 @@ keycard_session() {
 
 @test "Keycard secure channel opens after init" {
     keycard_init
+    # keycard-get-status requires an open secure channel; PIN retry count confirms it worked.
     keycard_session "keycard-get-status" | grep -qiE "PIN retry|Pin retry"
 }
 
@@ -114,7 +121,7 @@ keycard_session() {
 
 @test "Keycard export secp256k1 public key" {
     keycard_init
-    # Output: "EXPORTED PUBLIC KEY\n04<128 hex chars>" (no 0x prefix)
+    # Output line: "04<128 hex chars>" (no 0x prefix, unlike most other keycard-cli output).
     keycard_session \
         "keycard-generate-key" \
         "keycard-export-key-public m/44'/60'/0'/0/0" \
@@ -123,7 +130,8 @@ keycard_session() {
 
 @test "Keycard sign hash with derived key" {
     keycard_init
-    # keycard-sign-with-path takes <hash> <path> (hash first); output includes ETH SIGNATURE
+    # keycard-sign-with-path argument order: <hash> <path> (hash comes first).
+    # Output includes R, S, V components and a combined ETH SIGNATURE line.
     keycard_session \
         "keycard-generate-key" \
         "keycard-sign-with-path 0000000000000000000000000000000000000000000000000000000000000000 m/44'/60'/0'/0/0" \
@@ -132,7 +140,8 @@ keycard_session() {
 
 @test "Keycard generate BIP39 mnemonic on-card" {
     keycard_init
-    # CS=6: 192 bits → 18 words; CLI outputs raw MNEMONIC INDEXES not resolved words
+    # CS (checksum size) = 6 → 192 bits of entropy → 18 mnemonic words.
+    # The CLI returns raw MNEMONIC INDEXES (11-bit BIP39 word indices), not resolved words.
     keycard_session "keycard-generate-mnemonic 6" | grep -qE "MNEMONIC INDEXES \[[0-9]"
 }
 
@@ -140,7 +149,7 @@ keycard_session() {
     local new_pin="654321"
     keycard_init
     keycard_session "keycard-change-pin $new_pin"
-    # Verify new PIN authenticates successfully in a fresh session
+    # Verify new PIN works in a fresh session (uses new_pin, so keycard_session cannot be reused here).
     keycard shell 2>&1 <<EOF | grep -qiE "PIN retry|Pin retry"
 keycard-select
 keycard-set-secrets $new_pin $KEYCARD_PUK $KEYCARD_PAIRING
@@ -151,7 +160,10 @@ keycard-get-status
 EOF
 }
 
+# --- Cash applet (no secure channel required) ---
+
 @test "Cash applet signs Ethereum hash" {
+    # CashApplet signs directly without pairing or secure channel.
     keycard shell 2>&1 <<EOF | grep -qiE "ETH SIGNATURE: 0x[0-9a-f]{130}"
 cash-select
 cash-sign 0000000000000000000000000000000000000000000000000000000000000000
@@ -159,6 +171,8 @@ EOF
 }
 
 @test "Cash applet recovered address matches reported address" {
+    # keycard info reports the CashApplet address; cash-sign recovers it from the signature.
+    # Both must agree, confirming the key and the signing path are consistent.
     local info_addr sign_addr
     info_addr=$(keycard info 2>&1 | grep -i "Address:" | grep -oiE "0x[0-9a-f]{40}" | tr '[:upper:]' '[:lower:]')
     sign_addr=$(keycard shell 2>&1 <<EOF | grep -i "ADDRESS:" | grep -oiE "0x[0-9a-f]{40}" | tr '[:upper:]' '[:lower:]'

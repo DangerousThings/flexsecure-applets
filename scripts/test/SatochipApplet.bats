@@ -3,6 +3,7 @@
 load res/common.sh
 
 SATOCHIP_PIN="12345678"
+# Fixed mnemonic gives deterministic xpub/address output for assertion matching.
 SATOCHIP_MNEMONIC="ripple shaft cactus chaos science safe review bench rare fun royal ginger crowd feed have citizen pigeon office avoid agent stumble wolf jar quantum"
 
 setup_file() {
@@ -20,7 +21,10 @@ setup() {
         /app/src/scripts/test/res/SatochipApplet.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"
     sleep 2
+    # GlobalPlatform INSTALL [for load+install]: AID = 5361744F43686970 ("SatoChip"), no install params.
     opensc-tool -r 'Virtual PCD 00 00' -s "80 b8 00 00 0C 09 53 61 74 6F 43 68 69 70 00 00 00 FF"
+    # common-initial-setup prompts for PIN twice via getpass (requires a TTY);
+    # setsid allocates a new session so getpass falls back to stdin.
     printf '%s\n%s\n' "$SATOCHIP_PIN" "$SATOCHIP_PIN" | setsid satochip-cli common-initial-setup
 }
 
@@ -28,12 +32,15 @@ teardown() {
     _teardown
 }
 
+# Import the fixed test mnemonic. Most tests depend on this to have a key loaded.
 satochip_import_test_mnemonic() {
     printf '%s\n' "$SATOCHIP_MNEMONIC" | PYSATOCHIP_PIN="$SATOCHIP_PIN" satochip-cli satochip-import-unencrypted-mnemonic
 }
 
+# Derive and return the xpub at m/44'/0'/0'/0 for the given PIN.
+# Used both to verify derivation works and to confirm PIN acceptance/rejection.
 satochip_get_xpub() {
-    PYSATOCHIP_PIN="$1" satochip-cli satochip-bip32-get-xpub --path "m/44'/0'/0'/0"
+    PYSATOCHIP_PIN="$1" satochip-cli satochip-bip32-get-xpub --path "m/44'/0'/0'"
 }
 
 
@@ -58,8 +65,9 @@ satochip_get_xpub() {
 @test "Satochip change PIN" {
     local new_pin="87654321"
     satochip_import_test_mnemonic
+    # common-change-pin also uses getpass (old PIN + new PIN twice) → setsid required.
     printf '%s\n%s\n%s\n' "$SATOCHIP_PIN" "$new_pin" "$new_pin" | setsid satochip-cli common-change-pin | grep -q "Success: Pin Changed"
     satochip_get_xpub "$new_pin" | grep -q "xpub"
-    # Old PIN must be rejected — output must not contain a valid xpub
+    # The CLI exits 0 even when the card rejects a wrong PIN, so check output not exit code.
     ! satochip_get_xpub "$SATOCHIP_PIN" | grep -q "xpub"
 }

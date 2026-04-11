@@ -1,5 +1,8 @@
 #!/usr/bin/env bats
 
+# Tests for the SmartPGP "large" build: RSA 3072 and 4096.
+# These key sizes exceed the default build's limits and require the larger applet variant.
+
 load res/common.sh
 load res/SmartPGP.common.sh
 
@@ -16,6 +19,7 @@ setup() {
 }
 
 teardown() {
+    # Remove generated keys and GPG state so tests are fully isolated.
     rm -rf /app/tmp
     rm -rf ~/.gnupg
     _teardown

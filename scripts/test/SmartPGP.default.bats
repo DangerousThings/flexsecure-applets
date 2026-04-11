@@ -1,5 +1,8 @@
 #!/usr/bin/env bats
 
+# Tests for the SmartPGP "default" build: RSA up to 2048 bits and NIST ECC curves.
+# The "large" build (SmartPGP.large.bats) extends this with RSA 3072/4096.
+
 load res/common.sh
 load res/SmartPGP.common.sh
 
@@ -16,11 +19,17 @@ setup() {
 }
 
 teardown() {
+    # Remove generated keys and GPG state so tests are fully isolated.
     rm -rf /app/tmp
     rm -rf ~/.gnupg
     _teardown
 }
 
+
+# generate_sign: runs an expect script to generate a key on-card via gpg, then signs and verifies.
+# import_sign: generates a key on the host, imports it to the card, then signs and verifies.
+# algo_switch: tells the applet which algorithm to expect before an import.
+# write_*_keygen: writes a gpg --batch key spec to /app/tmp/gen-key for import_sign.
 
 @test "GPG generate RSA 2048 key and sign" {
     generate_sign RSA 2048
@@ -28,6 +37,7 @@ teardown() {
 }
 
 @test "GPG generate ECC NIST P-256 key and sign" {
+    # ECC curve IDs passed to SmartPGP.generate.ECC.expect: 3=P-256, 4=P-384, 5=P-521.
     generate_sign ECC 3
     [ "$?" == 0 ]
 }

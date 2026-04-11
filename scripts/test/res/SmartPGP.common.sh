@@ -2,6 +2,8 @@
 
 pgp_setup() {
     mkdir -p /app/tmp
+    mkdir -p -m 700 ~/.gnupg
+    echo 'disable-ccid' > ~/.gnupg/scdaemon.conf
     cd /tmp/builds/SmartPGP
     java -cp /app/tools/jcardsim/target/jcardsim-3.0.5-SNAPSHOT.jar:./target/$1 com.licel.jcardsim.remote.VSmartCard /app/src/scripts/test/res/SmartPGP.jcardsim.cfg > /dev/null &
     JCSIM_PID="$!"

@@ -25,11 +25,12 @@
             doxygen
             graphviz
             libfido2
+            markdownlint-cli
             (python3.withPackages (ps: with ps; [
               pyscard
               cryptography
               fido2
-              JPype1
+              jpype1
               parameterized
               pyasn1
               requests

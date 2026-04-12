@@ -54,3 +54,61 @@ git config --global commit.gpgsign true
 ### Adding your public key to a git host
 
 For your commits to show as verified on your git host of choice, you will need to associate the public keys with your account. For Github, go to settings, then "SSH and GPG keys", and click "New GPG key". copy/paste the results of `gpg --armor --export <KEY_ID>` into the box and save it.
+
+## Using GPG as an SSH agent
+
+It is possible to use gpg to replace the default ssh agent, and then use your PGP keys for SSH authentication. This setup tends to be a bit difficult to get working correctly, and can have some security issues if you do not use sufficiently strong keys. ECDSA or EDDSA keys are suggested.
+
+### Configuring GPG to act as an SSH agent
+
+GPG does not enable this functionality by default. to turn it on, make the following config changes:
+
+In `gpg-agent.conf`:
+
+```text
+enable-ssh-support
+```
+
+Add the keygrip for the desired key to the `sshcontrol` file:
+
+```bash
+# Run this and find the authentication subkey for your card, it'll have [A] after the key type and date
+# Copy the keygrip from it and add that to the "sshcontrol" file in your GPG config directory
+gpg -K --with-keygrip
+```
+
+Note: If you skip this step, GPG will fail silently, and the issue will be very difficult to troubleshoot.
+
+Restart the GPG agent to apply the changes:
+
+```bash
+gpg-connect-agent killagent /bye
+```
+
+### Configure SSH to use the GPG agent
+
+SSH will use its own ssh-agent by default. there are a few different ways to accomplish setting it to use gpg, and they are not mutually exclusive.
+
+- Environment variables
+   - These are handled by your shell. for bash or zsh, add these lines to your .bashrc or .zshrc
+
+```text
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+```
+
+- SSH config
+   - Only works with ssh itself and not certain ssh-related commands
+   - add these lines to your `.ssh/config` file
+
+```text
+Match host * exec "gpg-connect-agent UPDATESTARTUPTTY /bye"
+Host *
+    IdentityAgent /run/user/1000/gnupg/S.gpg-agent.ssh
+```
+
+### Add your GPG key to remote hosts
+
+To use a GPG key to sign into a machine, you need to have your GPG public key set as an authorized key.
+
+To do this, copy the output of `ssh-add -L` and paste it into `.ssh/authorized_keys` on the target machine, or use the `ssh-copy-id` tool to do it automatically.

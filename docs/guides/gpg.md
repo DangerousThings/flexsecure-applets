@@ -17,12 +17,45 @@ The GPG config directory is typically found in your home directory as `.gnupg`
 
 ## Notes on using GPG with smartcards
 
-GPG ships its own module for handling smartcards, `scdaemon`, that may conflict with other software. if you encounter an issue where after running GPG, other softrware cannot access your smartcard, add the following lines to `scdaemon.conf` in your gpg config directory.
+GPG ships its own module for handling smartcards, `scdaemon`, that may conflict with other software. If you encounter an issue where after running GPG, other software cannot access your smartcard, add the following lines to `scdaemon.conf` in your gpg config directory.
 
 ```text
 disable-ccid
 pcsc-shared
 ```
+
+## Using GPG to configure a card
+
+Once a card has been set up with the pgp applet, it needs to have keys installed, and there are metadata fields that can be populated.
+GPG provides tools to generate or import keys, change pins, and set metadata fields via the `gpg --card-edit` command, and the interactive prompt it provides.  
+In order to edit most attributes of the card, you will need to enter the `admin` command into the card edit prompt.
+
+### Generating a key
+
+NOTE: The applet provided in this repository for PGP will only accept or generate RSA keys unless you follow the instructions provided in the documentation for it. the GPG card editing tools CANNOT change the key type for this applet.
+
+To generate a new pgp key, use the `generate` subcommand in the card edit prompt, after enabling admin commands. GPG will prompt you with instructions for any information you need to provide.
+
+### Editing Metadata
+
+PGP cards have a few metadata fields you will most likely want to set to customize your card. setting these requires enabling admin commands. the main ones are as follows:
+
+- Name
+   - Full name of the cardholder
+   - Can be changed using the `name` subcommand
+- Language Prefs
+   - Preferred language of the cardholder
+   - Set using the `lang` subcommand
+- Salutation
+   - Holds the preferred gender identity of the cardholder
+   - Can be set to `M`, `F` or left blank.
+   - Set using the `salutation` subcommand
+- URL
+   - Points to a location where the public key of the card can be found
+   - Can be set using the `url` subcommand
+- Login
+   - Holds the account name used by the cardholder
+   - Can be set using the `login` subcommand
 
 ## Importing your public keys to GPG from a smartcard
 

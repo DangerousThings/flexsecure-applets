@@ -62,6 +62,10 @@ PKG: A0000008040001 (LOADED)
 
 Keycard is supported by several wallet applications. The primary integration is [Status](https://status.im/), but the applet implements the open [Keycard API](https://keycard.tech/) and can be used with any compatible client. The [Keycard CLI](https://keycard.tech/docs/keycard-cli.html) can be used for card management from the command line.
 
+Notes: 
+   - Many of the listed clients do not work with the keycard applet directly, only a contact-capable card inserted into the keycard shell device. Wallets requiring the use of the Keycard Shell device CANNOT be used with contactless-only smartcards like the Apex or FlexSecure
+   - The official Status.im Legacy client, the only version distributed on F-Droid, is missing support for some assets that you may wish to hold in your wallet. any such assets will not be displayed, and cannot be interacted with in the legacy app. 
+
 For more information, refer to the documentation at <https://keycard.tech/docs/>.
 
 ## Sources and Further Reading

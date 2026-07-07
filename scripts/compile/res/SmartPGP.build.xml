@@ -3,10 +3,15 @@
   <description>Ant build for SmartPGP applet</description>
   <get src="https://github.com/martinpaljak/ant-javacard/releases/download/v20.03.25/ant-javacard.jar" dest="." skipexisting="true"/>
   <taskdef name="javacard" classname="pro.javacard.ant.JavaCard" classpath="ant-javacard.jar"/>
-  
-  <target name="build" description="Build everything">
+
+  <condition property="curve25519.available" value="true">
+    <isset property="curve25519.jar"/>
+  </condition>
+
+  <target name="build">
     <antcall target="build-large"/>
     <antcall target="build-default"/>
+    <antcall target="build-default-curve25519"/>
   </target>
 
   <target name="build-large">
@@ -23,6 +28,16 @@
     <javacard>
       <cap output="target/SmartPGPApplet-default.cap" classes="target/default" sources="src" aid="D27600012401" version="1.0">
         <applet class="fr.anssi.smartpgp.SmartPGPApplet" aid="D276000124010304000A000000000000"/>
+      </cap>
+    </javacard>
+  </target>
+
+  <target name="build-default-curve25519" if="curve25519.available">
+    <replaceregexp file="src/fr/anssi/smartpgp/Constants.java" match="(INTERNAL_BUFFER_MAX_LENGTH\s*=\n\s*\(short\)).*;" replace="\10x500;"/>
+    <javacard>
+      <cap output="target/SmartPGPApplet-default-curve25519.cap" classes="target/default-curve25519" sources="src" aid="D27600012401" version="1.0">
+        <applet class="fr.anssi.smartpgp.SmartPGPApplet" aid="D276000124010304000A000000000000"/>
+        <import jar="${curve25519.jar}"/>
       </cap>
     </javacard>
   </target>

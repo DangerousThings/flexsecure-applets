@@ -8,7 +8,7 @@
 	branch = master
 [submodule "applets/SmartPGP"]
 	path = applets/SmartPGP
-	url = https://github.com/ANSSI-FR/SmartPGP
+	url = https://github.com/VivoKey/SmartPGP
 	branch = javacard-3.0.4-without-secure-messaging
 [submodule "applets/openjavacard-ndef"]
 	path = applets/openjavacard-ndef
@@ -62,3 +62,9 @@
 	path = applets/Seedkeeper-Applet
 	url = https://github.com/Toporin/Seedkeeper-Applet.git
 	branch = master
+[submodule "applets/Curve25519-Source"]
+	path = applets/Curve25519-Source
+	url = https://github.com/suut/Curve25519-JavaCard-Source
+[submodule "applets/Curve25519"]
+	path = applets/Curve25519
+	url = https://github.com/suut/Curve25519-JavaCard

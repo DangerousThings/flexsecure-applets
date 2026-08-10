@@ -62,3 +62,7 @@
 	path = applets/Seedkeeper-Applet
 	url = https://github.com/Toporin/Seedkeeper-Applet.git
 	branch = master
+[submodule "applets/vkpiv"]
+	path = applets/vkpiv
+	url = https://git.dngr.us/VivoKey/vkpiv.git
+	branch = main

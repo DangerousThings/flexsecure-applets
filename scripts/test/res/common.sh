@@ -52,7 +52,7 @@ _test_version() {
     local LAST_RECV_LINE
     LAST_RECV_LINE=$(echo "$OUT" | grep -n 'Received' | tail -1 | cut -d: -f1)
     local BYTES
-    read -ra BYTES <<< "$(echo "$OUT" | tail -n "+$((LAST_RECV_LINE + 1))" | grep -oE '\b[0-9A-Fa-f]{2}\b' | tr '\n' ' ')"
+    read -ra BYTES <<< "$(echo "$OUT" | tail -n "+$((LAST_RECV_LINE + 1))" | grep -oP '(^| )\K[0-9A-Fa-f]{2}(?= )' | tr '\n' ' ')"
     [ "${#BYTES[@]}" -eq 5 ] || return 1
     # Verify bytes 2-4 match the build version from $DRONE_TAG (e.g. "v0.20.0"), as encoded by version.py.
     local VER_PARTS

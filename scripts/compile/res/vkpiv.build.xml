@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="dist" name="vkpiv">
+  <target name="dist">
+    <get src="https://github.com/martinpaljak/ant-javacard/releases/download/v20.03.25/ant-javacard.jar" skipexisting="true" dest="."/>
+    <taskdef name="javacard" classname="pro.javacard.ant.JavaCard" classpath="ant-javacard.jar"/>
+    <javacard>
+      <cap output="target/vkpiv.cap" sources="applet/src" classes="target" aid="A00000030800001000" version="0.1">
+        <applet class="com.vivokey.vkpiv.VkPivApplet" aid="A000000308000010000100"/>
+      </cap>
+    </javacard>
+  </target>
+  <target name="clean" description="clean up">
+    <delete dir="target"/>
+  </target>
+</project>

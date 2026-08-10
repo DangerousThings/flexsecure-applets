@@ -2,6 +2,10 @@
 
 load res/common.sh
 
+VKPIV_MGMT_KEY='010203040506070801020304050607080102030405060708'
+VKPIV_KEY=/tmp/vkpiv-test-key.pem
+VKPIV_CERT=/tmp/vkpiv-test-cert.pem
+
 setup_file() {
     _setup_file
 }
@@ -58,16 +62,13 @@ teardown() {
 # Certificate lifecycle via openssl keygen -> openssl self-signed cert -> import-key
 # -> import-certificate -> read-certificate -> openssl verify subject
 @test "certificate lifecycle: import key+cert, read back, verify subject" {
-    local MGMT_KEY='010203040506070801020304050607080102030405060708'
-    local KEY=/tmp/vkpiv-test-key.pem
-    local CERT=/tmp/vkpiv-test-cert.pem
     # Generate EC P-256 keypair and self-signed cert on the host
-    openssl ecparam -name prime256v1 -genkey -noout -out "$KEY"
-    openssl req -new -x509 -key "$KEY" -out "$CERT" -days 365 -subj '/CN=vkpiv-test/'
+    openssl ecparam -name prime256v1 -genkey -noout -out "$VKPIV_KEY"
+    openssl req -new -x509 -key "$VKPIV_KEY" -out "$VKPIV_CERT" -days 365 -subj '/CN=vkpiv-test/'
     # Import private key into slot 9a (requires 9B management key auth)
-    yubico-piv-tool -r "$READER" --key="$MGMT_KEY" -a import-key -s 9a -i "$KEY"
+    yubico-piv-tool -r "$READER" --key="$VKPIV_MGMT_KEY" -a import-key -s 9a -i "$VKPIV_KEY"
     # Import matching certificate into slot 9a
-    yubico-piv-tool -r "$READER" --key="$MGMT_KEY" -a import-certificate -s 9a -i "$CERT"
+    yubico-piv-tool -r "$READER" --key="$VKPIV_MGMT_KEY" -a import-certificate -s 9a -i "$VKPIV_CERT"
     # Read cert back from card and verify subject round-trips correctly
     yubico-piv-tool -r "$READER" -a read-certificate -s 9a | \
         openssl x509 -noout -subject | grep -q 'vkpiv-test'
@@ -75,12 +76,9 @@ teardown() {
 
 # OpenSC PKCS#15: card is recognized as PIV and the imported cert is listed
 @test "pkcs15-tool lists certificate after import" {
-    local MGMT_KEY='010203040506070801020304050607080102030405060708'
-    local KEY=/tmp/vkpiv-test-key.pem
-    local CERT=/tmp/vkpiv-test-cert.pem
-    openssl ecparam -name prime256v1 -genkey -noout -out "$KEY"
-    openssl req -new -x509 -key "$KEY" -out "$CERT" -days 365 -subj '/CN=vkpiv-test/'
-    yubico-piv-tool -r "$READER" --key="$MGMT_KEY" -a import-key -s 9a -i "$KEY"
-    yubico-piv-tool -r "$READER" --key="$MGMT_KEY" -a import-certificate -s 9a -i "$CERT"
+    openssl ecparam -name prime256v1 -genkey -noout -out "$VKPIV_KEY"
+    openssl req -new -x509 -key "$VKPIV_KEY" -out "$VKPIV_CERT" -days 365 -subj '/CN=vkpiv-test/'
+    yubico-piv-tool -r "$READER" --key="$VKPIV_MGMT_KEY" -a import-key -s 9a -i "$VKPIV_KEY"
+    yubico-piv-tool -r "$READER" --key="$VKPIV_MGMT_KEY" -a import-certificate -s 9a -i "$VKPIV_CERT"
     pkcs15-tool -r "$READER" --list-certificates 2>&1 | grep -qi 'certificate'
 }

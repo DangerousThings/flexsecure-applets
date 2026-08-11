@@ -140,6 +140,17 @@ Pipe to OpenSSL to inspect it:
 yubico-piv-tool -r "$READER" -a read-certificate -s 9a | openssl x509 -noout -text
 ```
 
+### Test Signature
+
+`test-signature` makes the card sign a challenge and verifies the result against a certificate you supply via `-i`. It does not read the certificate from the card — you must provide it explicitly.
+
+```bash
+yubico-piv-tool -r "$READER" -a read-certificate -s 9a -o slot9a.pem
+yubico-piv-tool -r "$READER" -a verify-pin -P <pin> -a test-signature -s 9a -A ECCP256 -i slot9a.pem
+```
+
+Do not combine these into a single command with the same file for both `-o` and `-i` — `read-certificate` truncates the output file before fetching, so a failed read will zero out the cert file and cause the subsequent `test-signature` to fail.
+
 ### Sign Data and Verify
 
 Sign arbitrary data using the private key in slot 9a via PKCS#11:
@@ -169,6 +180,16 @@ OpenSC recognises the card as a PIV token and exposes it via PKCS#15:
 pkcs15-tool -r "$READER" --list-certificates
 pkcs15-tool -r "$READER" --list-keys
 ```
+
+### yubico-piv-tool CLI gotchas
+
+**`-r/--reader` has no default that matches non-YubiKey hardware.** The built-in default is the literal string `"Yubikey"`, so without an explicit `-r` flag the tool prints `Failed to connect to yubikey: Error in PCSC call.` even with a healthy card and reader. Always pass `-r "<reader name>"`. Use `opensc-tool -l` to find the exact name.
+
+**`--key` requires an `=` sign.** The management key flag takes an optional argument, so `-k <hex>` with a space leaves the value unbound — the tool silently falls through and prompts for the key on the TTY, appearing to hang in scripts. The correct form is `--key="<hex>"` (or `-k"<hex"` with no space).
+
+**`read-certificate -o` truncates the file before fetching.** If the slot is empty or the read fails, the output file is zeroed out before any error is reported. Never use the same filename for `-o` and a subsequent `-i` in one command — if the read fails, the cert file used by `test-signature` will be empty. Do the read and the test as separate commands.
+
+**`test-signature` requires `-i <cert>`.** It never reads the certificate from the card. Without `-i` in a non-interactive shell it reads from stdin, hits EOF immediately, and prints `Failed loading certificate for test-signature.` before sending a single APDU. The card is not contacted; this error never indicates an applet problem. See the [Test Signature](#test-signature) section above for the correct two-step form.
 
 ### System Authentication (SSH, sudo, etc.)
 
